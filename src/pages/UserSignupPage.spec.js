@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { UserSignupPage } from './UserSignupPage';
 import { exportAllDeclaration } from '@babel/types';
@@ -58,4 +58,53 @@ describe('UserSignupPage', () => {
             expect(button).toBeInTheDocument();
         })
     });
+
+    describe('Interation', () => {
+
+        const changeEvent = (content) => {
+            return {
+                target: {
+                value: content
+                }
+            }
+        }
+
+        it('sets the displayName value intro state', () => {
+            const {queryByPlaceholderText} = render(<UserSignupPage />)
+            const displayNameInput = queryByPlaceholderText('Your display name');
+
+            fireEvent.change(displayNameInput, changeEvent('my-display-name'));
+
+            expect(displayNameInput).toHaveValue('my-display-name')
+        })
+
+        
+        it('sets the username value intro state', () => {
+            const {queryByPlaceholderText} = render(<UserSignupPage />)
+            const displayUsername = queryByPlaceholderText('Your username');
+
+            fireEvent.change(displayUsername, changeEvent('my-username-name'));
+
+            expect(displayUsername).toHaveValue('my-username-name')
+        })
+
+
+        it('sets the password value intro state', () => {
+            const {queryByPlaceholderText} = render(<UserSignupPage />)
+            const displayPassword = queryByPlaceholderText('Your password');
+
+            fireEvent.change(displayPassword, changeEvent('my-password-name'));
+
+            expect(displayPassword).toHaveValue('my-password-name')
+        })
+
+        it('sets the password repeat value intro state', () => {
+            const {queryByPlaceholderText} = render(<UserSignupPage />)
+            const passwordRepeat = queryByPlaceholderText('Your password');
+
+            fireEvent.change(passwordRepeat, changeEvent('my-passwordRepeat-name'));
+
+            expect(passwordRepeat).toHaveValue('my-passwordRepeat-name')
+        })
+    })
 });
