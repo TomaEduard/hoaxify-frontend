@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { UserSignupPage } from './UserSignupPage';
-import { exportAllDeclaration } from '@babel/types';
+import { exportAllDeclaration, jsxEmptyExpression } from '@babel/types';
 
 // beforEach(cleanup);
 
@@ -105,6 +105,27 @@ describe('UserSignupPage', () => {
             fireEvent.change(passwordRepeat, changeEvent('my-passwordRepeat-name'));
 
             expect(passwordRepeat).toHaveValue('my-passwordRepeat-name')
+        })
+
+        it('calls postSingup when the fields are valid and the actiions are provided in props', () => {
+            const actions = {
+                postSingup: jest.fn().mockResolvedValueOnce({})
+            }
+            const { container, queryByPlaceholderText } = render(<UserSignupPage actions={actions}/>);
+
+            const displayNameInput = queryByPlaceholderText('Your display name');
+            const usernameInput = queryByPlaceholderText('Your username');
+            const passwordInput = queryByPlaceholderText('Your password');
+            const passwordRepeatInput = queryByPlaceholderText('Repeat your password');
+
+            fireEvent.change(displayNameInput, changeEvent('my-display-name'));
+            fireEvent.change(usernameInput, changeEvent('my-username-name'));
+            fireEvent.change(passwordInput, changeEvent('my-password-name'));
+            fireEvent.change(passwordRepeatInput, changeEvent('my-passwordRepeat-name'));
+
+            const button = container.querySelector('button');
+            fireEvent.click(button);
+            expect(actions.postSingup).toHaveBeenCalledTimes(1);
         })
     })
 });
