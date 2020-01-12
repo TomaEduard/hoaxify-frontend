@@ -31,32 +31,45 @@ export class UserSignupPage extends React.Component {
     }
     
     onClickSignup = () => {
-        this.props.actions.postSingup();
+        const user = {
+            username: this.state.username,
+            displayName: this.state.displayName,
+            password: this.state.password,
+        }
+
+        this.props.actions.postSingup(user);
+        
     }
 
     render() {
         return (
-            <div>
-                <h1>Sign Up</h1>
+            <div className="container">
+                <h1 className="text-center">Sign Up</h1>
 
-                <div>
+                <div className="col-12 mb-3">
+                    <label>Display Name</label>
                     <input 
+                        className="form-control"
                         placeholder="Your display name" 
                         value={this.state.displayName}
                         onChange={this.onChangeDisplayName}
                     />
                 </div>
 
-                <div>
+                <div className="col-12 mb-3">
+                    <label>Username Name</label>
                     <input 
+                        className="form-control"
                         placeholder="Your username"
                         value={this.state.username}
                         onChange={this.onChangeUsername}
                     />
                 </div>
 
-                <div>
+                <div className="col-12 mb-3">
+                    <label>Password Name</label>
                     <input 
+                        className="form-control"
                         placeholder="Your password" 
                         type="password"
                         value={this.state.password}
@@ -64,24 +77,37 @@ export class UserSignupPage extends React.Component {
                     />
                 </div>
 
-                <div>
+                <div className="col-12 mb-3">
+                    <label>Password Repeat</label>
                     <input 
+                        className="form-control"
                         placeholder="Repeat your password"
                         type="password"
                         value={this.state.passwordRepeat}
                         onChange={this.onChangePasswordRepeat}
-
                     />
                 </div>
 
-                <div>
-                    <button onClick={this.onClickSignup}>Sign Up</button>
+                <div className="text-center">
+                    <button 
+                        className="btn btn-primary"
+                        onClick={this.onClickSignup}>Sign Up
+                    </button>
                 </div>
 
             </div>
         )
     }
 
+}
+
+// Default props
+UserSignupPage.defaultProps = {
+    actions: {
+        postSingup: () => new Promise((resolve, reject) => {
+            resolve({});
+        })
+    }
 }
 
 export default UserSignupPage;
