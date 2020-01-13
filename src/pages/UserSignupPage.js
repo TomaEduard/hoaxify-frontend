@@ -39,10 +39,13 @@ export class UserSignupPage extends React.Component {
 
         this.setState({pandingApiCall: true})
 
-        this.props.actions.postSignup(user).then((response) => {
+        this.props.actions.postSignup(user)
+            .then((response) => {
             this.setState({pandingApiCall: false })
-        });
-        
+            })
+            .catch(error => {
+                this.setState({pandingApiCall: false })
+            });
     };
 
     render() {
@@ -103,7 +106,7 @@ export class UserSignupPage extends React.Component {
                     {/* Spinner */}
                     {this.state.pandingApiCall && (
                         <div 
-                        className="spinner-border text-light spinner-border-sm mr-sm-1" role="status">
+                        className="spinner-border text-light spinner-border-sm mr-sm-2" role="status">
                         <span className="sr-only">Loading...</span>
                         </div>
                     )}
