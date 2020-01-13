@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent} from '@testing-library/react';
+import { render, cleanup, fireEvent, waitForDomChange} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { UserSignupPage } from './UserSignupPage';
 import { exportAllDeclaration, jsxEmptyExpression } from '@babel/types';
@@ -87,8 +87,17 @@ describe('UserSignupPage', () => {
             fireEvent.change(passwordRepeatInput, changeEvent('my-passwordRepeat-name'));
 
             button = container.querySelector('button');
-
             return rendered;
+        }
+
+        const mockAsyncDelayed = () => {
+            return jest.fn().mockImplementation(() => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve({});
+                    }, 300)
+                })
+            })
         }
 
         it('sets the displayName value intro state', () => {
@@ -129,36 +138,77 @@ describe('UserSignupPage', () => {
             expect(passwordRepeat).toHaveValue('my-passwordRepeat-name')
         })
 
-        it('calls postSingup when the fields are valid and the actiions are provided in props', () => {
+        it('calls postsignup when the fields are valid and the actiions are provided in props', () => {
             const actions = {
-                postSingup: jest.fn().mockResolvedValueOnce({})
+                postsignup: jest.fn().mockResolvedValueOnce({})
             }
 
             setupForSubmit({actions});
             
             fireEvent.click(button);
-            expect(actions.postSingup).toHaveBeenCalledTimes(1);
+            expect(actions.postsignup).toHaveBeenCalledTimes(1);
         })
 
-        it('does not throw exception when clicking the button when action not rpovided in props', () => {
-            setupForSubmit({});
+        // it('does not throw exception when clicking the button when action not rpovided in props', () => {
+        //     setupForSubmit({});
 
-            expect(() => fireEvent.click(button)).not.toThrow();
-        })
-
-        // it('calls post with user body when the fields are valid', () => {
-        //     const expectedUserObject = {
-        //         username: 'my-display-name',
-        //         usernameInput: 'my-username-name',
-        //         passwordInput: 'my-password-name',
-        //     }
-
-        //     setupForSubmit({actions});
-            
-        //     fireEvent.click(button);
-        //     expect(actions.postSingup).toHaveBeenCalledTimes(1);
-        //     expect(actions.postSingup).toHaveBeenCalledWith(expectedUserObject);
+        //     expect(() => fireEvent.click(button)).not.toThrow();
         // })
+
+        it('calls post with user body when the fields are valid', () => {
+            const actions = {
+                postsignup: jest.fn().mockResolvedValueOnce({})
+            };
+            setupForSubmit({actions});
+            fireEvent.click(button);
+
+            const expectedUserObject = {
+                username: 'my-username-name',
+                displayName: 'my-display-name',
+                password: 'my-password-name',
+            };
+
+            expect(actions.postsignup).toHaveBeenCalledTimes(1);
+            expect(actions.postsignup).toHaveBeenCalledWith(expectedUserObject);
+        })
+
+        it('does not allow user to click the Sigh Up button when there is an an ongoing api call', () => {
+            const actions = {
+                postsignup: mockAsyncDelayed()
+            };
+            setupForSubmit({actions});
+            fireEvent.click(button);
+            // click second time
+            fireEvent.click(button);
+
+            expect(actions.postsignup).toHaveBeenCalledTimes(1);
+        })
+
+        it('display spinner when there is an api call', () => {
+            const actions = {
+                postSignup: mockAsyncDelayed()
+            };
+
+            const {queryByText} = setupForSubmit({actions});
+            fireEvent.click(button);
+
+            const spinner = queryByText("Loading...")
+            expect(spinner).toBeInTheDocument();
+        })
+
+        it('hide spinner after api call successfully ', async() => {
+            const actions = {
+                postSignup: mockAsyncDelayed()
+            };
+
+            const {queryByText} = setupForSubmit({actions});
+            fireEvent.click(button);
+
+            await waitForDomChange();
+
+            const spinner = queryByText("Loading...")
+            expect(spinner).not.toBeInTheDocument();
+        })
 
     })
 });
