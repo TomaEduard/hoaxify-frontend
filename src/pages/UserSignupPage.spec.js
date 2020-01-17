@@ -50,6 +50,7 @@ describe('UserSignupPage', () => {
       expect(button).toBeInTheDocument();
     });
   });
+  
   describe('Interactions', () => {
     const changeEvent = (content) => {
       return {
