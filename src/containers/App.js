@@ -8,8 +8,8 @@ import TopBar from '../components/TopBar';
 import * as apiCalls from '../api/apiCalls';
 
 const actions = {
-    postLogin: apiCalls.login,
-    postSignup: apiCalls.signup
+  postLogin: apiCalls.login,
+  postSignup: apiCalls.signup
 };
 
 function App() {

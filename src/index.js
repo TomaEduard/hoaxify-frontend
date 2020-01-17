@@ -4,14 +4,18 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
-import { UserSignupPage } from './pages/UserSignupPage';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import authReducer from './redux/authReducer';
 
-import { LoginPage } from './pages/LoginPage';
+const store = createStore(authReducer);
 
 ReactDOM.render(
-    <HashRouter>
-        <App />
-    </HashRouter>,
+    <Provider store={store}>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </Provider>,
 
     document.getElementById('root')
 );
