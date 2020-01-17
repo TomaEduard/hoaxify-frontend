@@ -5,9 +5,9 @@ class UserPage extends Component {
 
     render() { 
         return (
-            <div data-testid="userpage"></div>
+            <div data-testid="userpage">Userpage</div>
         );
     }
 }
- 
+
 export default UserPage;
