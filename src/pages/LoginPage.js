@@ -2,6 +2,8 @@ import React from 'react';
 import Input from '../components/Input';
 import ButtonWithProgress from '../components/ButtonWithProgress';
 import { connect } from 'react-redux';
+import * as authActions from '../redux/authActions'; 
+import { Link } from 'react-router-dom';
 
 export class LoginPage extends React.Component {
   state = {
@@ -34,19 +36,10 @@ export class LoginPage extends React.Component {
     };
     this.setState({pendingApiCall: true})
 
-    this.props.actions
-    .postLogin(body)
-    .then((response) => {
-      // Redux
-      const action = {
-        type: 'login-success',
-        payload: {
-          ...response.data,
-          password: this.state.password, // not receive password from api
-         }
-      }
-      this.props.dispatch(action)
+    // call reformating postLogin function for jest 
+    this.props.actions.postLogin(body)
 
+    .then((response) => {
       this.setState({pendingApiCall: false}, () => {
         this.props.history.push('/');
       })
@@ -118,4 +111,12 @@ LoginPage.defaultProps = {
   dispatch: () => {}
 };
 
-export default connect()(LoginPage);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: {
+      postLogin: (body) => dispatch(authActions.loginHandler(body))
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginPage);

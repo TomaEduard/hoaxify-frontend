@@ -64,7 +64,7 @@ class TopBar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         user: state
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps)(TopBar);

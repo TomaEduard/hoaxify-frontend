@@ -5,11 +5,9 @@ import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux'; // applyMiddleware optional for consol.log
-import authReducer from './redux/authReducer';
-import logger from 'redux-logger'; //optional for consol.log
+import configureStore from './redux/configureStore';
 
-const store = createStore(authReducer, applyMiddleware(logger));
+const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
