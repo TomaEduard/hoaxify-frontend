@@ -75,6 +75,21 @@ describe('TopBar', () => {
             expect(profileLink.getAttribute('href')).toBe('/user1');
         });
     });
+    
+    describe('Interactions', () => {
+        it('display the login and signup links when user click logout ', () => {
+            const { queryByText } = setup(loggedInState);
+            const logoutLink = queryByText('Logout');
+
+            fireEvent.click(logoutLink);
+            const loginLink = queryByText('Login');
+            const SignUpLink = queryByText('Sign Up');
+
+            expect(loginLink).toBeInTheDocument();
+            expect(SignUpLink).toBeInTheDocument();
+
+        });
+    });
 
 
 })
