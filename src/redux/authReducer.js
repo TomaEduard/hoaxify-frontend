@@ -10,6 +10,11 @@ const initialState = {
 export default function authReducer(state = initialState, action) {
     if(action.type === 'logout-success') {
         return { ...initialState };
+    } else if (action.type === 'login-success') {
+        return {
+            ...action.payload,
+            isLoggedIn: true, // not sent from backend and not receive from logginPage isLoggedIn
+        };
     }
     return state;
 }
