@@ -12,7 +12,7 @@ export const loginHandler = (credential) => {
     return function (dispatch) {
 
         // make api request
-        return apiCalls.login(credential).then(response => {
+        return apiCalls.login(credential).then((response) => {
             // send data to redux store (authReducer)
             dispatch(
                 loginSuccess({ 
@@ -24,5 +24,13 @@ export const loginHandler = (credential) => {
             return response;
         });
 
+    };
+};
+
+export const signupHandler = (user) => {
+    return function (dispatch) {
+        return apiCalls.signup(user).then((response) => {
+           return dispatch(loginHandler(user));
+        });
     };
 };
