@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForDomChange, waitForElement} from '@testing-library/react';
+import { render, waitForDomChange, waitForElement, fireEvent} from '@testing-library/react';
 import UserList from './UserList';
 import * as apiCalls from '../api/apiCalls';
 
@@ -48,7 +48,61 @@ const mockSuccessGetSinglePage = {
         size: 3,
         totalPages: 1
     }
-}
+};
+
+const mockSuccessGetMultiPageFirst = {
+    data: {
+        content: [
+            {
+                username: 'user1',
+                displayName: 'display1',
+                image: ''
+            },
+            {
+                username: 'user2',
+                displayName: 'display2',
+                image: ''
+            },
+            {
+                username: 'user3',
+                displayName: 'display3',
+                image: ''
+            },
+        ],
+        number: 0,
+        first: true,
+        last: false,
+        size: 3,
+        totalPages: 2
+    }
+};
+
+const mockSuccessGetMultiPageLast = {
+    data: {
+        content: [
+            {
+                username: 'user4',
+                displayName: 'display4',
+                image: ''
+            },
+            {
+                username: 'user5',
+                displayName: 'display5',
+                image: ''
+            },
+            {
+                username: 'user6',
+                displayName: 'display6',
+                image: ''
+            },
+        ],
+        number: 1,
+        first: false,
+        last: true,
+        size: 3,
+        totalPages: 2
+    }
+};
 
 describe('UserList', () => {
 
@@ -75,6 +129,45 @@ describe('UserList', () => {
             );
             expect(firstUser).toBeInTheDocument();
         });
+
+        it('display the next button when response has last value as false', async () => {
+            apiCalls.listUsers = jest.fn().mockResolvedValue(mockSuccessGetMultiPageFirst);
+            const { queryByText } = setup();
+            const nextLink = await waitForElement(() => 
+                queryByText('next >')
+            );
+            expect(nextLink).toBeInTheDocument();
+        });
+
+        it('hide the next button when response has last = true', async () => {
+            apiCalls.listUsers = jest.fn().
+            mockResolvedValue(mockSuccessGetMultiPageLast);
+            const { queryByText } = setup();
+            const nextLink = await waitForElement(() => 
+                queryByText('next >')
+            );
+            expect(nextLink).not.toBeInTheDocument();
+        });
+
+        it('display the previous button when response has first value = false', async () => {
+            apiCalls.listUsers = jest.fn().
+            mockResolvedValue(mockSuccessGetMultiPageLast);
+            const { queryByText } = setup();
+            const previousLink = await waitForElement(() => 
+                queryByText('< previous')
+            );
+            expect(previousLink).toBeInTheDocument();
+        });
+        
+        it('hide the previous button when response has first value = true', async () => {
+            apiCalls.listUsers = jest.fn().
+            mockResolvedValue(mockSuccessGetMultiPageFirst);
+            const { queryByText } = setup();
+            const previousLink = await waitForElement(() => 
+                queryByText('< previous')
+            );
+            expect(previousLink).not.toBeInTheDocument();
+        });
     });
 
     describe('Lifecyle', () => {
@@ -89,6 +182,38 @@ describe('UserList', () => {
             apiCalls.listUsers = jest.fn().mockResolvedValue(mockedEmptySuccessResponse);
             setup();
             expect(apiCalls.listUsers).toHaveBeenCalledWith({ page:0, size: 3 });
+        });
+
+    });
+
+    describe('Interactions', () => {
+
+        it('load next page when click to next button', async () => {
+            apiCalls.listUsers = jest.fn()
+            .mockResolvedValueOnce(mockSuccessGetMultiPageFirst)
+            .mockResolvedValueOnce(mockSuccessGetMultiPageLast);
+            const { queryByText } = setup();
+            const nextLink = await waitForElement(() => 
+                queryByText('next >')
+            );
+            fireEvent.click(nextLink);
+
+            const secondPageUser = await waitForElement(() => queryByText('display4@user4'))
+            expect(secondPageUser).toBeInTheDocument();
+        });
+
+        it('load previous page when click to previuos button', async () => {
+            apiCalls.listUsers = jest.fn()
+            .mockResolvedValueOnce(mockSuccessGetMultiPageLast)
+            .mockResolvedValueOnce(mockSuccessGetMultiPageFirst);
+            const { queryByText } = setup();
+            const previousLink = await waitForElement(() => 
+                queryByText('< previous')
+            );
+            fireEvent.click(previousLink);
+
+            const firstPageUser = await waitForElement(() => queryByText('display1@user1'))
+            expect(firstPageUser).toBeInTheDocument();
         });
 
     });

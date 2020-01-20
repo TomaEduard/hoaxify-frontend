@@ -12,7 +12,11 @@ class UserList extends React.Component {
     }
 
     componentDidMount() {
-        apiCalls.listUsers({ page: this.state.page.number, size: this.state.page.size })
+        this.loadData();
+    }
+
+    loadData = (requestedPage = 0) => {
+        apiCalls.listUsers({ page: requestedPage, size: this.state.page.size })
         .then((response) => {
             this.setState({
                 page: response.data
@@ -20,6 +24,14 @@ class UserList extends React.Component {
         }).catch(() => {
 
         }); 
+    }
+
+    onClickNext = () => {
+        this.loadData(this.state.page.number + 1)
+    }
+
+    onClickPrevious = () => {
+        this.loadData(this.state.page.number - 1)
     }
 
     render() { 
@@ -30,6 +42,25 @@ class UserList extends React.Component {
                     {this.state.page.content.map((user) => {
                         return <UserListItem key={user.username} user={user} />
                     })}
+                </div>
+
+                <div className="clearfix">
+
+                    {!this.state.page.first && <span
+                        className="badge badge-light float-left"
+                        style={{cursor: 'pointer'}}
+                        onClick={this.onClickPrevious}
+                    >
+                        {`< previous`}
+                    </span>}
+
+                    {!this.state.page.last && (<span 
+                        className="badge badge-light float-right"
+                        style={{cursor: 'pointer'}}
+                        onClick={this.onClickNext}
+                    >
+                        next >
+                    </span>)}
                 </div>
             </div>
         );
