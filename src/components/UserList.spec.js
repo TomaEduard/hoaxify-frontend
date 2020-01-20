@@ -2,9 +2,14 @@ import React from 'react';
 import { render, waitForDomChange, waitForElement, fireEvent} from '@testing-library/react';
 import UserList from './UserList';
 import * as apiCalls from '../api/apiCalls';
+import { MemoryRouter } from 'react-router-dom';
 
 const setup = () => {
-    return render(<UserList />);
+    return render(
+        <MemoryRouter>
+            <UserList />
+        </MemoryRouter>
+    );
 }
 
 apiCalls.listUsers = jest.fn().mockResolvedValue({
@@ -104,6 +109,14 @@ const mockSuccessGetMultiPageLast = {
     }
 };
 
+const mockFailGet = {
+    response: {
+        data: {
+            message: 'Load error'
+        }
+    }
+};
+
 describe('UserList', () => {
 
     describe('Layout', () => {
@@ -168,6 +181,15 @@ describe('UserList', () => {
             );
             expect(previousLink).not.toBeInTheDocument();
         });
+
+        it('has link to UserPage', async () => {
+            apiCalls.listUsers = jest.fn().mockResolvedValue(mockSuccessGetSinglePage);
+            const { queryByText, container } = setup();
+            await waitForElement(() => queryByText('display1@user1'));
+            
+            const firstAnchor = container.querySelectorAll('a')[0];
+            expect(firstAnchor.getAttribute('href')).toBe('/user1');
+        });
     });
 
     describe('Lifecyle', () => {
@@ -214,6 +236,37 @@ describe('UserList', () => {
 
             const firstPageUser = await waitForElement(() => queryByText('display1@user1'))
             expect(firstPageUser).toBeInTheDocument();
+        });
+
+        it('display error message when other page fails', async () => {
+            apiCalls.listUsers = jest.fn()
+            .mockResolvedValueOnce(mockSuccessGetMultiPageLast)
+            .mockRejectedValueOnce(mockFailGet);
+            const { queryByText } = setup();
+            const previousLink = await waitForElement(() => 
+                queryByText('< previous')
+            );
+            fireEvent.click(previousLink);
+
+            const errorMessage = await waitForElement(() => queryByText('User load failed'))
+            expect(errorMessage).toBeInTheDocument();
+        });
+
+        it('hide error message when succesfully loading page', async () => {
+            apiCalls.listUsers = jest.fn()
+            .mockResolvedValueOnce(mockSuccessGetMultiPageLast)
+            .mockRejectedValueOnce(mockFailGet)
+            .mockResolvedValueOnce(mockSuccessGetMultiPageFirst);
+            const { queryByText } = setup();
+            const previousLink = await waitForElement(() => 
+                queryByText('< previous')
+            );
+            fireEvent.click(previousLink);
+            await waitForElement(() => queryByText('User load failed'))
+            fireEvent.click(previousLink);
+            const errorMessage = await waitForElement(() => queryByText('User load failed'))
+
+            expect(errorMessage).not.toBeInTheDocument();
         });
 
     });
