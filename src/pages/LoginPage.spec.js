@@ -7,7 +7,7 @@ describe('LoginPage', () => {
 
     it('has header of Login', () => {
       const { container } = render(<LoginPage />);
-      const header = container.querySelector('h1');
+      const header = container.querySelector('h4');
       expect(header).toHaveTextContent('Login');
     });
 

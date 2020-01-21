@@ -5,10 +5,11 @@ import LoginPage from '../pages/LoginPage';
 import UserSignupPage from '../pages/UserSignupPage';
 import UserPage from '../pages/UserPage';
 import TopBar from '../components/TopBar';
+import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className="rmdb-heroimage">
 
       <TopBar />
 

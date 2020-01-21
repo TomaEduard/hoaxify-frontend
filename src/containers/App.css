@@ -1,0 +1,9 @@
+.icon-exclamation {
+  color: rgb(255, 208, 0);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(241, 197, 0);
+}
+
+.secondaryTextUserNotFound {
+  font-size: 18px;
+}

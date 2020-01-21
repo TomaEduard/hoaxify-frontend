@@ -56,5 +56,14 @@ describe('apiCalls', () => {
       expect(mockListUsers).toBeCalledWith('/api/1.0/users?page=0&size=5');
     });
 
+    describe('getUser', () => {
+      it('calls /api/1.0/users/users5 when user5 is provided for getser', () => {
+        const mockGetUser = jest.fn();
+        axios.get = mockGetUser;
+        apiCalls.getUser('user5');
+        expect(mockGetUser).toBeCalledWith('/api/1.0/users/user5');
+      });
+    });
+
   });
 });
