@@ -29,6 +29,7 @@ const ProfileCard = (props) => {
                     <Input
                         value={displayName}
                         label={`Change Display Name for ${username}`}
+                        onChange={props.onChangeDisplayName}
                     />
                 </div>}
 
@@ -43,7 +44,7 @@ const ProfileCard = (props) => {
                 {
                     props.inEditMode && (
                         <React.Fragment>
-                            <button className="btn btn-outline-primary mt-2 pull-left">
+                            <button className="btn btn-outline-primary mt-2 pull-left" onClick={props.onClickSave}>
                                 <i className="far fa-save mr-2"></i>
                                 Save
                             </button>

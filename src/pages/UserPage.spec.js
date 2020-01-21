@@ -21,7 +21,18 @@ const mockFailGetUser = {
             message: 'User not found'
         }
     }
-}
+};
+
+const mockSuccessUpdateUser = {
+    response: {
+        data: {
+            id: 1,
+            username: 'user1',
+            displayName: 'display1-update',
+            image: 'profile1-update.png'
+        }
+    }
+};
 
 const match = {
     params: {
@@ -137,10 +148,63 @@ describe('UserPage', () => {
            
             const cancelButton = queryByText('Cancel');
             fireEvent.click(cancelButton);
-            
+
             expect(queryByText('Edit')).toBeInTheDocument();
+        });
+
+        it('calls updateUser api when clicking save', async () => {
+            const { queryByText } = await setupForEdit();
+            apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
+
+            const saveButton = queryByText('Save');
+            fireEvent.click(saveButton);
+
+            expect(apiCalls.updateUser).toHaveBeenCalledTimes(1);
+        });
+
+        it('calls updateUser api with user id', async () => {
+            const { queryByText } = await setupForEdit();
+            apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
+
+            const saveButton = queryByText('Save');
+            fireEvent.click(saveButton);
+            const userId = apiCalls.updateUser.mock.calls[0][0];
+
+            expect(userId).toBe(1);
+        }); 
+        
+        it('calls updateUser api with request body haveing changed displayName', async () => {
+            const { queryByText, container} = await setupForEdit();
+            apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
+
+            const displayInput = container.querySelector('input');
+            fireEvent.change(displayInput, {target: {value: 'display1-update'}})
+
+            const saveButton = queryByText('Save');
+            fireEvent.click(saveButton);
+
+            const requestBody = apiCalls.updateUser.mock.calls[0][1];
+
+            expect(requestBody.displayName).toBe('display1-update');
+        });
+
+        it('return to non edit mode after sucessful updateUser api call', async () => {
+            const { queryByText, container} = await setupForEdit();
+            apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
+
+            const displayInput = container.querySelector('input');
+            fireEvent.change(displayInput, {target: {value: 'display1-update'}})
+
+            const saveButton = queryByText('Save');
+            fireEvent.click(saveButton);
+
+            const editButtonAfterClickingSave = await waitForElement(() => queryByText('Edit'));
+
+            expect(editButtonAfterClickingSave).toBeInTheDocument();
         });
 
     });
 
 });
+
+console.error = () => {};

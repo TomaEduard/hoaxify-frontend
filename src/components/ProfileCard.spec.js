@@ -93,7 +93,6 @@ describe('ProfileCard', () => {
             const cancelButton = queryByText('Cancel');
             expect(cancelButton).toBeInTheDocument();
         });
-
    
     });
 });

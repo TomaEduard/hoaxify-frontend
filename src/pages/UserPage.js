@@ -59,6 +59,25 @@ class UserPage extends Component {
         })
     }
 
+    onClickSave = () => {
+        const userId = this.props.loggedInUser.id;
+        const userUpdate = {
+            displayName: this.state.user.displayName
+        }
+        apiCalls.updateUser(userId, userUpdate)
+        .then((response) => {
+            this.setState({
+                inEditMode: false
+            });
+        });
+    };
+
+    onChangeDisplayName = (event) => {
+        const user = { ...this.state.user };
+        user.displayName = event.target.value;
+        this.setState({user})
+    }
+
     render() { 
         let pageContent;
         if(this.state.isLoadingUser){
@@ -92,6 +111,8 @@ class UserPage extends Component {
                     inEditMode={this.state.inEditMode}
                     onClickEdit={this.onClickEdit}
                     onClickCancel={this.onClickCancel}
+                    onClickSave={this.onClickSave}
+                    onChangeDisplayName={this.onChangeDisplayName}
                 />)
         }
         return (
