@@ -91,7 +91,6 @@ export class LoginPage extends React.Component {
             type="password"
             value={this.state.password}
             onChange={this.onChangePassword}
-            
           />
 
         </div>
@@ -117,7 +116,6 @@ export class LoginPage extends React.Component {
               </label>
           </div>
         </div>
-
 
         <div className="text-center">
           <ButtonWithProgress
