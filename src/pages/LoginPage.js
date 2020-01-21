@@ -3,12 +3,8 @@ import Input from '../components/Input';
 import ButtonWithProgress from '../components/ButtonWithProgress';
 import { connect } from 'react-redux';
 import * as authActions from '../redux/authActions'; 
-import { Link } from 'react-router-dom';
 import defaultPicture from '../assets/profile.png';
-
 import { Button } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import './LoginPage.css';
@@ -74,12 +70,8 @@ export class LoginPage extends React.Component {
     let imageSource = defaultPicture;
 
     return (
-
-      
-
         
       <div>
-
       
         <h4 className="text-center pt-4">Login</h4>
         {/* <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-3"> */}

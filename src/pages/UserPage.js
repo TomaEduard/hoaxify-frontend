@@ -5,7 +5,8 @@ import ProfileCard from '../components/ProfileCard';
 class UserPage extends Component {
     state = { 
         user: undefined,
-        userNotFound: false
+        userNotFound: false,
+        isLoadingUser: false
     };
 
     componentDidMount() {
@@ -23,24 +24,40 @@ class UserPage extends Component {
         if(!username) {
             return;
         }
+        
+        this.setState({
+            userNotFound: false,
+            isLoadingUser: true,
+        })
 
         apiCalls.getUser(username)
         .then(response => {
             this.setState({ 
                 user: response.data,
-                userNotFound: false,
+                isLoadingUser: false,    
             })
         })
         .catch(error => {
             this.setState({
                 userNotFound: true,
+                isLoadingUser: false,
             })
         })
     }
 
     render() { 
-        if(this.state.userNotFound){
-            return(
+        let pageContent;
+        if(this.state.isLoadingUser){
+            pageContent = (
+                <div className="d-flex pt-5 mt-5">
+                    <div className="spinner-border text-black-50 m-auto" style={{width: '3rem', height: '3rem'}}>
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+        
+            );
+        } else if (this.state.userNotFound){
+            pageContent = (
                 // <div className="alert alert-danger text-center" role="alert">
                 <div className="alert text-center pt-5" role="alert">
                     <i className="fas fa-exclamation-triangle fa-5x icon-exclamation" />
@@ -52,10 +69,12 @@ class UserPage extends Component {
                 </div>
        
             )
+        } else {
+            pageContent = this.state.user && (<ProfileCard user={this.state.user} />)
         }
         return (
             <div data-testid="userpage">
-                {this.state.user && (<ProfileCard user={this.state.user} />)}
+                {pageContent}
             </div>
         );
     }
