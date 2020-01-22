@@ -1,0 +1,116 @@
+.contact {
+    background: linear-gradient(
+        105deg,
+        rgba(21, 31, 32, 1) 0%,
+        rgba(21, 31, 32, 0.95) 50%,
+        transparent 50%
+    ),
+    /* url(../../../images/form-img.jpeg) no-repeat center center / cover; */
+    /* background-repeat: cover, */
+  
+}
+  
+.input {
+    background: transparent !important;
+    border-color: transparent !important;
+    border-bottom: 2px solid #ccc !important;
+    border-radius: 0 !important;
+    transition: all 0.8s !important;
+    font-size: 22px !important;
+}
+
+.input:focus {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    color: rgb(22, 22, 22) !important;
+    border-bottom: 2px solid #f5593d !important;
+}
+
+.submit-button {
+    background: #f5593d !important;
+    color: #eee !important;
+    transition: all 0.3s !important;
+}
+
+.submit-button:hover {
+    background: #f9793d !important;
+    transform: translateY(-3px) !important;
+}
+
+.label {
+    color: #777 !important;
+    display: block !important;
+    margin-top: -70px !important;
+    margin-left: 4px !important;
+    margin-bottom: 12px !important;
+    font-size: 15px !important;
+    transition: all 0.3s !important;
+}
+
+.input:placeholder-shown + .label {
+    transform: translate(20px, 20px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+@media (max-width: 992px) {
+.contact {
+    /* background: linear-gradient(rgba(21, 31, 32, 1), rgba(21, 31, 32, 0.95)); */
+}
+
+.contact-form {
+    width: 80% !important;
+    margin: auto !important;
+}
+
+}
+  
+  /* .rmdb-header {
+    width: 100%;
+    height: auto;
+    background: #1c1c1c;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  .rmdb-header-content {
+    max-width: 1280px;
+    min-height: 120px;
+    height: auto;
+    padding: 20px 0px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .rmdb-logo {
+    width: 300px;
+    margin-top: 20px;
+    float: left;
+  }
+  
+  .rmdb-tmdb-logo {
+    width: 122px;
+    margin-top: 25px;
+    float: right;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .rmdb-header-content {
+      max-width: 1280px;
+      min-height: 0px;
+    }
+  
+    .rmdb-tmdb-logo {
+      display: inline-block;
+      width: 80px;
+      margin-top: 0px;
+    }
+  
+    .rmdb-logo {
+      width: 150px;
+      margin-top: 5px;
+    }
+  } */
+  

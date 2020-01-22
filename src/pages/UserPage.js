@@ -15,7 +15,10 @@ class UserPage extends Component {
     };
 
     componentDidMount() {
+        
         this.loadUser();
+        console.log("this.props.loggedInUser: " + this.props.loggedInUser);
+
     };
 
     componentDidUpdate(prevProps) {
@@ -100,6 +103,12 @@ class UserPage extends Component {
         this.setState({user, originalDisplayName})
     }
 
+        // Set your color here
+        entering = (e) => {
+            // e.children[0].style.borderTopColor = 'green';
+            e.children[1].style.backgroundColor = 'rgba(0,0,0,0.4)';
+        };
+
     render() { 
         let pageContent;
         if(this.state.isLoadingUser){
@@ -136,6 +145,7 @@ class UserPage extends Component {
                     onClickSave={this.onClickSave}
                     onChangeDisplayName={this.onChangeDisplayName}
                     pendingUpdateCall={this.state.pendingUpdateCall}
+                    entering={this.entering}
                 />)
         }
         return (

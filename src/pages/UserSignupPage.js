@@ -74,9 +74,10 @@ export class UserSignupPage extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h4 className="text-center">Sign Up</h4>
-        <div className="col-12 mb-3">
+      <div className="contact-form col-lg-5">
+        <h4 className="text-center pt-4">Sign Up</h4>
+
+        <div className="form-group py-4">
           <Input
             label="Display Name"
             placeholder="Your display name"
@@ -86,7 +87,7 @@ export class UserSignupPage extends React.Component {
             error={this.state.errors.displayName}
           />
         </div>
-        <div className="col-12 mb-3">
+        <div className="form-group py-4">
           <Input
             label="Username"
             placeholder="Your username"
@@ -96,7 +97,7 @@ export class UserSignupPage extends React.Component {
             error={this.state.errors.username}
           />
         </div>
-        <div className="col-12 mb-3">
+        <div className="form-group py-4">
           <Input
             label="Password"
             placeholder="Your password"
@@ -107,7 +108,7 @@ export class UserSignupPage extends React.Component {
             error={this.state.errors.password}
           />
         </div>
-        <div className="col-12 mb-3">
+        <div className="form-group py-4">
           <Input
             label="Password Repeat"
             placeholder="Repeat your password"
@@ -120,12 +121,14 @@ export class UserSignupPage extends React.Component {
         </div>
         <div className="text-center">
 
-          <ButtonWithProgress
+        <div className="pt-5">
+        <ButtonWithProgress
             onClick={this.onClickSignup}
             disabled={this.state.pendingApiCall || !this.state.passwordRepeatConfirmed}
             pendingApiCall={this.state.pendingApiCall}
             text="Sign Up"
           />
+        </div>
 
         </div>
       </div>

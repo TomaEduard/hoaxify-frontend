@@ -4,14 +4,20 @@ import ProfileImageWithDefault from './ProfileImageWithDefault';
 import Input from './Input';
 import ButtonWithProgress from './ButtonWithProgress';
 
+import { Button } from 'react-bootstrap';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+
 const ProfileCard = (props) => {
     const { displayName, username, image } = props.user;
 
     const showEditButton = props.isEditable && !props.inEditMode;
 
+
+
     return (
         <div className="card">
-            
+
             <div className="card-header text-center">
                 <ProfileImageWithDefault 
                     alt="profile" 
@@ -34,18 +40,38 @@ const ProfileCard = (props) => {
                 </div>}
 
                 {showEditButton && (
-                    <button 
-                        className="btn btn-outline-primary mt-2"
-                        onClick={props.onClickEdit}
+
+                    <OverlayTrigger
+                        key={'bottom'}
+                        placement={'bottom'}
+                        // overlay={this.tooltip} 
+                        onEntering={props.entering}
+                        overlay={
+                            <Tooltip 
+                            id="tooltip-bottom" 
+                            >
+                                Ma lingi in cotor caline.
+                            </Tooltip>
+                        }
                     >
-                    <i className="far fa-edit mr-2"></i>
-                    Edit
-                </button>)}
+
+                        <button 
+                            className="btn btn-outline-primary mt-2"
+                            onClick={props.onClickEdit}
+                        >
+                            
+                            <i className="far fa-edit mr-2"></i>
+                            Edit
+                        </button> 
+                    </OverlayTrigger>)
+                    
+                }
+                
                 {props.inEditMode && (
-                    <React.Fragment>
-                        <div className="pull-right mt-2 mr-2">
+                    <div className="pt-2">
+                        <div className="pull-right">
                             <ButtonWithProgress 
-                                className="btn btn-outline-primary btn-sm mt-2 " 
+                                className="btn btn-outline-primary" 
                                 onClick={props.onClickSave}
                                 text={
                                     <span>
@@ -59,17 +85,20 @@ const ProfileCard = (props) => {
                         
 
                         <button 
-                            className="btn btn-outline-secondary btn-sm mt-2 mr-2 pull-right" 
+                            className="btn btn-outline-secondary pull-right mr-2" 
                             onClick={props.onClickCancel}
                             disabled={props.pendingUpdateCall}
                         >
                             <i className="fas fa-times mr-2 "></i>
                             Cancel
                         </button>
-                    </React.Fragment>
+                    </div>
                     
                 )}
             </div>
+
+                     
+            
         </div>
     );
 };
