@@ -13,8 +13,6 @@ const ProfileCard = (props) => {
 
     const showEditButton = props.isEditable && !props.inEditMode;
 
-
-
     return (
         <div className="card">
 
@@ -82,7 +80,6 @@ const ProfileCard = (props) => {
                                 disabled={props.pendingUpdateCall}
                             />
                         </div>
-                        
 
                         <button 
                             className="btn btn-outline-secondary pull-right mr-2" 
@@ -96,8 +93,6 @@ const ProfileCard = (props) => {
                     
                 )}
             </div>
-
-                     
             
         </div>
     );

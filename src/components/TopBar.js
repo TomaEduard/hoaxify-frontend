@@ -18,12 +18,12 @@ class TopBar extends React.Component {
         let links = (
             <ul className="navbar navbar-nav ml-auto">
                 <li className="nav-item bg-transparent">
-                    <Link to='/signup' className="nav-link" >
+                    <Link to='/signup' className="nav-link topBarText" >
                         Sign Up
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to='/login' className="nav-link" >
+                    <Link to='/login' className="nav-link topBarText" >
                         Login
                     </Link>
                 </li>

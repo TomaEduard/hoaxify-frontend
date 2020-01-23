@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../components/Input';
+import InputForLoginAndSignUp from '../components/InputForLoginAndSignUp';
 import ButtonWithProgress from '../components/ButtonWithProgress';
 import { connect } from 'react-redux';
 import * as authActions from '../redux/authActions'; 
@@ -82,15 +82,16 @@ export class LoginPage extends React.Component {
         
       <div className="">
         
-        <div className="card contact-form col-lg-5 mt-5 shadow p-3 mb-5 bg-white ">
+        <div className="card contact-form col-lg-5 mt-4 shadow p-3 mb-5 bg-white">
+
+          <div className="login-logo"> </div>
 
           <div className="card-body">
 
-            <h4 className="text-center pt-4">Login</h4>
-            {/* <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-3"> */}
+            <h4 className="text-center">Login</h4>
 
             <div className="form-group py-4">
-              <Input
+              <InputForLoginAndSignUp
                 placeholder="Your username"
                 value={this.state.username}
                 onChange={this.onChangeUsername}
@@ -99,7 +100,7 @@ export class LoginPage extends React.Component {
             </div>
 
             <div className="form-group py-4">
-              <Input
+              <InputForLoginAndSignUp
                 placeholder="Your password"
                 type="password"
                 value={this.state.password}
@@ -142,16 +143,10 @@ export class LoginPage extends React.Component {
                 />
               </div>
 
-              {/* <div className="container mt-5" >
-                <p><a href="#" className="text-secondary">Need help signing in?</a></p>
-              </div> */}
-
-              {/* col-md-4 */}
-              {/* bg-transparent */}
               <Accordion >
                 <Card className="border-0 pull-left">
-                  <Card.Header className="border-0 bg-transparent" >
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0 m-0">
+                  <Card.Header className="bg-transparent pl-0" >
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pl-0">
                       Forgot my password
                     </Accordion.Toggle>
                   </Card.Header>
@@ -174,7 +169,7 @@ export class LoginPage extends React.Component {
           </div>
         </div>
         
-        <div className="col-lg-5 pull-left ">
+        <div className="col-lg-5 pull-left">
           <div className="row">
 
             <DropdownButton
@@ -199,10 +194,7 @@ export class LoginPage extends React.Component {
 
           </div>
           
-        </div>
-
-              
- 
+        </div>   
         
       </div>
 

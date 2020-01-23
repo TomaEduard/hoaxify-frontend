@@ -15,10 +15,7 @@ class UserPage extends Component {
     };
 
     componentDidMount() {
-        
         this.loadUser();
-        console.log("this.props.loggedInUser: " + this.props.loggedInUser);
-
     };
 
     componentDidUpdate(prevProps) {

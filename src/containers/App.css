@@ -9,8 +9,42 @@
   font-size: 18px;
 } */
 
+body {
+  margin: 0;
+  /* font-family: "Josefin Sans", sans-serif; */
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0px;
+  text-decoration: none;
+}
 
+/* signup Page */
+.signup-logo {
+  margin: auto;
+  width: 90em;
+  height: 112px;
+  max-width: 316px;
+  animation: animated 0.7s ;
+  background: url(../assets/signup-logo.png) no-repeat ;
+}
+
+/* TopBar */
+.topBarText {
+  font-size: 22px;
+}
+
+/* Pull down error of Input component */
 .invalid-feedback {
   position: absolute;
-  margin-top: 38px !important;
+  
+  margin-top: 27px !important;
+}
+
+element.style {
+  padding-left: 0px !important;
+}
+
+/* Components */
+.ButtonWithProgress {
+  /* line-height: 1.3em !important; */
+  
 }

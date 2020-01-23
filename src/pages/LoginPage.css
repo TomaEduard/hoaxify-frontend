@@ -1,3 +1,21 @@
+@keyframes animated {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+.login-logo {
+    margin: auto;
+    width: 80em;
+    height: 112px;
+    max-width: 316px;
+    animation: animated 0.7s ;
+    background: url(../assets/login-logo.png) no-repeat ;
+}
+
 .contact {
     background: linear-gradient(
         105deg,
