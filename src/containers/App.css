@@ -1,20 +1,8 @@
-/* .icon-exclamation {
-  color: rgb(255, 208, 0);
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgb(241, 197, 0);
+/* TopBar */
+/* right text */
+.topBarText {
+  font-size: 22px;
 
-}
-
-.secondaryTextUserNotFound {
-  font-size: 18px;
-} */
-
-body {
-  margin: 0;
-  /* font-family: "Josefin Sans", sans-serif; */
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 0px;
-  text-decoration: none;
 }
 
 /* signup Page */
@@ -27,9 +15,14 @@ body {
   background: url(../assets/signup-logo.png) no-repeat ;
 }
 
-/* TopBar */
-.topBarText {
-  font-size: 22px;
+.app-icon-login {
+
+  animation: animated 0.7s !important;
+  margin-top: 30px !important;
+  padding-left: 25px;
+  left: 125px;
+  
+  background: url(../assets/Untitled-4.png) no-repeat !important;
 }
 
 /* Pull down error of Input component */

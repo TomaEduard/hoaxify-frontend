@@ -34,5 +34,6 @@ describe('ProfileImageWithDefault', () => {
             const image = container.querySelector('img');
             expect(image.src).toContain('/image-from-src.png');
         });
+
     });
 });

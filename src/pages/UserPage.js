@@ -110,11 +110,16 @@ class UserPage extends Component {
         let pageContent;
         if(this.state.isLoadingUser){
             pageContent = (
-                <div className="d-flex pt-5 mt-5">
-                    <div className="spinner-border text-black-50 m-auto" style={{width: '3rem', height: '3rem'}}>
-                        <span className="sr-only">Loading...</span>
+
+                <div className="container">
+                    <div className="d-flex pt-5 mt-5">
+                        <div className="spinner-border text-black-50 m-auto" style={{width: '3rem', height: '3rem'}}>
+                            <span className="sr-only">Loading...</span>
+                        </div>
                     </div>
+                    <p className="text-center pt-2">Loading profile...</p>
                 </div>
+    
         
             );
         } else if (this.state.userNotFound){

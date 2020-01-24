@@ -82,119 +82,126 @@ export class LoginPage extends React.Component {
         
       <div className="">
         
-        <div className="card contact-form col-lg-5 mt-4 shadow p-3 mb-5 bg-white">
+        <div className="row">
 
-          <div className="login-logo"> </div>
+          <div className="contact-form col-lg-5 mt-5 shadow p-3 mb-5 bg-white">
 
-          <div className="card-body">
+            <div className="login-logo"> </div>
 
-            <h4 className="text-center">Login</h4>
+            <div className="card-body">
 
-            <div className="form-group py-4">
-              <InputForLoginAndSignUp
-                placeholder="Your username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                label="Your username"
-              />
-            </div>
+              <h4 className="text-center">Login</h4>
 
-            <div className="form-group py-4">
-              <InputForLoginAndSignUp
-                placeholder="Your password"
-                type="password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                label="Password"
-              />
-            </div>
-
-            {/* show error */}
-            {this.state.apiError && (
-              <div className="col-12 mb-3">
-                <div className="alert alert-danger text-center">{this.state.apiError}</div>
-              </div>
-            )}
-
-            {/* <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
-                
-            <div className="pt-4">
-
-              <div className=" custom-control-lg custom-control custom-checkbox">
-                  <input className="custom-control-input" id="checkbox-large" type="checkbox"/>
-                  <label className="custom-control-label" htmlFor="checkbox-large" >
-                      Remember me
-                  </label>
-              </div>
-            </div>
-
-            <p className="pt-3">No account?<a href="http://localhost:3000/#/signup"> Create one!</a></p>
-
-            <div className="pt-4">
-
-              <div className="text-center pull-right">
-                <ButtonWithProgress
-                    onClick={this.onClickLogin}
-                    disabled={disableSubmit || this.state.pendingApiCall}
-                    text="Login"
-                    pendingApiCall={this.state.pendingApiCall}
+              <div className="form-group py-4">
+                <InputForLoginAndSignUp
+                  placeholder="Your username"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}
+                  label="Your username"
                 />
               </div>
 
-              <Accordion >
-                <Card className="border-0 pull-left">
-                  <Card.Header className="bg-transparent pl-0" >
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pl-0">
-                      Forgot my password
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0" className="" >
-                    <Card.Body className="card card-body shadow-sm bg-white rounded">
-                      <p><a href="#" className="text-secondary">Reset password</a></p>
-                      <p><a href="#" className="text-secondary">Secret answare</a></p>
-                      <p><a href="#" className="text-secondary">Contact support</a></p>
-                      <p><a href="#" className="text-secondary">Help</a></p>
-                      
-                    </Card.Body>
+              <div className="form-group py-4">
+                <InputForLoginAndSignUp
+                  placeholder="Your password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  label="Password"
+                />
+              </div>
 
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
+              {/* show error */}
+              {this.state.apiError && (
+                <div className="col-12 mb-3">
+                  <div className="alert alert-danger text-center">{this.state.apiError}</div>
+                </div>
+              )}
 
-              
+              {/* <Form.Group controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+              </Form.Group> */}
+                  
+              <div className="pt-4">
 
+                <div className=" custom-control-lg custom-control custom-checkbox">
+                    <input className="custom-control-input" id="checkbox-large" type="checkbox"/>
+                    <label className="custom-control-label" htmlFor="checkbox-large" >
+                        Remember me
+                    </label>
+                </div>
+              </div>
+
+              <p className="pt-3">No account?<a href="http://localhost:3000/#/signup"> Create one!</a></p>
+
+              <div className="pt-4">
+
+                <div className="text-center pull-right">
+                  <ButtonWithProgress
+                      onClick={this.onClickLogin}
+                      disabled={disableSubmit || this.state.pendingApiCall}
+                      text="Login"
+                      pendingApiCall={this.state.pendingApiCall}
+                  />
+                </div>
+
+                <Accordion >
+                  <Card className="border-0 pull-left">
+                    <Card.Header className="bg-transparent pl-0" >
+                      <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pl-0">
+                        Forgot my password
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0" className="" >
+                      <Card.Body className="card card-body shadow-sm bg-white rounded">
+                        <p><a href="#" className="text-secondary">Reset password</a></p>
+                        <p><a href="#" className="text-secondary">Secret answare</a></p>
+                        <p><a href="#" className="text-secondary">Contact support</a></p>
+                        <p><a href="#" className="text-secondary">Help</a></p>
+                        
+                      </Card.Body>
+
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+
+                
+
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="col-lg-5 pull-left">
-          <div className="row">
 
-            <DropdownButton
-              className=""
-              as={ButtonGroup}
-              key="Primary"
-              id="dropdown-button-drop-up"
-              drop="up"
-              variant="transparent"
-              title="English(United States)"
-            >
-              <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-              <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-            </DropdownButton>{' '}
+          {/* right image icon */}
+          <div className="col-lg-7 app-icon-login" />
 
-            <p className="text-secondary pl-5 pt-3">Help</p>
-            <p className="text-secondary pl-5 pt-3">Privacy</p>
-            <p className="text-secondary pl-5 pt-3">Terms</p>
-
-          </div>
+        </div>    
           
-        </div>   
+          <div className="col-lg-5 pull-left">
+            <div className="row">
+
+              <DropdownButton
+                className=""
+                as={ButtonGroup}
+                key="Primary"
+                id="dropdown-button-drop-up"
+                drop="up"
+                variant="transparent"
+                title="English(United States)"
+              >
+                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+              </DropdownButton>{' '}
+
+              <p className="text-secondary pl-5 pt-3">Help</p>
+              <p className="text-secondary pl-5 pt-3">Privacy</p>
+              <p className="text-secondary pl-5 pt-3">Terms</p>
+
+            </div>
+            
+          </div>
         
       </div>
 

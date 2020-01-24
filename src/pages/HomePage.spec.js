@@ -10,6 +10,8 @@ describe('HomePage', () => {
             const homePageDiv = queryByTestId('homepage');
             expect(homePageDiv).toBeInTheDocument();
         });
+
+
     });
 });
 

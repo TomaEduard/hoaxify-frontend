@@ -2,8 +2,6 @@ import React from 'react';
 import logo from '../assets/hoaxify-logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './TopBar.css';
-
 
 class TopBar extends React.Component {
 
@@ -43,7 +41,6 @@ class TopBar extends React.Component {
                 </li>
             </ul>
             )
-
         }
 
         return ( 
@@ -51,8 +48,9 @@ class TopBar extends React.Component {
                 <div className="container">
                     <nav className="navbar navbar-light navbar-expand">
                         <Link to ="/" className="navbar-brand">
-                            <img src={logo} width="100" alt="Hoaxify" />
-                        Hoaxify
+                            {/* <img src={logo} width="100" alt="Hoaxify" /> */}
+                            <img src={logo} width="150" alt="Hoaxify" />
+                            {/* <span className="topBar-text">Hoaxify</span> */}
                         </Link>
                         {links}
                     </nav>
