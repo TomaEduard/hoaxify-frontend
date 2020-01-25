@@ -2,7 +2,6 @@
 /* right text */
 .topBarText {
   font-size: 22px;
-
 }
 
 /* signup Page */
@@ -18,11 +17,10 @@
 .app-icon-login {
 
   animation: animated 0.7s !important;
-  margin-top: 30px !important;
-  padding-left: 25px;
-  left: 125px;
+  margin-top: 80px !important;
+  left: 175px;
   
-  background: url(../assets/Untitled-4.png) no-repeat !important;
+  background: url(../assets/Untitled-2.png) no-repeat !important;
 }
 
 /* Pull down error of Input component */
@@ -40,4 +38,18 @@ element.style {
 .ButtonWithProgress {
   /* line-height: 1.3em !important; */
   
+}
+
+/* Exclamation marc of User not found! */
+.icon-exclamation {
+  color: #F7A600;
+  text-shadow: 0 0 3px #000;
+}
+
+/* Exclamation marc of User not found! */
+.icon-exclamation-login-error {
+  margin-top: 3px;
+  color: rgb(209, 0, 0);
+  /* color: rgb(221, 221, 221); */
+  text-shadow: 0 0 3px rgb(255, 255, 255);
 }

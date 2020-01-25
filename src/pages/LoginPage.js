@@ -113,8 +113,9 @@ export class LoginPage extends React.Component {
 
               {/* show error */}
               {this.state.apiError && (
-                <div className="col-12 mb-3">
-                  <div className="alert alert-danger text-center">{this.state.apiError}</div>
+                <div className="alert alert-danger row shadow p-3 mb-5 rounded">
+                  <div className="float-left">{this.state.apiError}</div>
+                  <i className="fas fa-exclamation-triangle icon-exclamation-login-error ml-auto" />
                 </div>
               )}
 
@@ -136,7 +137,7 @@ export class LoginPage extends React.Component {
 
               <div className="pt-4">
 
-                <div className="text-center pull-right">
+                <div className="text-center pull-right ">
                   <ButtonWithProgress
                       onClick={this.onClickLogin}
                       disabled={disableSubmit || this.state.pendingApiCall}

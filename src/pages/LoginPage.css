@@ -8,41 +8,41 @@
   }
 
 .login-logo {
-    margin: auto;
-    width: 80em;
-    height: 112px;
-    max-width: 316px;
-    animation: animated 0.7s ;
-    background: url(../assets/login-logo.png) no-repeat ;
+  margin: auto;
+  width: 80em;
+  height: 112px;
+  max-width: 316px;
+  animation: animated 0.7s ;
+  background: url(../assets/login-logo.png) no-repeat ;
 }
 
 .contact {
-    background: linear-gradient(
-        105deg,
-        rgba(21, 31, 32, 1) 0%,
-        rgba(21, 31, 32, 0.95) 50%,
-        transparent 50%
-    ),
-    /* url(../../../images/form-img.jpeg) no-repeat center center / cover; */
-    /* background-repeat: cover, */
-  
+  background: linear-gradient(
+      105deg,
+      rgba(21, 31, 32, 1) 0%,
+      rgba(21, 31, 32, 0.95) 50%,
+      transparent 50%
+  ),
+  /* url(../../../images/form-img.jpeg) no-repeat center center / cover; */
+  /* background-repeat: cover, */
+
 }
   
 .input {
-    background: transparent !important;
-    border-color: transparent !important;
-    border-bottom: 2px solid #ccc !important;
-    border-radius: 0 !important;
-    transition: all 0.8s !important;
-    font-size: 22px !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  border-bottom: 2px solid #ccc !important;
+  border-radius: 0 !important;
+  transition: all 0.8s !important;
+  font-size: 22px !important;
 }
 
 .input:focus {
-    background: transparent !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
-    color: rgb(22, 22, 22) !important;
-    border-bottom: 2px solid #f5593d !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: rgb(22, 22, 22) !important;
+  border-bottom: 2px solid #BA00E3 !important;
 }
 
 .submit-button {
