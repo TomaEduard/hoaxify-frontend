@@ -22,6 +22,7 @@ const ProfileCard = (props) => {
                     width="200" 
                     height="200" 
                     image={image}
+                    src={props.loadedImage}
                     className="rounded-circle shadow"
                 />   
             </div>
@@ -30,11 +31,18 @@ const ProfileCard = (props) => {
                 {!props.inEditMode && <h4>{`${displayName}@${username}`}</h4>}
 
                 {props.inEditMode && <div className="mb-2">
+
                     <Input
                         value={displayName}
                         label={`Change Display Name for ${username}`}
                         onChange={props.onChangeDisplayName}
+
                     />
+
+                    <input className="form-control-file mt-2" type="file" 
+                        onChange={props.onFileSelect}
+                    />
+                    
                 </div>}
 
                 {showEditButton && (
@@ -66,8 +74,8 @@ const ProfileCard = (props) => {
                 }
                 
                 {props.inEditMode && (
-                    <div className="pt-2">
-                        <div className="pull-right">
+                    <div className="pt-2 row m-1">
+                        <div className="">
                             <ButtonWithProgress 
                                 className="btn btn-outline-primary" 
                                 onClick={props.onClickSave}
@@ -82,7 +90,7 @@ const ProfileCard = (props) => {
                         </div>
 
                         <button 
-                            className="btn btn-outline-secondary pull-right mr-2" 
+                            className="btn btn-outline-secondary ml-auto" 
                             onClick={props.onClickCancel}
                             disabled={props.pendingUpdateCall}
                         >

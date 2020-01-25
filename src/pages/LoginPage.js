@@ -124,7 +124,6 @@ export class LoginPage extends React.Component {
               </Form.Group> */}
                   
               <div className="pt-4">
-
                 <div className=" custom-control-lg custom-control custom-checkbox">
                     <input className="custom-control-input" id="checkbox-large" type="checkbox"/>
                     <label className="custom-control-label" htmlFor="checkbox-large" >
@@ -137,7 +136,7 @@ export class LoginPage extends React.Component {
 
               <div className="pt-4">
 
-                <div className="text-center pull-right ">
+                <div className="text-center pull-right">
                   <ButtonWithProgress
                       onClick={this.onClickLogin}
                       disabled={disableSubmit || this.state.pendingApiCall}

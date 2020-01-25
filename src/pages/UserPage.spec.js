@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForElement, fireEvent} from '@testing-library/react';
+import { render, waitForElement, fireEvent, waitForDomChange} from '@testing-library/react';
 import UserPage from './UserPage';
 import * as apiCalls from '../api/apiCalls';
 import { Provider } from 'react-redux';
@@ -183,7 +183,7 @@ describe('UserPage', () => {
             expect(userId).toBe(1);
         }); 
         
-        it('calls updateUser api with request body haveing changed displayName', async () => {
+        it('calls updateUser api with request body having changed displayName', async () => {
             const { queryByText, container} = await setupForEdit();
             apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
 
@@ -298,6 +298,104 @@ describe('UserPage', () => {
             const saveButtonAfterSecondEdit = queryByText('Save')
 
             expect(saveButtonAfterSecondEdit).not.toBeDisabled();
+        });
+
+        it('display the selected image in edit mode', async () => {
+            const { container } = await setupForEdit();
+
+            const inputs = container.querySelectorAll('input');
+            const uploadInput = inputs[1];
+
+            // cr8 test file
+            const file = new File(['dummy content'], 'example.png', { type: 'image/png' });
+
+            fireEvent.change(uploadInput, { target: { files: [file] } });
+            
+            await waitForDomChange();
+
+            const image = container.querySelector('img');
+            expect(image.src).toContain('data:image/png;base64');
+        });
+
+        it('return back to the original image even the new image is added to upload box but canceled', async () => {
+            const { queryByText, container } = await setupForEdit();
+
+            const inputs = container.querySelectorAll('input');
+            const uploadInput = inputs[1];
+
+            // cr8 test file
+            const file = new File(['dummy content'], 'example.png', { type: 'image/png' });
+
+            fireEvent.change(uploadInput, { target: { files: [file] } });
+            
+            await waitForDomChange();
+
+            const calcelButton = queryByText('Cancel');
+            fireEvent.click(calcelButton);
+
+            const image = container.querySelector('img');
+            expect(image.src).toContain('/images/profile/profile1.png');
+        });      
+        
+        it('does not throw error after file not selected', async () => {
+            const { container } = await setupForEdit();
+
+            const inputs = container.querySelectorAll('input');
+            const uploadInput = inputs[1];
+            
+            expect(() => fireEvent.change(uploadInput, {target: { file: [] }})).not.toThrow();
+        });
+
+        it('calls updateUser api with request body having new image without data:image/png;base64', async () => {
+            const { queryByText, container} = await setupForEdit();
+            apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
+
+            const input = container.querySelectorAll('input');
+            const uploadInput = input[1];
+
+            // cr8 test file
+            const file = new File(['dummy content'], 'example.png', { type: 'image/png' });
+
+            fireEvent.change(uploadInput, { target: { files: [file] } });
+
+            await waitForDomChange();
+            const saveButton = queryByText('Save');
+            fireEvent.click(saveButton);
+
+            const requestBody = apiCalls.updateUser.mock.calls[0][1];
+
+            expect(requestBody.image).not.toBe('data:image/png;base64');
+        });
+
+        it('return to last update image when image is change for another time but cancelled', () => {
+            const { queryByText, container} = await setupForEdit();
+            apiCalls.updateUser = jest.fn().mockResolvedValue(mockSuccessGetUser);
+
+            const input = container.querySelectorAll('input');
+            const uploadInput = input[1];
+
+            // cr8 test image file
+            const file = new File(['dummy content'], 'example.png', { type: 'image/png' });
+            // click save with file
+            fireEvent.change(uploadInput, { target: { files: [file] } });
+
+            await waitForDomChange();
+            const saveButton = queryByText('Save');
+            fireEvent.click(saveButton);
+
+            const editButtonAfterClickingSave = await waitForElement(() => queryByText('Edit'));
+            fireEvent.click(editButtonAfterClickingSave);
+
+            // cr8 new image test file
+            const newFile = new File(['another content'], 'example2.png', { type: 'image/png' });
+            // click save with file
+            fireEvent.change(uploadInput, { target: { files: [newFile] } });
+
+            const cancelButton = queryByText('Cancel');
+            fireEvent.click(calcelButton);
+            
+            const image = container.querySelector('img');
+            expect(image.src).toContain('/images/profile/profile1-update.png');
         });
     });
 
