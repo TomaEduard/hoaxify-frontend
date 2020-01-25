@@ -306,7 +306,7 @@ describe('App', () => {
       setUser1LoggedStorage();
       const { queryByText } = setup('/user50');
 
-      await waitForElement(() => queryByText('User not found!'));
+      await waitForElement(() => queryByText('User not found'));
       const myProfileLink = queryByText('My Profile');
       fireEvent.click(myProfileLink);
       const user1Info = await waitForElement(() => queryByText('display1@user1'));
