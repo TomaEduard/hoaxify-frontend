@@ -23,8 +23,17 @@
   background: url(../assets/Untitled-2.png) no-repeat !important;
 }
 
-/* Pull down error of Input component */
-.invalid-feedback {
+/* InputProfileCard */
+.invalid-feedback-forprofileCard {
+  font-size: 80%;
+  color: #dc3545;
+}
+
+
+
+
+/* Pull down error of InputForLoginAndSignUp component */
+.InputForLoginAndSignUp{
   position: absolute;
   
   margin-top: 27px !important;
@@ -34,19 +43,30 @@ element.style {
   padding-left: 0px !important;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /* Components */
 .ButtonWithProgress {
   /* line-height: 1.3em !important; */
   
 }
 
-/* Exclamation marc of User not found! */
+/* Exclamation mark of User not found! */
 .icon-exclamation {
   color: #F7A600;
   text-shadow: 0 0 3px #000;
 }
 
-/* Exclamation marc of User not found! */
+/* Exclamation mark of User not found! */
 .icon-exclamation-login-error {
   margin-top: 3px;
   color: rgb(209, 0, 0);

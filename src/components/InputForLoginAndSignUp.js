@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = (props) => {
+const InputForLoginAndSignUp = (props) => {
   let inputClassName = 'form-control form-group my-2 p-2 input';
   
   if (props.hasError !== undefined) {
@@ -22,14 +22,14 @@ const Input = (props) => {
         {props.label}
       </label>
       {props.hasError && (
-        <span className="invalid-feedback">{props.error}</span>
+        <span className="invalid-feedback InputForLoginAndSignUp">{props.error}</span>
       )}
     </div>
   );
 };
 
-Input.defaultProps = {
+InputForLoginAndSignUp.defaultProps = {
   onChange: () => {}
 };
 
-export default Input;
+export default InputForLoginAndSignUp;

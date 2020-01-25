@@ -12,6 +12,7 @@ class UserPage extends Component {
         originalDisplayName: undefined,
         pendingUpdateCall: false,
         image: undefined,
+        errors: {},
         
     };
 
@@ -64,6 +65,7 @@ class UserPage extends Component {
         }
         this.setState({
             user,
+            errors: {},
             originalDisplayName: undefined,
             inEditMode: false,
             image: undefined,
@@ -94,8 +96,14 @@ class UserPage extends Component {
                 });
             })
             .catch((error) => {
+                let errors = {};
+                if(error.response.data.validationErrors) {
+                    errors = error.response.data.validationErrors;
+                }
                 this.setState({
-                    pendingUpdateCall: false
+                    pendingUpdateCall: false,
+                    errors: error.response.data.validationErrors,
+                     
                 });
             });
     };
@@ -107,6 +115,13 @@ class UserPage extends Component {
             originalDisplayName = user.displayName;
         }
         user.displayName = event.target.value;
+
+        const errors = { ...this.state.errors };
+        // set errors undefined
+        errors.displayName = undefined;
+        // update errors in state
+        this.setState({ user, originalDisplayName, errors })
+
         this.setState({user, originalDisplayName})
     }
 
@@ -122,12 +137,16 @@ class UserPage extends Component {
             return;
         }
 
+        const errors = { ...this.state.errors };
+        errors.image = undefined
+
         const file = event.target.files[0];
 
         let reader = new FileReader();
         reader.onloadend = () => {
             this.setState({
-                image: reader.result
+                image: reader.result,
+                errors
             })
         }
 
@@ -147,9 +166,8 @@ class UserPage extends Component {
                     </div>
                     <p className="text-center pt-2">Loading profile...</p>
                 </div>
-    
-        
             );
+
         } else if (this.state.userNotFound){
             pageContent = (
                 // <div className="alert alert-danger text-center" role="alert">
@@ -161,8 +179,8 @@ class UserPage extends Component {
                         <a href="/"> support@hoaxify.com</a>
                     </p>
                 </div>
-       
             )
+
         } else {
             const isEditable = this.props.loggedInUser.username === this.props.match.params.username;
             pageContent = this.state.user && (
@@ -181,6 +199,9 @@ class UserPage extends Component {
                     loadedImage={this.state.image}
                     // function for change image
                     onFileSelect={this.onFileSelect}
+
+                    // error
+                    errors={this.state.errors}
                 />)
         }
         return (

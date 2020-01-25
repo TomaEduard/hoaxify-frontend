@@ -1,19 +1,22 @@
 import React from 'react';
-import defaultPicture from '../assets/profile.png';
 import ProfileImageWithDefault from './ProfileImageWithDefault';
-import Input from './Input';
+import InputProfileCard from './InputProfileCard';
 import ButtonWithProgress from './ButtonWithProgress';
 
 import { Button } from 'react-bootstrap';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
+import Input from './Input';
+
 const ProfileCard = (props) => {
     const { displayName, username, image } = props.user;
 
     const showEditButton = props.isEditable && !props.inEditMode;
-
+    // console.log("UserPage -> ProfilCard: props.user.image:  " + props.user.image);
+    
     return (
+
         <div className="card">
 
             <div className="card-header text-center">
@@ -30,20 +33,28 @@ const ProfileCard = (props) => {
             <div className="card-body text-center">
                 {!props.inEditMode && <h4>{`${displayName}@${username}`}</h4>}
 
-                {props.inEditMode && <div className="mb-2">
+                {props.inEditMode && (
+                    <div className="mb-2">
 
-                    <Input
-                        value={displayName}
-                        label={`Change Display Name for ${username}`}
-                        onChange={props.onChangeDisplayName}
-
-                    />
-
-                    <input className="form-control-file mt-2" type="file" 
-                        onChange={props.onFileSelect}
-                    />
+                        <InputProfileCard
+                            value={displayName}
+                            label={`Change Display Name for ${username}`}
+                            onChange={props.onChangeDisplayName}
+                            hasError={props.errors.displayName && true}
+                            error={props.errors.displayName}
+                        />
+                        
+                        <div className="mt-2">
+                            <Input 
+                                type="file" 
+                                onChange={props.onFileSelect}
+                                hasError={props.errors.image && true}
+                                error={props.errors.image}
+                            />
+                        </div>
                     
-                </div>}
+                    </div>
+                )}
 
                 {showEditButton && (
 
@@ -56,7 +67,7 @@ const ProfileCard = (props) => {
                             <Tooltip 
                             id="tooltip-bottom" 
                             >
-                                Ma lingi in cotor caline.
+                                Tooltip
                             </Tooltip>
                         }
                     >
@@ -105,5 +116,9 @@ const ProfileCard = (props) => {
         </div>
     );
 };
+
+ProfileCard.defaultProps = {
+    errors: {}
+}
 
 export default ProfileCard;

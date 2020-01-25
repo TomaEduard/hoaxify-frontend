@@ -6,7 +6,6 @@ const Input = (props) => {
   if (props.type === 'file') {
     inputClassName += '-file';
   }
-  
   if (props.hasError !== undefined) {
     inputClassName += props.hasError ? ' is-invalid' : ' is-valid';
   }
@@ -22,7 +21,7 @@ const Input = (props) => {
         onChange={props.onChange}
       />
       {props.hasError && (
-        <span className="invalid-feedback">{props.error}</span>
+        <span className="invalid-feedback-forprofileCard">{props.error}</span>
       )}
     </div>
   );

@@ -14,7 +14,7 @@ describe('Layout', () => {
     })
 
     it('dispaly the label provided in props', () => {
-        const {queryByText} = render(<Input label="Test label" />);
+        const { queryByText } = render(<Input label="Test label" />);
         const label = queryByText('Test label');
         expect(label).toBeInTheDocument();
     })
@@ -26,32 +26,32 @@ describe('Layout', () => {
     // })
 
     it('has text type for input when type is not provided as props', () => {
-        const {container} = render(<Input/>);
+        const { container } = render(<Input/>);
         const input = container.querySelector('input');
         expect(input.type).toBe('text')
     })
 
     it('has password type for input password type is provided as props', () => {
-        const {container} = render(<Input type="password"/>);
+        const { container } = render(<Input type="password"/>);
         const input = container.querySelector('input');
         expect(input.type).toBe('password')
     })
 
     it('display placeholder when it is provided as prop', () => {
-        const {container} = render(<Input placeholder="Test placeholder"/>);
+        const { container } = render(<Input placeholder="Test placeholder"/>);
         const input = container.querySelector('input');
         expect(input.placeholder).toBe('Test placeholder')
     })
 
     it('has value for input when it is provided as prop', () => {
-        const {container} = render(<Input value="Test value"/>);
+        const { container } = render(<Input value="Test value"/>);
         const input = container.querySelector('input');
         expect(input.value).toBe('Test value')
     })
 
     it('has onChange callback when it is provided as prop', () => {
         const onChange = jest.fn();
-        const {container} = render(<Input onChange={onChange}/>);
+        const { container } = render(<Input onChange={onChange}/>);
         const input = container.querySelector('input');
         fireEvent.change(input, {target:{value: 'new-input'}});
         expect(onChange).toHaveBeenCalledTimes(1);
@@ -59,32 +59,38 @@ describe('Layout', () => {
 
     // display cases
     it('has default style whan there is no validation error or sucess', () => {
-        const {container} = render(<Input />);
+        const { container } = render(<Input />);
         const input = container.querySelector('input');
         expect(input.className).toBe('form-control form-group my-2 p-2 input')
     })
 
     it('has success style whan hasError property is false', () => {
-        const {container} = render(<Input hasError={false}/>);
+        const { container } = render(<Input hasError={false}/>);
         const input = container.querySelector('input');
         expect(input.className).toBe('form-control form-group my-2 p-2 input is-valid')
     })
         
     it('has style for error case whan there is error', () => {
-        const {container} = render(<Input hasError={true}/>);
+        const { container } = render(<Input hasError={true}/>);
         const input = container.querySelector('input');
         expect(input.className).toBe('form-control form-group my-2 p-2 input is-invalid')
     })
 
     // text
     it('display the error text when it is provided', () => {
-        const {queryByText} = render(<Input hasError={true} error="Cannot be null" />);
+        const { queryByText } = render(<Input hasError={true} error="Cannot be null" />);
         expect(queryByText('Cannot be null')).toBeInTheDocument();
     })
 
     it('does not display the error text when hasError not provided', () => {
-        const {queryByText} = render(<Input error="Cannot be null" />);
+        const { queryByText } = render(<Input error="Cannot be null" />);
         expect(queryByText('Cannot be null')).not.toBeInTheDocument();
+    })
+
+    it('has form-control-file class when type is file', () => {
+        const { container } = render(<Input type="file" />);
+        const input = container.querySelector('input');
+        expect(input.className).toBe('form-control form-group my-2 p-2 input');
     })
 
 })
