@@ -15,6 +15,12 @@ export default function authReducer(state = initialState, action) {
             ...action.payload,
             isLoggedIn: true, // not sent from backend and not receive from logginPage isLoggedIn
         };
+    } else if (action.type === 'update-success') {
+        return {
+            ...state,
+            displayName: action.payload.displayName,
+            image: action.payload.image
+        }
     }
     return state;
 }

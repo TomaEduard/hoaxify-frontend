@@ -92,7 +92,12 @@ class UserPage extends Component {
                     pendingUpdateCall: false,
                     user,
                     image: undefined,
-                     
+                }, () => {
+                    const action = {
+                        type: 'update-success',
+                        payload: user
+                    }
+                    this.props.dispatch(action);
                 });
             })
             .catch((error) => {
