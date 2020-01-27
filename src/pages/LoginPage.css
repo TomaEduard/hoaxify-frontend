@@ -13,8 +13,17 @@
   height: 112px;
   max-width: 316px;
   animation: animated 0.7s ;
-  background: url(../assets/login-logo.png) no-repeat ;
+  background: url(../assets/1asd.png) no-repeat ;
 }
+
+/* .login-logo {
+  margin: auto;
+  width: 80em;
+  height: 112px;
+  max-width: 316px;
+  animation: animated 0.7s ;
+  background: url(../assets/login-logo.png) no-repeat ;
+} */
 
 .contact {
   background: linear-gradient(
@@ -42,11 +51,11 @@
   border-color: transparent !important;
   box-shadow: none !important;
   color: rgb(22, 22, 22) !important;
-  border-bottom: 2px solid #BA00E3 !important;
+  border-bottom: 2px solid rgb(252, 206, 2) !important;
 }
 
 .submit-button {
-    background: #f5593d !important;
+    background: #3df57a !important;
     color: #eee !important;
     transition: all 0.3s !important;
 }
@@ -73,62 +82,13 @@
 }
 
 @media (max-width: 992px) {
-.contact {
-    /* background: linear-gradient(rgba(21, 31, 32, 1), rgba(21, 31, 32, 0.95)); */
-}
+  .contact {
+      /* background: linear-gradient(rgba(21, 31, 32, 1), rgba(21, 31, 32, 0.95)); */
+  }
 
-.contact-form {
-    width: 80% !important;
-    margin: auto !important;
-}
+  .contact-form {
+      width: 80% !important;
+      margin: auto !important;
+  }
 
 }
-  
-  /* .rmdb-header {
-    width: 100%;
-    height: auto;
-    background: #1c1c1c;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
-  
-  .rmdb-header-content {
-    max-width: 1280px;
-    min-height: 120px;
-    height: auto;
-    padding: 20px 0px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  
-  .rmdb-logo {
-    width: 300px;
-    margin-top: 20px;
-    float: left;
-  }
-  
-  .rmdb-tmdb-logo {
-    width: 122px;
-    margin-top: 25px;
-    float: right;
-  }
-  
-  @media screen and (max-width: 500px) {
-    .rmdb-header-content {
-      max-width: 1280px;
-      min-height: 0px;
-    }
-  
-    .rmdb-tmdb-logo {
-      display: inline-block;
-      width: 80px;
-      margin-top: 0px;
-    }
-  
-    .rmdb-logo {
-      width: 150px;
-      margin-top: 5px;
-    }
-  } */
-  

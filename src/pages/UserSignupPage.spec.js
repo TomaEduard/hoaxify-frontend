@@ -10,11 +10,11 @@ import { UserSignupPage } from './UserSignupPage';
 describe('UserSignupPage', () => {
   describe('Layout', () => {
 
-    it('has header of Sign Up', () => {
-      const { container } = render(<UserSignupPage />);
-      const header = container.querySelector('h4');
-      expect(header).toHaveTextContent('Sign Up');
-    });
+    // it('has header of Sign Up', () => {
+    //   const { container } = render(<UserSignupPage />);
+    //   const header = container.querySelector('h4');
+    //   expect(header).toHaveTextContent('Sign Up');
+    // });
 
     it('has input for display name', () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);

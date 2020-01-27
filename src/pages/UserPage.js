@@ -210,8 +210,12 @@ class UserPage extends Component {
                 />)
         }
         return (
-            <div data-testid="userpage">
-                {pageContent}
+
+            <div className="container">
+                <div data-testid="userpage">
+                    {pageContent}
+                </div>
+
             </div>
         );
     }

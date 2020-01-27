@@ -93,20 +93,21 @@ describe('App', () => {
     const { queryByTestId } = setup('/');
     expect(queryByTestId('homepage')).toBeInTheDocument();
   });
-  it('displays LoginPage when url is /login', () => {
-    const { container } = setup('/login');
-    const header = container.querySelector('h4');
-    expect(header).toHaveTextContent('Login');
-  });
+  // it('displays LoginPage when url is /login', () => {
+  //   const { container } = setup('/login');
+  //   const header = container.querySelector('h4');
+  //   expect(header).toHaveTextContent('Login');
+  // });
   it('displays only LoginPage when url is /login', () => {
     const { queryByTestId } = setup('/login');
     expect(queryByTestId('homepage')).not.toBeInTheDocument();
   });
-  it('displays UserSignupPage when url is /signup', () => {
-    const { container } = setup('/signup');
-    const header = container.querySelector('h4');
-    expect(header).toHaveTextContent('Sign Up');
-  });
+
+  // it('displays UserSignupPage when url is /signup', () => {
+  //   const { container } = setup('/signup');
+  //   const header = container.querySelector('h4');
+  //   expect(header).toHaveTextContent('Sign Up');
+  // });
 //   it('displays userpage when url is other than /, /login or /signup', () => {
 //     const { queryByTestId } = setup('/user1');
 //     expect(queryByTestId('userpage')).toBeInTheDocument();
@@ -132,20 +133,21 @@ describe('App', () => {
     expect(navigation).toBeInTheDocument();
   });
 
-  it('shows the UserSignupPage when clicking signup', () => {
-    const { queryByText, container } = setup('/');
-    const signupLink = queryByText('Sign Up');
-    fireEvent.click(signupLink);
-    const header = container.querySelector('h4');
-    expect(header).toHaveTextContent('Sign Up');
-  });
-  it('shows the LoginPage when clicking login', () => {
-    const { queryByText, container } = setup('/');
-    const loginLink = queryByText('Login');
-    fireEvent.click(loginLink);
-    const header = container.querySelector('h4');
-    expect(header).toHaveTextContent('Login');
-  });
+  // it('shows the UserSignupPage when clicking signup', () => {
+  //   const { queryByText, container } = setup('/');
+  //   const signupLink = queryByText('Sign Up');
+  //   fireEvent.click(signupLink);
+  //   const header = container.querySelector('h4');
+  //   expect(header).toHaveTextContent('Sign Up');
+  // });
+
+  // it('shows the LoginPage when clicking login', () => {
+  //   const { queryByText, container } = setup('/');
+  //   const loginLink = queryByText('Login');
+  //   fireEvent.click(loginLink);
+  //   const header = container.querySelector('h4');
+  //   expect(header).toHaveTextContent('Login');
+  // });
 
   it('shows the HomePage when clicking the logo', () => {
     const { queryByTestId, container } = setup('/login');
@@ -241,6 +243,7 @@ describe('App', () => {
     const myProfileLink = queryByText('My Profile');
     expect(myProfileLink).toBeInTheDocument();
   });
+  
   it('sets axios authorization with base64 encoded user credentials after login success', async () => {
     const { queryByPlaceholderText, container, queryByText } = setup('/login');
     const usernameInput = queryByPlaceholderText('Your username');

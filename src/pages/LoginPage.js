@@ -1,6 +1,6 @@
 import React from 'react';
 import InputForLoginAndSignUp from '../components/InputForLoginAndSignUp';
-import ButtonWithProgress from '../components/ButtonWithProgress';
+import ButtonWithProgressLoginSignup from '../components/ButtonWithProgressLoginSignup';
 import { connect } from 'react-redux';
 import * as authActions from '../redux/authActions'; 
 import defaultPicture from '../assets/profile.png';
@@ -11,10 +11,19 @@ import './LoginPage.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import image from '../assets/2asd.png';
 
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
+
+import {
+  TwitterIcon,
+  LinkedinIcon,
+  LineIcon,
+  PinterestIcon,
+  FacebookIcon,
+} from "react-share";
 
 export class LoginPage extends React.Component {
   state = {
@@ -47,7 +56,7 @@ export class LoginPage extends React.Component {
     };
     this.setState({pendingApiCall: true})
 
-    // call reformating postLogin function for jest 
+    // call reformating/rename postLogin dispatch function for jest 
     this.props.actions.postLogin(body)
 
     .then((response) => {
@@ -76,80 +85,69 @@ export class LoginPage extends React.Component {
 
     let imageSource = defaultPicture;
 
-
-
     return (
         
-      <div className="">
+      <div className="background-image">
         
-        <div className="row">
+        <div className="container">
 
-          <div className="contact-form col-lg-5 mt-5 shadow p-3 mb-5 bg-white">
+          <div className="row">
+            <div className="contact-form col-lg-5 mt-5 shadow mb-5 bg-white">
 
-            <div className="login-logo"> </div>
-
-            <div className="card-body">
-
-              <h4 className="text-center">Login</h4>
-
-              <div className="form-group py-4">
-                <InputForLoginAndSignUp
-                  placeholder="Your username"
-                  value={this.state.username}
-                  onChange={this.onChangeUsername}
-                  label="Your username"
-                />
+              <div className="login-logo"> 
+                <img className="m-auto pl-3 pt-3" src={image} width="270" alt="Hoaxify" />
               </div>
 
-              <div className="form-group py-4">
-                <InputForLoginAndSignUp
-                  placeholder="Your password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChangePassword}
-                  label="Password"
-                />
-              </div>
+              <div className="card-body">
 
-              {/* show error */}
-              {this.state.apiError && (
-                <div className="alert alert-danger row shadow p-3 mb-5 rounded">
-                  <div className="float-left">{this.state.apiError}</div>
-                  <i className="fas fa-exclamation-triangle icon-exclamation-login-error ml-auto" />
-                </div>
-              )}
+                {/* <h4 className="text-center">Login</h4> */}
 
-              {/* <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group> */}
-                  
-              <div className="pt-4">
-                <div className=" custom-control-lg custom-control custom-checkbox">
-                    <input className="custom-control-input" id="checkbox-large" type="checkbox"/>
-                    <label className="custom-control-label" htmlFor="checkbox-large" >
-                        Remember me
-                    </label>
-                </div>
-              </div>
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    placeholder="Your username"
+                    value={this.state.username}
 
-              <p className="pt-3">No account?<a href="http://localhost:3000/#/signup"> Create one!</a></p>
-
-              <div className="pt-4">
-
-                <div className="text-center pull-right">
-                  <ButtonWithProgress
-                      onClick={this.onClickLogin}
-                      disabled={disableSubmit || this.state.pendingApiCall}
-                      text="Login"
-                      pendingApiCall={this.state.pendingApiCall}
+                    onChange={this.onChangeUsername}
+                    label="Your username"
                   />
                 </div>
 
-                <Accordion >
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    placeholder="Your password"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
+                    label="Password"
+                  />
+                </div>
+
+                {/* show error */}
+                {this.state.apiError && (
+                  <div className="alert alert-danger row shadow p-2 mb-2 rounded">
+                    <div className="float-left">{this.state.apiError}</div>
+                    <i className="fas fa-exclamation-triangle icon-exclamation-login-error ml-auto" />
+                  </div>
+                )}
+
+                {/* <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check type="checkbox" label="Check me out" />
+                </Form.Group> */}
+                    
+                {/* <div className="pt-4">
+                  <div className=" custom-control-lg custom-control custom-checkbox">
+                      <input className="custom-control-input" id="checkbox-large" type="checkbox"/>
+                      <label className="custom-control-label" htmlFor="checkbox-large" >
+                          Remember me
+                      </label>
+                  </div>
+                </div> */}
+
+                {/* <Accordion >
                   <Card className="border-0 pull-left">
                     <Card.Header className="bg-transparent pl-0" >
                       <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pl-0">
-                        Forgot my password
+                        Forgot your password?
                       </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0" className="" >
@@ -158,51 +156,69 @@ export class LoginPage extends React.Component {
                         <p><a href="#" className="text-secondary">Secret answare</a></p>
                         <p><a href="#" className="text-secondary">Contact support</a></p>
                         <p><a href="#" className="text-secondary">Help</a></p>
-                        
                       </Card.Body>
-
                     </Accordion.Collapse>
                   </Card>
-                </Accordion>
+                </Accordion> */}
 
-                
+                <div className="text-center">
+                  <ButtonWithProgressLoginSignup
+                    onClick={this.onClickLogin}
+                    disabled={disableSubmit || this.state.pendingApiCall}
+                    text="Login"
+                    pendingApiCall={this.state.pendingApiCall}
+                  />
+                </div>
+ 
+                <div className="text-center text-secondary pt-3">
+                  <p>OR</p>
+
+                  <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                  <FacebookIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                  <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                </div>
+
+                <p className="text-center text-login-page text-secondary pt-3">By continuing, you agree to Hoxify's
+                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                    &nbsp;Terms of Service, Privacy Policy
+                  </a>
+                  &nbsp;and
+                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                    &nbsp;Cookie use.</a>
+                </p>
+
+                <hr width="50%"></hr>
+
+                <a className="not-on-hoaxify" href="http://localhost:3000/#/signup"> 
+                  <p className="text-center">Not on hoaxify yet? Sign up</p>
+                </a>
+
+                <div className="row p-0 mt-5">
+                  <DropdownButton
+                    className=""
+                    as={ButtonGroup}
+                    key="Primary"
+                    id="dropdown-button-drop-up"
+                    drop="up"
+                    variant="transparent"
+                    title="English(United States)"
+                  >
+                    <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                  </DropdownButton>{' '}
+
+                  <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Help</p>
+                  <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Privacy</p>
+                </div>
 
               </div>
             </div>
           </div>
 
-          {/* right image icon */}
-          <div className="col-lg-7 app-icon-login" />
-
-        </div>    
-          
-          <div className="col-lg-5 pull-left">
-            <div className="row">
-
-              <DropdownButton
-                className=""
-                as={ButtonGroup}
-                key="Primary"
-                id="dropdown-button-drop-up"
-                drop="up"
-                variant="transparent"
-                title="English(United States)"
-              >
-                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-              </DropdownButton>{' '}
-
-              <p className="text-secondary pl-5 pt-3">Help</p>
-              <p className="text-secondary pl-5 pt-3">Privacy</p>
-              <p className="text-secondary pl-5 pt-3">Terms</p>
-
-            </div>
-            
-          </div>
-        
+        </div>
       </div>
 
     );

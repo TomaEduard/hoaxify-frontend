@@ -1,11 +1,12 @@
 import React from 'react';
 import InputForLoginAndSignUp from '../components/InputForLoginAndSignUp';
-import ButtonWithProgress from '../components/ButtonWithProgress';
+import ButtonWithProgressLoginSignup from '../components/ButtonWithProgressLoginSignup';
 import { connect } from 'react-redux';
 import * as authActions from '../redux/authActions';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import image from '../assets/2asd.png';
 
 export class UserSignupPage extends React.Component {
   state = {
@@ -78,102 +79,124 @@ export class UserSignupPage extends React.Component {
   render() {
     return (
 
-      <div>
+      <div className="background-image">
 
-        <div className="card contact-form col-lg-5 mt-4 shadow p-3 mb-5 bg-white">
+        <div className="container">
 
-          <div className="card-body">
+          <div className="row">
+            <div className="contact-form col-lg-5 mt-5 shadow mb-5 bg-white">
 
-            <div className="signup-logo"> </div>
-
-            <h4 className="text-center pt-4">Sign Up</h4>
-
-            <div className="form-group py-4">
-              <InputForLoginAndSignUp
-                label="Display Name"
-                placeholder="Your display name"
-                value={this.state.displayName}
-                onChange={this.onChangeDisplayName}
-                hasError={this.state.errors.displayName && true}
-                error={this.state.errors.displayName}
-              />
-            </div>
-            <div className="form-group py-4">
-              <InputForLoginAndSignUp
-                label="Username"
-                placeholder="Your username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                hasError={this.state.errors.username && true}
-                error={this.state.errors.username}
-              />
-            </div>
-            <div className="form-group py-4">
-              <InputForLoginAndSignUp
-                label="Password"
-                placeholder="Your password"
-                type="password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                hasError={this.state.errors.password && true}
-                error={this.state.errors.password}
-              />
-            </div>
-            <div className="form-group py-4">
-              <InputForLoginAndSignUp
-                label="Password Repeat"
-                placeholder="Repeat your password"
-                type="password"
-                value={this.state.passwordRepeat}
-                onChange={this.onChangePasswordRepeat}
-                hasError={this.state.errors.passwordRepeat && true}
-                error={this.state.errors.passwordRepeat}
-              />
-            </div>
-            <div className="text-center">
-
-              <div className="pull-right pt-3">
-              <ButtonWithProgress
-                  onClick={this.onClickSignup}
-                  disabled={this.state.pendingApiCall || !this.state.passwordRepeatConfirmed}
-                  pendingApiCall={this.state.pendingApiCall}
-                  text="Sign Up"
-                />
+              <div className="login-logo"> 
+                <img className="m-auto pl-3 pt-3" src={image} width="270" alt="Hoaxify" />
               </div>
 
+              {/* <div className="separator">
+                <span className="separator-span"></span>
+              </div> */}
+
+              <div className="card-body">
+
+                {/* <h4 className="text-center pt-1">Sign Up</h4> */}
+
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    label="Display Name"
+                    placeholder="Your display name"
+                    value={this.state.displayName}
+                    onChange={this.onChangeDisplayName}
+                    hasError={this.state.errors.displayName && true}
+                    error={this.state.errors.displayName}
+                  />
+                </div>
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    label="Username"
+                    placeholder="Your username"
+                    value={this.state.username}
+                    onChange={this.onChangeUsername}
+                    hasError={this.state.errors.username && true}
+                    error={this.state.errors.username}
+                  />
+                </div>
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    label="Password"
+                    placeholder="Your password"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
+                    hasError={this.state.errors.password && true}
+                    error={this.state.errors.password}
+                  />
+                </div>
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    label="Password Repeat"
+                    placeholder="Repeat your password"
+                    type="password"
+                    value={this.state.passwordRepeat}
+                    onChange={this.onChangePasswordRepeat}
+                    hasError={this.state.errors.passwordRepeat && true}
+                    error={this.state.errors.passwordRepeat}
+                  />
+                </div>
+                <div className="text-center">
+
+                  <div className="pull-right pt-3">
+                  <ButtonWithProgressLoginSignup
+                      onClick={this.onClickSignup}
+                      disabled={this.state.pendingApiCall || !this.state.passwordRepeatConfirmed}
+                      pendingApiCall={this.state.pendingApiCall}
+                      text="Sign Up"
+                    />
+                  </div>
+
+                </div>
+
+                <p className="text-center text-login-page text-secondary pt-2">Creating an account means you’re okay with Hoaxify’s
+                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                    &nbsp; Business Terms of Service
+                  </a>
+                  &nbsp;and
+                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                    &nbsp;Privacy Policy.</a>
+                </p>
+
+                <hr width="50%"></hr>
+
+                <a className="not-on-hoaxify" href="http://localhost:3000/#/login"> 
+                  <p className="text-center">Already have an account? Sign In</p>
+                </a>
+
+                <div className="row p-0 mt-2">
+                  <DropdownButton
+                    className=""
+                    as={ButtonGroup}
+                    key="Primary"
+                    id="dropdown-button-drop-up"
+                    drop="up"
+                    variant="transparent"
+                    title="English(United States)"
+                  >
+                    <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                  </DropdownButton>{' '}
+
+                  <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Help</p>
+                  <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Privacy</p>
+                </div>
+
+              </div>
             </div>
+
+           
           </div>
         </div>
 
-        <div className="col-lg-5 pull-left">
-          <div className="row">
-
-            <DropdownButton
-              className=""
-              as={ButtonGroup}
-              key="Primary"
-              id="dropdown-button-drop-up"
-              drop="up"
-              variant="transparent"
-              title="English(United States)"
-            >
-              <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-              <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-            </DropdownButton>{' '}
-
-            <p className="text-secondary pl-5 pt-3">Help</p>
-            <p className="text-secondary pl-5 pt-3">Privacy</p>
-            <p className="text-secondary pl-5 pt-3">Terms</p>
-
-          </div>
-          
-        </div> 
-
       </div>
-
      
     );
   }

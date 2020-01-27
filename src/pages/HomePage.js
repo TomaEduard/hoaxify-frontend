@@ -6,6 +6,7 @@ class HomePage extends Component {
 
     render() { 
         return (
+                
             <div className="container">
                 <div data-testid="homepage">Homepage
                     <UserList />

@@ -25,7 +25,7 @@ class TopBar extends React.Component {
     onClickDisplayName = () => {
 
         this.setState({
-        dropDownVisible: !this.state.dropDownVisible
+            dropDownVisible: !this.state.dropDownVisible
         });
     };
 
@@ -110,12 +110,14 @@ class TopBar extends React.Component {
         );
     }
 
+    // shadow-sm mb-2
         return ( 
-            <div className="bg-white shadow-sm mb-2">
+            <div className="">
                 <div className="container">
-                    <nav className="navbar navbar-light navbar-expand">
+                    <nav className="navbar navbar-light navbar-expand navbar-color">
                         <Link to ="/" className="navbar-brand">
-                            <img src={logo} width="100" alt="Hoaxify" />
+                            {/* <img src={logo} width="100" alt="Hoaxify" /> */}
+                            <img src={logo} width="150" alt="Hoaxify" />
                         </Link>
                         {links}
                     </nav>

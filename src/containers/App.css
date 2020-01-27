@@ -1,7 +1,50 @@
+/* 
+.background-image {
+  // background: url(../assets/background-image.png) no-repeat ;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image.png) no-repeat;
+  background: (linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(255, 255, 255)), color-stop(100%, rgba(0, 0, 0, 0.65))), url(../assets/background-image.png) no-repeat;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image.png) no-repeat;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image.png) no-repeat;
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image.png) no-repeat;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.246) 0%, rgba(255, 241, 241, 0) 59%, rgb(255, 255, 255) 100%), url(../assets/background-image.png) no-repeat;
+  
+  background-size: 100%, cover !important;
+  background-position: center, center !important;
+  width: 100% !important;
+  height: 876px;
+  position: relative;
+  animation: animateHeroimage 1s;
+}
+*/ 
+
+.background-image {
+  /* background: url(../assets/background-image.png) no-repeat ; */
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image-opacity.png) no-repeat;
+  background: (linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(255, 255, 255)), color-stop(100%, rgba(0, 0, 0, 0.65))), url(../assets/background-image.png) no-repeat;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image-opacity.png) no-repeat;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image-opacity.png) no-repeat;
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(255, 255, 255) 100%), url(../assets/background-image-opacity.png) no-repeat;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.363) 0%, rgba(255, 241, 241, 0) 59%, rgb(255, 255, 255) 100%), url(../assets/background-image-opacity.png) no-repeat;
+  
+  background-size: 100%, cover !important;
+  background-position: center, center !important;
+  /* width: 100% !important; */
+  /* height: 100% !important; */
+
+  width: 100% !important;
+  height: 882px;
+  position: relative;
+  animation: animateHeroimage 1s;
+}
+
 /* TopBar */
 /* right text */
 .topBarText {
   font-size: 22px;
+}
+
+.navbar-color {
+  background-color: transparent !important;
 }
 
 /* signup Page */
@@ -14,13 +57,37 @@
   background: url(../assets/signup-logo.png) no-repeat ;
 }
 
-.app-icon-login {
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0.75rem !important;
+}
 
-  animation: animated 0.7s !important;
-  margin-top: 80px !important;
-  left: 175px;
-  
-  background: url(../assets/Untitled-2.png) no-repeat !important;
+/* for terms down bellow @pitares */
+.text-login-page {
+  font-size: 89%;
+}
+
+.not-on-hoaxify {
+  color: rgb(80, 87, 94);
+  cursor: pointer;
+  /* margin-left: 5px; */
+  font-weight: bold;
+}
+
+hr { 
+  display: block !important; 
+  height: 0px !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.287) !important;
+  padding: 0; 
+}
+
+#dropdown-button-drop-up {
+  font-size: 79%;
+}
+
+.text-login-card-buttom {
+  font-size: 79%;
 }
 
 /* InputProfileCard */
@@ -28,9 +95,6 @@
   font-size: 80%;
   color: #dc3545;
 }
-
-
-
 
 /* Pull down error of InputForLoginAndSignUp component */
 .InputForLoginAndSignUp{
@@ -43,21 +107,12 @@ element.style {
   padding-left: 0px !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* Components */
-.ButtonWithProgress {
-  /* line-height: 1.3em !important; */
-  
+
+.ButtonWithProgressLoginSignup {
+  background-color: #ffe881 !important;
+  width: 100% !important;
+  border-color: rgba(0, 0, 0, 0.041) !important;
 }
 
 /* Exclamation mark of User not found! */
@@ -73,3 +128,4 @@ element.style {
   /* color: rgb(221, 221, 221); */
   text-shadow: 0 0 3px rgb(255, 255, 255);
 }
+

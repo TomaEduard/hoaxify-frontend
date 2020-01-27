@@ -9,11 +9,11 @@ import './App.css';
 
 function App() {
   return (
-    <div className="rmdb-heroimage">
+    <div className="">
 
       <TopBar />
 
-      <div className="container">
+      <div className="">
 
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -23,6 +23,7 @@ function App() {
         </Switch>
 
       </div>
+
     </div>
   );
 }
