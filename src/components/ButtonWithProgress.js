@@ -1,12 +1,13 @@
 import React from 'react';
 
 const ButtonWithProgress = (props) => {
+
+  // ButtonWithProgress
     return(
         <button
-            className="btn btn-primary ButtonWithProgress"
+            className={props.className || 'btn btn-primary'}
             onClick={props.onClick}
             disabled={props.disabled}
-            style={{background: 'rgb(20, 131, 250)'}}
         >
             {props.pendingApiCall && (
               <div className="spinner-border text-light spinner-border-sm mr-1">
