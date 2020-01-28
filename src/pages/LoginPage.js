@@ -86,13 +86,14 @@ export class LoginPage extends React.Component {
     let imageSource = defaultPicture;
 
     return (
-        
-      <div className="background-image">
-        
-        <div className="container">
+      // TODO: remove scrollbar on login page
+      <div className="background-image" id="background-image" >
+
+
+        <div className="container pt-5">
 
           <div className="row">
-            <div className="contact-form col-lg-5 mt-5 shadow mb-5 bg-white">
+            <div className="contact-form col-lg-5 mt-3 shadow mb-5 bg-white pt-1">
 
               <div className="login-logo"> 
                 <img className="m-auto pl-3 pt-3" src={image} width="270" alt="Hoaxify" />
@@ -173,9 +174,12 @@ export class LoginPage extends React.Component {
                 <div className="text-center text-secondary pt-3">
                   <p>OR</p>
 
-                  <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                  <FacebookIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                  <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                  <div className="social-media-login-icons">
+                    <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                    <FacebookIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                    <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                  </div>
+
                 </div>
 
                 <p className="text-center text-login-page text-secondary pt-3">By continuing, you agree to Hoxify's
@@ -184,7 +188,8 @@ export class LoginPage extends React.Component {
                   </a>
                   &nbsp;and
                   <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
-                    &nbsp;Cookie use.</a>
+                    &nbsp;Cookie use.
+                  </a>
                 </p>
 
                 <hr width="50%"></hr>
@@ -193,7 +198,7 @@ export class LoginPage extends React.Component {
                   <p className="text-center">Not on hoaxify yet? Sign up</p>
                 </a>
 
-                <div className="row p-0 mt-5">
+                <div className="row p-0 mt-1">
                   <DropdownButton
                     className=""
                     as={ButtonGroup}

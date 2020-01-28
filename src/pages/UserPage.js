@@ -179,7 +179,7 @@ class UserPage extends Component {
                 <div className="alert text-center pt-5" role="alert">
                     <i className="fas fa-exclamation-triangle fa-5x icon-exclamation" />
                     <h5 className="display-4 pt-2">User not found</h5>
-                    <p className="display-5 text-secondary secondaryTextUserNotFound">
+                    <p className="text-secondary">
                         If you think what you're looking for sould be here, please contact the support at: 
                         <a href="/"> support@hoaxify.com</a>
                     </p>

@@ -84,7 +84,7 @@ export class UserSignupPage extends React.Component {
         <div className="container">
 
           <div className="row">
-            <div className="contact-form col-lg-5 mt-5 shadow mb-5 bg-white">
+            <div className="contact-form col-lg-5 mt-3 shadow mb-5 bg-white  pt-1">
 
               <div className="login-logo"> 
                 <img className="m-auto pl-3 pt-3" src={image} width="270" alt="Hoaxify" />

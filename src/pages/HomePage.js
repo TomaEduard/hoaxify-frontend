@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserList from '../components/UserList';
 import HoaxSubmit from '../components/HoaxSubmit';
 import { connect } from 'react-redux';
+import NeedToBeAuthenticated from '../components/NeedToBeAuthenticated';
 
 class HomePage extends Component {
     state = {  }
@@ -16,6 +17,7 @@ class HomePage extends Component {
 
                         <div className="col-8">
                             {this.props.loggedInUser.isLoggedIn && <HoaxSubmit />}
+                            {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
                         </div>
 
                         <div className="col-4">
