@@ -52,65 +52,65 @@ class TopBar extends React.Component {
 
     render() { 
         let links = (
-        <ul className="nav navbar-nav ml-auto">
-            <li className="nav-item">
-                <Link to="/signup" className="nav-link">
-                    Sign Up
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/login" className="nav-link">
-                    Login
-                </Link>
-            </li>
-        </ul>
-    );
-
-    if(this.props.user.isLoggedIn) {
-        let dropDownClass = 'p-0 shadow dropdown-menu';
-        if(this.state.dropDownVisible) {
-            dropDownClass += ' show';
-        }
-        links = (
-        <ul className="nav navbar-nav ml-auto" ref={this.assignActionArea}>
-            <li className="nav-item dropdown">
-                <div
-                    className="d-flex"
-                    style={{ cursor: 'pointer' }}
-                    onClick={this.onClickDisplayName}
-                >
-                    <ProfileImageWithDefault
-                        className="rounded-circle m-auto"
-                        width="32"
-                        height="32"
-                        image={this.props.user.image}
-                    />
-                    <span className="nav-link dropdown-toggle">
-                        {this.props.user.displayName}
-                    </span>
-                </div>
-                <div className={dropDownClass} data-testid="drop-down-menu">
-                    <Link
-                        to={`/${this.props.user.username}`}
-                        className="dropdown-item"
-                        onClick={this.onClickMyProfile}
-                    >
-                        <i className="fas fa-user text-secondary"></i> My Profile
+            <ul className="nav navbar-nav ml-auto">
+                <li className="nav-item">
+                    <Link to="/signup" className="nav-link">
+                        Sign Up
                     </Link>
-                    <span
-                        className="dropdown-item"
-                        onClick={this.onClickLogout}
-                        style={{cursor: 'pointer'}}
-                    >
-                        <i className="fas fa-sign-out-alt text-secondary"></i> Logout
-                    </span>
-                </div>
-            </li>
-        </ul>
+                </li>
+                <li className="nav-item">
+                    <Link to="/login" className="nav-link">
+                        Login
+                    </Link>
+                </li>
+            </ul>
         );
-    }
 
-    // shadow-sm mb-2
+        if(this.props.user.isLoggedIn) {
+            let dropDownClass = 'p-0 shadow dropdown-menu';
+            if(this.state.dropDownVisible) {
+                dropDownClass += ' show';
+            }
+            links = (
+                <ul className="nav navbar-nav ml-auto" ref={this.assignActionArea}>
+                    <li className="nav-item dropdown">
+                        <div
+                            className="d-flex"
+                            style={{ cursor: 'pointer' }}
+                            onClick={this.onClickDisplayName}
+                        >
+                            <ProfileImageWithDefault
+                                className="rounded-circle m-auto"
+                                width="32"
+                                height="32"
+                                image={this.props.user.image}
+                            />
+                            <span className="nav-link dropdown-toggle">
+                                {this.props.user.displayName}
+                            </span>
+                        </div>
+                        <div className={dropDownClass} data-testid="drop-down-menu">
+                            <Link
+                                to={`/${this.props.user.username}`}
+                                className="dropdown-item"
+                                onClick={this.onClickMyProfile}
+                            >
+                                <i className="fas fa-user text-secondary"></i> My Profile
+                            </Link>
+                            <span
+                                className="dropdown-item"
+                                onClick={this.onClickLogout}
+                                style={{cursor: 'pointer'}}
+                            >
+                                <i className="fas fa-sign-out-alt text-secondary"></i> Logout
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            );
+        }
+
+        // shadow-sm mb-2
         return ( 
             <div className="">
                 <div className="container">

@@ -32,8 +32,6 @@
     url(../assets/background-image-opacity.png) no-repeat center / cover;
 }
 
-.background-image::-webkit-scrollbar { display: none !important}
-.background-image::-webkit-scrollbar { width: 0 !important }
 /* ::-webkit-scrollbar {
   display: none;
 } */
@@ -114,8 +112,21 @@ element.style {
   padding-left: 0px !important;
 }
 
-/* Components */
 
+
+/* Home page */
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #2f2f2f !important;
+  background-color: #fcd001d1 !important;
+  /* border-radius: 12px; */
+}
+
+
+
+
+
+
+/* Components */
 .ButtonWithProgressLoginSignup {
   background-color: #ffe881 !important;
   width: 100% !important;
