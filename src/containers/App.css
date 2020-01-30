@@ -13,12 +13,23 @@
   position: relative;
   animation: animateHeroimage 1s;
 } */
- 
 
+.dropdown-item.active, .dropdown-item:active {
+  background-color: rgb(252,208,2) !important;
+
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: rgb(252,208,2) !important;
+
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: rgb(252,208,2) !important;
+}
 
 /* move crop image botom, center, right, left*/
 /* background-position: center !important; */
-
 .background-image {
 
   height: 93vh;
@@ -45,6 +56,9 @@
 .navbar-color {
   background-color: transparent !important;
 }
+
+
+
 
 /* signup Page */
 .signup-logo {
@@ -114,17 +128,48 @@ element.style {
 
 
 
-/* Home page */
+
+/* Homepage */
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #2f2f2f !important;
   background-color: #fcd001d1 !important;
   /* border-radius: 12px; */
 }
 
+.disable-button-more {
+  padding-left: 30px;
+}
 
+.text-more {
+  font-size: 14px !important;
+}
 
+.image-more {
+  margin-bottom: 20px !important;
+}
 
+#dropdown-menu-align-right {
+  /* color:transparent; */
+  color: gray !important;
+  background-color: rgba(255, 0, 0, 0) !important;
+  border: none !important;
+}
 
+#dropdown-menu-align-right:hover {
+  color: #000000 !important;
+  /* text-decoration: underline; */
+}
+
+a {
+  color: gray !important;
+  /* text-decoration: none; */
+  background-color: transparent;
+}
+
+a:hover {
+  color: #000000 !important;
+  /* text-decoration: underline; */
+}
 
 /* Components */
 .ButtonWithProgressLoginSignup {

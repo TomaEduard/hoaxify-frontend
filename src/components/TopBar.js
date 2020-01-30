@@ -3,6 +3,7 @@ import logo from '../assets/hoaxify-logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProfileImageWithDefault from './ProfileImageWithDefault.js';
+import Homepage from '../pages/HomePage';
 
 class TopBar extends React.Component {
 
@@ -15,11 +16,11 @@ class TopBar extends React.Component {
     }
     
     onClickTracker = (event) => {
-    if (this.actionArea && !this.actionArea.contains(event.target)) {
-        this.setState({
-        dropDownVisible: false
-        });
-    }
+        if (this.actionArea && !this.actionArea.contains(event.target)) {
+            this.setState({
+            dropDownVisible: false
+            });
+        }
     };
 
     onClickDisplayName = () => {
@@ -30,13 +31,14 @@ class TopBar extends React.Component {
     };
 
     onClickLogout = () => {
-    this.setState({
-        dropDownVisible: false
-    });
+        this.setState({
+            dropDownVisible: false
+        });
 
-    const action = {
-        type: 'logout-success'
-    };
+        const action = {
+            type: 'logout-success'
+        };
+        
         this.props.dispatch(action);
     };
 

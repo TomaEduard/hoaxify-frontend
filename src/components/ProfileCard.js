@@ -77,7 +77,7 @@ const ProfileCard = (props) => {
                             onClick={props.onClickEdit}
                         >
                             
-                            <i className="far fa-edit mr-2"></i>
+                            <i className="far fa-edit mr-2 "></i>
                             Edit
                         </button> 
                     </OverlayTrigger>)

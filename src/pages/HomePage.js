@@ -16,12 +16,24 @@ import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import ProfileImageWithDefault from '../components/ProfileImageWithDefault';
+
 
 
 class HomePage extends Component {
     state = { 
     }
 
+
+    onClickLogout = () => {
+        const action = {
+            type: 'logout-success'
+        };
+        
+        this.props.dispatch(action);
+    };
 
     render() { 
 
@@ -31,9 +43,9 @@ class HomePage extends Component {
                 <div data-testid="homepage">Homepage
 
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-                    <Row  className="pt-2">
+                    <Row  className="pt-2 ">
                         <Col sm={3}>
-                            <Nav variant="pills" className="flex-column">
+                            <Nav variant="pills" className="flex-column ">
                                 <Nav.Item>
                                     <Nav.Link eventKey="first">
                                         <i className="fas fa-home text-secondary pr-2"></i>
@@ -72,10 +84,133 @@ class HomePage extends Component {
                                 </Nav.Item>
 
                             </Nav>
+
+
+                            <hr width="70%"></hr>
+
+                            <div className="">
+                                {this.props.loggedInUser.isLoggedIn && (
+                                    <div className="ml-2 pb-2">
+                                        
+                                        {/* <span><i className="fas fa-ellipsis-h text-secondary icon-more"></i></span> */}
+                                        <DropdownButton
+                                            key=""
+                                            variant=""
+                                            // id="dropdown-button-drop-up"
+                                            id="dropdown-menu-align-right"
+                                            drop="right"
+                                            // title="More"
+                                            title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}>
+                                                
+                                            <div className="shadow text-more">
+                                                <Dropdown.Item eventKey="1">
+                                                    
+                                                    <Link to={`/${this.props.loggedInUser.username}`} className="nav-link">
+                                                        <div className="row">
+
+                                                            <ProfileImageWithDefault
+                                                                className="rounded-circle "
+                                                                width="32"
+                                                                height="32"
+                                                                image={this.props.loggedInUser.image}
+                                                            />
+
+                                                            <div className="pl-2 mt-1 text-dark">
+                                                                {this.props.loggedInUser.displayName}
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </Link>
+                                            
+                                                </Dropdown.Item>
+                                             
+                                                <Dropdown.Item eventKey="1">
+                                                    <i className="fas fa-plus text-secondary pr-2"></i>
+                                                    Action 
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item eventKey="2">
+                                                    <i className="fas fa-plus text-secondary pr-2"></i>
+                                                    Another action
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="3">
+                                                    <i className="fas fa-plus text-secondary pr-2"></i>
+                                                    Something else here
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Divider />
+
+                                                <Dropdown.Item eventKey="4">
+                                                    <i className="fas fa-cogs text-secondary pr-2"></i>
+                                                    Settings and privacy
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="4">
+                                                    <i className="fas fa-info-circle text-secondary pr-2"></i>
+                                                    Help Center
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Divider />
+
+                                                <Dropdown.Item eventKey="4"
+                                                onClick={this.onClickLogout}
+                                                >
+                                                    <i className="fas fa-sign-out-alt text-secondary pr-2"></i>
+                                                    Log out
+                                                    
+                                                </Dropdown.Item>
+                                                
+                                            </div>
+                                        </DropdownButton>                         
+                                    </div>
+                                )}
+
+                                {!this.props.loggedInUser.isLoggedIn && (
+                                    
+                                    <OverlayTrigger
+                                        key={'bottom'}
+                                        placement={'bottom'}
+                                        // overlay={this.tooltip} 
+                                        // onEntering={props.entering}
+                                        overlay={
+                                            <Tooltip 
+                                            id="tooltip-bottom" 
+                                            >
+                                                Tooltip
+                                            </Tooltip>
+                                        }
+                                    >
+                                        
+                                        <div className="row disable-button-more">
+
+                                            <i className="fas fa-user text-secondary pr-2 icon-more"></i>
+
+                                            <DropdownButton
+                                                key="up"
+                                                // id="dropdown-button-drop-up"
+                                                id="dropdown-menu-align-right"
+                                                drop="up"
+                                                alignRight
+                                                title="More"
+                                                disabled="true"
+                                                >
+                                                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                                                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                                                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                                                <Dropdown.Divider />
+                                                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                                            </DropdownButton>
+                                        </div>
+
+                                    </OverlayTrigger>   
+
+                                )}
+                            </div>
+
+
                         </Col>
 
                         <Col sm={9}>
-                            <Tab.Content>
+                            <Tab.Content className="">
                                 
                                 {/* Home */}
                                 <Tab.Pane eventKey="first">
@@ -110,10 +245,9 @@ class HomePage extends Component {
                                 <Tab.Pane eventKey="sixth">
 
                                 </Tab.Pane>
-
-           
-
                             </Tab.Content>
+
+                     
                         </Col>
                     </Row>
                     </Tab.Container>
@@ -145,4 +279,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(HomePage); 
