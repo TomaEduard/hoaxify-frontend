@@ -10,6 +10,7 @@ const ProfileImageWithDefault = (props) => {
     
     return (
         <img
+            alt="alt-ProfileImageWithDefault"
             {...props}
             src={props.src || imageSource}
             // set default image if receive error

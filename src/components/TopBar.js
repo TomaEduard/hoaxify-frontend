@@ -3,7 +3,6 @@ import logo from '../assets/hoaxify-logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProfileImageWithDefault from './ProfileImageWithDefault.js';
-import Homepage from '../pages/HomePage';
 
 class TopBar extends React.Component {
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import image from '../assets/authenticated.png';
 
 class Bookmarks extends Component {
 

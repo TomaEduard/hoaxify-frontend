@@ -7,6 +7,14 @@ import configureStore from '../redux/configureStore';
 import axios from 'axios';
 import * as apiCalls from '../api/apiCalls';
 
+apiCalls.loadHoaxes = jest.fn().mockResolvedValue({
+  data: {
+    content: [],
+    number: 0,
+    size: 3
+  }
+});
+
 apiCalls.listUsers = jest.fn().mockResolvedValue({
   data: {
     content: [],

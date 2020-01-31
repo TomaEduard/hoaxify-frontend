@@ -3,25 +3,18 @@ import InputForLoginAndSignUp from '../components/InputForLoginAndSignUp';
 import ButtonWithProgressLoginSignup from '../components/ButtonWithProgressLoginSignup';
 import { connect } from 'react-redux';
 import * as authActions from '../redux/authActions'; 
-import defaultPicture from '../assets/profile.png';
-import { Button } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
+// import defaultPicture from '../assets/profile.png';
 import './LoginPage.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import image from '../assets/2asd.png';
 
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 
 import {
   TwitterIcon,
   LinkedinIcon,
-  LineIcon,
-  PinterestIcon,
   FacebookIcon,
 } from "react-share";
 
@@ -83,7 +76,7 @@ export class LoginPage extends React.Component {
       disableSubmit = true;
     }
 
-    let imageSource = defaultPicture;
+    // let imageSource = defaultPicture;
 
     return (
       // TODO: remove scrollbar on login page

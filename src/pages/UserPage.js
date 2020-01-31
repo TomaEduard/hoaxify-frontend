@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as apiCalls from '../api/apiCalls';
 import ProfileCard from '../components/ProfileCard';
 import { connect } from 'react-redux';
+import HoaxFeed from '../components/HoaxFeed';
+import Spinner from '../components/Spinner';
 
 class UserPage extends Component {
     state = { 
@@ -162,15 +164,8 @@ class UserPage extends Component {
         let pageContent;
         if(this.state.isLoadingUser){
             pageContent = (
+                <Spinner value="Loading Profile..."/>
 
-                <div className="container">
-                    <div className="d-flex pt-5 mt-5">
-                        <div className="spinner-border text-black-50 m-auto" style={{width: '3rem', height: '3rem'}}>
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                    <p className="text-center pt-2">Loading profile...</p>
-                </div>
             );
 
         } else if (this.state.userNotFound){
@@ -210,12 +205,20 @@ class UserPage extends Component {
                 />)
         }
         return (
-
             <div className="container">
-                <div data-testid="userpage">
-                    {pageContent}
-                </div>
+                <div className="row">
 
+                    <div data-testid="userpage">
+                        <div className="col">
+                            {pageContent}
+                        </div>
+                    </div>
+
+                    <div className="col">
+                        <HoaxFeed user={this.props.match.params.username} />
+                    </div>
+                    
+                </div>
             </div>
         );
     }

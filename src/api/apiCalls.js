@@ -34,5 +34,11 @@ export const postHoax = (hoax) => {
     return axios.post('/api/1.0/hoaxes', hoax)
 };
 
+export const loadHoaxes = (username) => {
+    const basePath = username ? `/api/1.0/users/${username}/hoaxes` : '/api/1.0/hoaxes'
+    return axios.get(basePath + '?page=0&size=5&sort=id,desc')
+};
+
+
 
 

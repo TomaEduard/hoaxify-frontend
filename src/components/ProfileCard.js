@@ -3,7 +3,6 @@ import ProfileImageWithDefault from './ProfileImageWithDefault';
 import InputProfileCard from './InputProfileCard';
 import ButtonWithProgress from './ButtonWithProgress';
 
-import { Button } from 'react-bootstrap';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
