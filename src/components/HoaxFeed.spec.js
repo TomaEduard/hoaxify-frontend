@@ -4,6 +4,29 @@ import HoaxFeed from './HoaxFeed';
 import * as apiCalls from '../api/apiCalls';
 import { MemoryRouter } from 'react-router-dom';
 
+const originalSetInterval = window.setInterval;
+const originalClearInterval = window.clearInterval;
+
+let timedFunction;
+
+const useFakeIntervals = () => {
+    window.setInterval = (callback, interval) => {
+        timedFunction = callback;
+    }
+    window.clearInterval = () => {
+        timedFunction = undefined
+    }
+}
+
+const useRealIntervals = () => {
+    window.setInterval = originalSetInterval;
+    window.clearInterval = originalClearInterval;
+}
+
+const runTimmer = () => {
+    timedFunction && timedFunction();
+}
+
 const setup = (props) => {
     return render(
         <MemoryRouter>
@@ -122,60 +145,89 @@ describe('HoaxFeed', () => {
         });
 
         it('calls loadNewHoaxCount with topHoax id', async () => {
+            useFakeIntervals();
+            
             apiCalls.loadHoaxes = jest.fn().mockResolvedValue(mockSuccessGetHoaxesFirstOfMultiPage);
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 1 }});
             const { queryByText } = setup();
+
+            await waitForDomChange();
+            runTimmer();
+
             await waitForElement(() => queryByText('There is 1 new hoax'));
             const firstParam = apiCalls.loadNewHoaxCount.mock.calls[0][0];
             expect(firstParam).toBe(10);
+
+            useRealIntervals();
         });
 
         it('calls loadnewHoaxCount with topHoax id and username when rendered with user property', async () => {
+            useFakeIntervals();
             apiCalls.loadHoaxes = jest.fn().mockResolvedValue(mockSuccessGetHoaxesFirstOfMultiPage);
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 1 }});
             const { queryByText } = setup({ user: 'user1' });
+            await waitForDomChange();
+            runTimmer();
             await waitForElement(() => queryByText('There is 1 new hoax'));
             expect(apiCalls.loadNewHoaxCount).toHaveBeenCalledWith(10, 'user1');
+            useRealIntervals();
         });
 
         it('displays new hoax count as 1 after loadNewHoaxCount success', async () => {
+            useFakeIntervals();
             apiCalls.loadHoaxes = jest.fn().mockResolvedValue(mockSuccessGetHoaxesFirstOfMultiPage);
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 1 }});
             const { queryByText } = setup({ user: 'user1' });
+            await waitForDomChange();
+            runTimmer();
             const newHoaxCount = await waitForElement(() => queryByText('There is 1 new hoax'));
             expect(newHoaxCount).toBeInTheDocument();
+            useRealIntervals();
         });
 
         it('displays new hoax count constantly', async () => {
+            useFakeIntervals();
             apiCalls.loadHoaxes = jest.fn().mockResolvedValue(mockSuccessGetHoaxesFirstOfMultiPage);
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 1 } });
             const { queryByText } = setup({ user: 'user1' });
+            await waitForDomChange();
+            runTimmer();
             await waitForElement(() => queryByText('There is 1 new hoax'));
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 2 } });
+            runTimmer();
             const newHoaxCount = await waitForElement(() =>
               queryByText('There are 2 new hoaxes')
             );
             expect(newHoaxCount).toBeInTheDocument();
-        }, 7000);
+            useRealIntervals();
 
-        it('does not call loadNewHoaxCount after component is unmounted', async (done) => {
+        });
+
+        it('does not call loadNewHoaxCount after component is unmounted', async () => {
+            useFakeIntervals();
+
             apiCalls.loadHoaxes = jest.fn().mockResolvedValue(mockSuccessGetHoaxesFirstOfMultiPage);
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 1 } });
             const { queryByText, unmount} = setup({ user: 'user1' });
+            await waitForDomChange();
+            runTimmer();
             await waitForElement(() => queryByText('There is 1 new hoax'));
             unmount();
-            setTimeout(() => {
-                expect(apiCalls.loadNewHoaxCount).toHaveBeenCalledTimes(1);
-                done();
-            }, 3500)
-        }, 7000);
+            expect(apiCalls.loadNewHoaxCount).toHaveBeenCalledTimes(1);
+            useRealIntervals();
+        });
 
         it('displays new hoax count as 1 after loadNewHoaxCount success when user does not have hoaxes initially', async () => {
+            useFakeIntervals();
+    
             apiCalls.loadHoaxes = jest.fn().mockResolvedValue(mockEmptyResponse);
             apiCalls.loadNewHoaxCount = jest.fn().mockResolvedValue({ data: { count: 1 }});
             const { queryByText } = setup({ user: 'user1' });
+            await waitForDomChange();
+            runTimmer();
             const newHoaxCount = await waitForElement(() => queryByText('There is 1 new hoax'));
             expect(newHoaxCount).toBeInTheDocument();
+            useRealIntervals();
         });
     });    
 
