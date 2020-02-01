@@ -151,6 +151,8 @@ describe('apiCalls', () => {
         apiCalls.loadNewHoaxCount(5, 'user3');
         expect(mockGetHoaxes).toBeCalledWith('/api/1.0/users/user3/hoaxes/5?direction=after&count=true');
       });
+
+      
     });
   }); 
 });
