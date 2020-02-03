@@ -14,6 +14,10 @@
   animation: animateHeroimage 1s;
 } */
 
+.container {
+  width:65% !important;
+}
+
 .dropdown-item.active, .dropdown-item:active {
   background-color: rgb(252,208,2) !important;
 
@@ -216,6 +220,6 @@ a:hover {
 
 /* Hoax View */
 .img-max {
-  max-width: 500px;
+  max-width: 400px;
   width:100%;
 }

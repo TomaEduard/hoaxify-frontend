@@ -10,8 +10,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import image from '../assets/2asd.png';
 
-
-
 import {
   TwitterIcon,
   LinkedinIcon,

@@ -32,12 +32,12 @@ class UserPage extends Component {
         const username = this.props.match.params.username;
         if(!username) {
             return;
-        }
+        };
         
         this.setState({
             userNotFound: false,
             isLoadingUser: true,
-        })
+        });
 
         apiCalls.getUser(username)
         .then(response => {

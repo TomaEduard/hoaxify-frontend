@@ -14,6 +14,8 @@ class HoaxSubmit extends Component {
         file: undefined,
         image: undefined,
         attachment: undefined,
+
+        blocking: false,
     };
 
     onChangeContent = (event) => {

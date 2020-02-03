@@ -2,10 +2,39 @@ import React, { Component } from 'react';
 import ProfileImageWithDefault from './ProfileImageWithDefault';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Button from 'react-bootstrap/Button';
+
+// Lightbox
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+
 
 export default class HoaxView extends Component {
+    
+    state = {
+        isOpen: false,
+        image: '',
+    };
+
+    // changeOpen = (imageValue) => {
+    // this.setState({ 
+    //     image: imageValue,
+    //     isOpen: !this.state.isOpen
+    // });
+    // console.log('image - ' + this.state.image)
+    // console.log('isOpen - ' + this.state.isOpen)
+    // };
+
+    changeOpen = (imageValue) => {
+        this.setState({ 
+            image: imageValue,
+            isOpen: !this.state.isOpen
+        });
+        console.log('image - ' + this.state.image)
+        console.log('isOpen - ' + this.state.isOpen)
+    };
+
     render() {
         const { hoax } = this.props;
         const { user, date } = hoax;
@@ -14,7 +43,18 @@ export default class HoaxView extends Component {
         const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
         // const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
         return (
+            
+
             <div className="card p-1">
+
+                {this.state.isOpen && (
+                    <Lightbox 
+                        // mainSrc={image[0]}
+                        mainSrc={`/images/attachments/${hoax.attachment.name}`}
+                        onCloseRequest={() => this.setState({ isOpen: false })}
+                    />
+                )}
+            
                 <div className="d-flex">
                     <ProfileImageWithDefault
                         className="rounded-circle m-1"
@@ -52,7 +92,9 @@ export default class HoaxView extends Component {
                             alt="attachment"
                             src={`/images/attachments/${hoax.attachment.name}`}
                             className="img-fluid"
-                        /> 
+                            onClick={() => this.changeOpen(hoax.attachment.name)}
+                            
+                        />
                     </div>
                 )}
             </div>

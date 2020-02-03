@@ -4,6 +4,16 @@ import SpinnerForComponents from './SpinnerForComponents';
 import HoaxView from './HoaxView';
 import Spinner from './Spinner';
 
+// Lightbox
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+
+
+const image = [
+  'http://localhost:8080/images/attachment/521ca441cfe04460bf1916371277c006',
+];
+
+
 export default class HoaxFeed extends Component {
 
     state = {
@@ -14,7 +24,20 @@ export default class HoaxFeed extends Component {
         newHoaxCount: 0,
         isLoadingOldHoaxes: false,
         isLoadingNewHoaxes: false,
+
+        // maximize image
+        // isOpen: false,
+        // image: '',
     };
+
+    // changeOpen = (imageValue) => {
+    //     this.setState({ 
+    //         image: imageValue,
+    //         isOpen: !this.state.isOpen
+    //     });
+    //     console.log('image - ' + this.state.image)
+    //     console.log('isOpen - ' + this.state.isOpen)
+    // };
 
     componentDidMount() {
         this.setState({ isLoadingHoaxes: true })
@@ -105,6 +128,14 @@ export default class HoaxFeed extends Component {
                         : `There are ${this.state.newHoaxCount} new hoaxes`;
         return (
             <div>
+                {/* {this.state.isOpen && (
+                    <Lightbox 
+                        // mainSrc={image[0]}
+                        mainSrc={this.state.image ? <img src={`data:image/png;base64,${this.state.image}`}/>: ''}
+                        onCloseRequest={() => this.setState({ isOpen: false })}
+                    />
+                )} */}
+
                 {this.state.newHoaxCount > 0 && (
                     <div 
                         className="card card-header text-center"
@@ -125,6 +156,9 @@ export default class HoaxFeed extends Component {
                         <HoaxView 
                             key={hoax.id}
                             hoax={hoax}
+
+                            // isOpen={this.state.isOpen}
+                            // changeOpen={this.changeOpen}
                         />
                     )
                 })}
