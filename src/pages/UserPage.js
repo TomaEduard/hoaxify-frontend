@@ -120,7 +120,7 @@ class UserPage extends Component {
         let originalDisplayName = this.state.originalDisplayName;
         if (originalDisplayName === undefined) {
             originalDisplayName = user.displayName;
-        }
+        };
         user.displayName = event.target.value;
 
         const errors = { ...this.state.errors };
@@ -130,7 +130,7 @@ class UserPage extends Component {
         this.setState({ user, originalDisplayName, errors })
 
         this.setState({user, originalDisplayName})
-    }
+    };
 
     // Set your color here
     entering = (e) => {
@@ -142,7 +142,7 @@ class UserPage extends Component {
         // make sure the file array contain 1 file
         if(event.target.files.length === 0) {
             return;
-        }
+        };
 
         const errors = { ...this.state.errors };
         errors.image = undefined
@@ -154,11 +154,11 @@ class UserPage extends Component {
             this.setState({
                 image: reader.result,
                 errors
-            })
-        }
+            });
+        };
 
         reader.readAsDataURL(file);
-    }
+    };
 
     render() { 
         let pageContent;

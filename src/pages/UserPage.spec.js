@@ -50,7 +50,7 @@ const mockFailUpdateUser = {
     data: {
       validationErrors: {
         displayName: 'It must have minimum 4 and maximum 255 characters',
-        image: 'Only PNG, JPG and GIF files are allowed',
+        image: 'Only PNG, JPG and JPEG files are allowed',
       }
     }
   }
@@ -446,7 +446,7 @@ describe('UserPage', () => {
       fireEvent.click(saveButton);
       await waitForDomChange();
 
-      const errorMessage = queryByText('Only PNG, JPG and GIF files are allowed');
+      const errorMessage = queryByText('Only PNG, JPG and JPEG files are allowed');
       expect(errorMessage).toBeInTheDocument();
     });
 
@@ -480,7 +480,7 @@ describe('UserPage', () => {
       fireEvent.change(fileInput, { target: { files: [newFile] }})
 
       await waitForDomChange();
-      const errorMessage = queryByText('Only PNG, JPG and GIF files are allowed');
+      const errorMessage = queryByText('Only PNG, JPG and JPEG files are allowed');
       expect(errorMessage).not.toBeInTheDocument();
     });
 

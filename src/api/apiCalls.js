@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const signup = (user) => {
-    return axios.post('/api/1.0/users', user)
+    return axios.post('/api/1.0/users', user);
 };
 
 export const login = (user) => {
-    return axios.post('/api/1.0/login', {}, {auth: user})
+    return axios.post('/api/1.0/login', {}, {auth: user});
 };
 
 export const setAuthorizationHeader = ({username, password, isLoggedIn}) => {
@@ -23,15 +23,15 @@ export const listUsers = (param = { page: 0, size: 3 }) => {
 };
 
 export const getUser = (username) => {
-    return axios.get(`/api/1.0/users/${username}`)
+    return axios.get(`/api/1.0/users/${username}`);
 };
 
 export const updateUser = (userId, body) => {
-    return axios.put('/api/1.0/users/' + userId, body)
+    return axios.put('/api/1.0/users/' + userId, body);
 };
 
 export const postHoax = (hoax) => {
-    return axios.post('/api/1.0/hoaxes', hoax)
+    return axios.post('/api/1.0/hoaxes', hoax);
 };
 
 export const loadHoaxes = (username) => {
@@ -66,6 +66,9 @@ export const loadNewHoaxCount = (hoaxId, username) => {
     return axios.get(path);
 };
 
+export const postHoaxFile = (file) => {
+    return axios.post('/api/1.0/hoaxes/upload', file);
+};
 
 
 

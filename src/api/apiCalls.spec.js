@@ -15,6 +15,7 @@ describe('apiCalls', () => {
   });
 
   describe('login', () => {
+
     it('calls /api/1.0/login', () => {
       const mockSignup = jest.fn();
       axios.post = mockSignup;
@@ -24,6 +25,7 @@ describe('apiCalls', () => {
       const path = mockSignup.mock.calls[0][0];
       expect(path).toBe('/api/1.0/login');
     });
+
   });
 
   describe('listUsers', () => {
@@ -152,7 +154,18 @@ describe('apiCalls', () => {
         expect(mockGetHoaxes).toBeCalledWith('/api/1.0/users/user3/hoaxes/5?direction=after&count=true');
       });
 
-      
     });
   }); 
+
+  describe('postHoaxFile', () => {
+    
+    it('calls /api/1.0/hoaxes/upload', () => {
+      const postHoaxFile = jest.fn();
+      axios.post = postHoaxFile;
+      apiCalls.postHoaxFile();
+      const path = postHoaxFile.mock.calls[0][0];
+      expect(path).toBe('/api/1.0/hoaxes/upload');
+    });
+
+  });
 });

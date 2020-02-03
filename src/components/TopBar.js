@@ -113,6 +113,7 @@ class TopBar extends React.Component {
 
         // shadow-sm mb-2
         return ( 
+            // <div className="sticky-header">
             <div className="">
                 <div className="container">
                     <nav className="navbar navbar-light navbar-expand navbar-color">

@@ -3,13 +3,17 @@ import ProfileImageWithDefault from './ProfileImageWithDefault';
 import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
 import ButtonWithProgress from './ButtonWithProgress';
+import Input from './Input';
 
 class HoaxSubmit extends Component {
     state ={
         focused: false,
         content: undefined,
         pendingApiCall: false,
-        errors: {}
+        errors: {},
+        file: undefined,
+        image: undefined,
+        attachment: undefined,
     };
 
     onChangeContent = (event) => {
@@ -20,18 +24,57 @@ class HoaxSubmit extends Component {
         })
     };
 
+    onFileSelect = (event) => {
+        // make sure the file array contain 1 file
+        if(event.target.files.length === 0) {
+            return;
+        }
+
+        const file = event.target.files[0];
+
+        let reader = new FileReader();
+        reader.onloadend = () => {
+            this.setState({
+                image: reader.result,
+                file
+            }, () => {
+                this.uploadFile()
+            });
+        };
+        reader.readAsDataURL(file);
+    };
+
+    // #1
+    uploadFile = () => {
+        const body = new FormData();
+        body.append('file', this.state.file)
+        apiCalls.postHoaxFile(body).then(response => {
+            this.setState({ attachment: response.data })
+        })
+    }
+
+    resetState = () => {
+        this.setState({
+            pendingApiCall: false,
+            focused: false,
+            content: '',
+            errors: {},
+            image: undefined,
+            file: undefined,
+            attachment: undefined
+        });
+    };
+
+    // #2
     onClickHoadify = () => {
         const body = {
-            content: this.state.content
-        }
-        this.setState({ pendingApiCall: true })
+            content: this.state.content,
+            attachment: this.state.attachment
+        };
+        this.setState({ pendingApiCall: true });
         apiCalls.postHoax(body)
         .then((response) => {
-            this.setState({
-                focused: false,
-                content: '',
-                pendingApiCall: false,
-            });
+            this.resetState();
         })
         .catch((error) => {
             let errors = {}
@@ -46,14 +89,6 @@ class HoaxSubmit extends Component {
     onFocus = () => {
         this.setState({
             focused: true
-        });
-    };
-
-    onClickCancel = () => {
-        this.setState({
-            focused: false,
-            content: '',
-            errors: {}
         });
     };
 
@@ -88,27 +123,45 @@ class HoaxSubmit extends Component {
                     }
 
                     {this.state.focused &&(
+                        <div className="">
+                            <div className="pt-1">
+                                <Input 
+                                    type="file"
+                                    onChange={this.onFileSelect}
+                                />
+                                    {this.state.image && 
+                                        <img 
+                                            className="mt-1 img-thumbnail"
+                                            src={this.state.image}
+                                            alt="upload"
+                                            width="128"
+                                            height="65"
+                                        />
+                                    }
+                            </div>
 
-                        <div className="text-right mt-1">
+                            <div className="text-right mt-1">
+                                <button 
+                                    disabled={this.state.pendingApiCall}
+                                    className="btn btn-light ml-1"
+                                    onClick={this.resetState}
+                                >
+                                    <i className="fas fa-times mr-1"></i>
+                                
+                                    Cancel
+                                </button>
 
-                            <ButtonWithProgress
-                                className="btn btn-success" 
-                                disabled={this.state.pendingApiCall}
-                                onClick={this.onClickHoadify}
-                                pendingApiCall={this.state.pendingApiCall}
-                                text="Hoaxify"
-                            />  
+                                <ButtonWithProgress
+                                    className="btn btn-success" 
+                                    disabled={this.state.pendingApiCall}
+                                    onClick={this.onClickHoadify}
+                                    pendingApiCall={this.state.pendingApiCall}
+                                    text="Hoaxify"
+                                /> 
 
-                            <button 
-                                disabled={this.state.pendingApiCall}
-                                className="btn btn-light ml-1"
-                                onClick={this.onClickCancel}
-                            >
-                                <i className="fas fa-times mr-1"></i>
-                            
-                                Cancel
-                            </button>
+                            </div>
                         </div>
+
                     )}
                     
                 </div>
