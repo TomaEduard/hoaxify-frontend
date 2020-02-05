@@ -98,7 +98,8 @@ class HomePage extends Component {
                                                     id="dropdown-menu-align-right"
                                                     drop="right"
                                                     // title="More"
-                                                    title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}>
+                                                    title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
+                                                >
                                                         
                                                     <div className="shadow text-more">
                                                         <Dropdown.Item eventKey="1">
@@ -122,27 +123,27 @@ class HomePage extends Component {
                                                     
                                                         </Dropdown.Item>
                                                     
-                                                        <Dropdown.Item eventKey="1">
+                                                        <Dropdown.Item eventKey="1" disabled={true}>
                                                             <i className="fas fa-plus text-secondary pr-2"></i>
-                                                            Action 
+                                                            Action
                                                         </Dropdown.Item>
 
-                                                        <Dropdown.Item eventKey="2">
+                                                        <Dropdown.Item eventKey="2" disabled={true}>
                                                             <i className="fas fa-plus text-secondary pr-2"></i>
                                                             Another action
                                                         </Dropdown.Item>
-                                                        <Dropdown.Item eventKey="3">
+                                                        <Dropdown.Item eventKey="3" disabled={true}>
                                                             <i className="fas fa-plus text-secondary pr-2"></i>
-                                                            Something else here
+                                                            Another action
                                                         </Dropdown.Item>
 
                                                         <Dropdown.Divider />
 
-                                                        <Dropdown.Item eventKey="4">
+                                                        <Dropdown.Item eventKey="4" disabled={true}>
                                                             <i className="fas fa-cogs text-secondary pr-2"></i>
                                                             Settings and privacy
                                                         </Dropdown.Item>
-                                                        <Dropdown.Item eventKey="4">
+                                                        <Dropdown.Item eventKey="4" disabled={true}>
                                                             <i className="fas fa-info-circle text-secondary pr-2"></i>
                                                             Help Center
                                                         </Dropdown.Item>

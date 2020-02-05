@@ -3,16 +3,11 @@ import * as apiCalls from '../api/apiCalls';
 import SpinnerForComponents from './SpinnerForComponents';
 import HoaxView from './HoaxView';
 import Spinner from './Spinner';
-
-// Lightbox
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
-
+import Modal from './Modal';
 
 const image = [
   'http://localhost:8080/images/attachment/521ca441cfe04460bf1916371277c006',
 ];
-
 
 export default class HoaxFeed extends Component {
 
@@ -25,19 +20,9 @@ export default class HoaxFeed extends Component {
         isLoadingOldHoaxes: false,
         isLoadingNewHoaxes: false,
 
-        // maximize image
-        // isOpen: false,
-        // image: '',
+        hoaxToBeDeleted: undefined,
+        isDeletingHoax: false,
     };
-
-    // changeOpen = (imageValue) => {
-    //     this.setState({ 
-    //         image: imageValue,
-    //         isOpen: !this.state.isOpen
-    //     });
-    //     console.log('image - ' + this.state.image)
-    //     console.log('isOpen - ' + this.state.isOpen)
-    // };
 
     componentDidMount() {
         this.setState({ isLoadingHoaxes: true })
@@ -107,6 +92,30 @@ export default class HoaxFeed extends Component {
             });
     };
 
+    onClickDeleteHoax = (hoax) => {
+        this.setState({ hoaxToBeDeleted: hoax});
+    };
+
+    onClickModalCancel = () => {
+        this.setState({ hoaxToBeDeleted: undefined });
+    };
+
+    onClickModalOk = () => {
+        this.setState({ isDeletingHoax: true });
+        apiCalls.deleteHoax(this.state.hoaxToBeDeleted.id)
+            .then((response) => {
+                // take the current page
+                const page = { ...this.state.page };
+                // remove the hoax id from the current page
+                page.content = page.content.filter(
+                    (hoax) => hoax.id !== this.state.hoaxToBeDeleted.id
+                );
+
+                this.setState({ hoaxToBeDeleted: undefined, page, isDeletingHoax: false});
+
+            })
+    }
+
     render() {
         if(this.state.isLoadingHoaxes) {
             return (
@@ -128,13 +137,6 @@ export default class HoaxFeed extends Component {
                         : `There are ${this.state.newHoaxCount} new hoaxes`;
         return (
             <div>
-                {/* {this.state.isOpen && (
-                    <Lightbox 
-                        // mainSrc={image[0]}
-                        mainSrc={this.state.image ? <img src={`data:image/png;base64,${this.state.image}`}/>: ''}
-                        onCloseRequest={() => this.setState({ isOpen: false })}
-                    />
-                )} */}
 
                 {this.state.newHoaxCount > 0 && (
                     <div 
@@ -156,9 +158,7 @@ export default class HoaxFeed extends Component {
                         <HoaxView 
                             key={hoax.id}
                             hoax={hoax}
-
-                            // isOpen={this.state.isOpen}
-                            // changeOpen={this.changeOpen}
+                            onClickDelete={() => this.onClickDeleteHoax(hoax)}
                         />
                     )
                 })}
@@ -173,6 +173,18 @@ export default class HoaxFeed extends Component {
                             : 'Load More'}
                     </div>
                 )}
+                <Modal
+                    visible={this.state.hoaxToBeDeleted && true}
+                    onClickCancel={this.onClickModalCancel}
+                    body={
+                        this.state.hoaxToBeDeleted && 
+                        `Are you sure to delete '${this.state.hoaxToBeDeleted.content}'?`
+                    }
+                    title="Delete"
+                    okButton="Delete Hoax"
+                    onClickOk={this.onClickModalOk}
+                    pandingApiCall={this.state.isDeletingHoax}
+                />
             </div>
         );
     }

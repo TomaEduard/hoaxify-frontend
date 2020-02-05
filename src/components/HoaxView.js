@@ -4,13 +4,21 @@ import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
+import { connect } from 'react-redux';
 
 // Lightbox
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
 
-export default class HoaxView extends Component {
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import HoaxFeed from '../components/HoaxFeed';
+
+
+export class HoaxView extends Component {
     
     state = {
         isOpen: false,
@@ -36,12 +44,16 @@ export default class HoaxView extends Component {
     };
 
     render() {
-        const { hoax } = this.props;
+        const { hoax, onClickDelete } = this.props;
         const { user, date } = hoax;
         const { username, displayName, image } = user;
         const relativeDate = format(date);
         const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
         // const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
+        
+        // verify for show arrow button
+        const ownedByLoggedInUser = user.id === this.props.loggedInUser.id;
+
         return (
             
 
@@ -73,9 +85,86 @@ export default class HoaxView extends Component {
                         {/* <br /> */}
                         <span>  -  </span>
                         <span className="text-black-50">{relativeDate}</span>
-
                     </div>
                     
+                        {ownedByLoggedInUser && (
+                            <DropdownButton
+                                key=""
+                                variant=""
+                                // id="dropdown-button-drop-up"
+                                id="dropdown-menu-align-left"
+                                drop="down"
+                                // title="More"
+                                // title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
+                                title=""
+                            >
+                                    
+                                <div className="shadow text-more">
+                                                                            
+                                    <Dropdown.Item eventKey="1" disabled={true}>
+                                        <i className="fas fa-ban text-secondary pr-2" ></i>
+                                        Block (Not implemented)
+                                    </Dropdown.Item>
+
+                                    <Dropdown.Item eventKey="2" disabled={true}>
+                                        <i className="far fa-flag text-secondary pr-2"></i>
+                                        Report (Not implemented)
+                                    </Dropdown.Item>
+
+                                    <Dropdown.Divider />
+
+                                    <Dropdown.Item 
+                                        eventKey="3" 
+                                        onClick={onClickDelete} 
+                                    >
+                                        <i className="far fa-trash-alt text-secondary pr-2"></i>
+                                        Delete Post
+                                    </Dropdown.Item>                                
+                                    
+                                    <Dropdown.Item eventKey="3">
+                                        <i className="far fa-edit text-secondary pr-2"></i>
+                                        Edit Post
+                                    </Dropdown.Item>
+                        
+
+                                    <Dropdown.Divider />
+                                    
+                                </div>
+                            </DropdownButton>
+                        )}
+
+                        {!ownedByLoggedInUser && (
+                            <DropdownButton
+                                key=""
+                                variant=""
+                                // id="dropdown-button-drop-up"
+                                id="dropdown-menu-align-left"
+                                drop="left"
+                                // title="More"
+                                // title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
+                                title=""
+                            >
+                                    
+                                <div className="shadow text-more">
+                                                                            
+                                    <Dropdown.Item eventKey="1" disabled={true}>
+                                        <i className="fas fa-ban text-secondary pr-2" ></i>
+                                        Block (Not implemented)
+                                    </Dropdown.Item>
+
+                                    <Dropdown.Item eventKey="2" disabled={true}>
+                                        <i className="far fa-flag text-secondary pr-2"></i>
+                                        Report (Not implemented)
+                                    </Dropdown.Item>
+
+                                    <Dropdown.Divider />
+
+                                </div>
+                            </DropdownButton>
+                        )}      
+
+                    {/* <button> Delete </button> */}
+
                     <div className="">
                         {/* <ButtonToolbar>
                             <Button variant="outline-warning">Warning</Button>
@@ -101,3 +190,11 @@ export default class HoaxView extends Component {
         )
     }
 }
+
+const mapStateProps = (state) => {
+    return {
+        loggedInUser: state
+    }
+}
+
+export default connect(mapStateProps)(HoaxView);

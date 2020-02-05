@@ -217,9 +217,24 @@ a:hover {
   font-size: 22px;
 }
 
+.dropdown-menu {
+  padding: 0 !important;
+}
 
 /* Hoax View */
 .img-max {
-  max-width: 400px;
+  max-width: 450px;
   width:100%;
+}
+
+#dropdown-menu-align-left {
+  background-color: transparent;
+  margin-right: 10px;
+  color: gray !important;
+  
+}
+
+#dropdown-menu-align-left:hover {
+  color: #000000 !important;
+  /* text-decoration: underline; */
 }

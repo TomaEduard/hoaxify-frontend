@@ -1,7 +1,28 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent, waitForDomChange, queryAllByTestId, queryByText } from '@testing-library/react';
 import HoaxView from './HoaxView';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import authReducer from '../redux/authReducer';
+
+const loggedInStateUser1 = {
+  id: 1,
+  username: 'user1',
+  displayName: 'display1',
+  image: 'profile1.png',
+  password: 'P4ssword',
+  isLoggedIn: true
+};
+
+const loggedInStateUser2 = {
+  id: 2,
+  username: 'user2',
+  displayName: 'display2',
+  image: 'profile2.png',
+  password: 'P4ssword',
+  isLoggedIn: true
+};
 
 const hoaxWithoutAttachment = {
     id: 10,
@@ -44,15 +65,19 @@ const hoaxWithPdfAttachment = {
     }
 };
 
-const setup = (hoax = hoaxWithoutAttachment) => {
+const setup = (hoax = hoaxWithoutAttachment, state = loggedInStateUser1) => {
     const oneMinute = 60 * 1000;
     const date = new Date(new Date() - oneMinute);
     hoax.date = date;
+    const store = createStore(authReducer, state);
+
     return render(
-        <MemoryRouter>
-            <HoaxView hoax={hoax} />
-        </MemoryRouter>
-    )
+        <Provider store={store}>
+            <MemoryRouter>
+                <HoaxView hoax={hoax} />
+            </MemoryRouter>
+        </Provider>
+    );
 };
 
 describe('HoaxView', () => {
@@ -102,12 +127,19 @@ describe('HoaxView', () => {
             expect(images.length).toBe(1);
         });
 
-        it('sts the attachment path as source for file attachment image', () => {
+        it('sets the attachment path as source for file attachment image', () => {
             const { container } = setup(hoaxWithAttachment);
             const images = container.querySelectorAll('img');
             const attachmentImage = images[1];
             expect(attachmentImage.src).toContain('/images/attachments/' + hoaxWithAttachment.attachment.name
             );
         });
+
+        it('displays delete button when hoax owned by logged in user', () => {
+            const { container } = setup();
+            expect(container.querySelector('button')).toBeInTheDocument();
+        });
+
+        
     });
 });

@@ -70,5 +70,10 @@ export const postHoaxFile = (file) => {
     return axios.post('/api/1.0/hoaxes/upload', file);
 };
 
+export const deleteHoax = (hoaxId) => {
+    return axios.delete('/api/1.0/hoaxes/' + hoaxId);
+};
+
+
 
 
