@@ -36,9 +36,9 @@
 /* background-position: center !important; */
 .background-image {
 
-  /* height: 93vh; */
+  height: 93vh;
   background-position: bottom, center !important;
-  height: 876px !important;
+  /* height: 876px !important; */
   min-height: 876px !important;
 
   background: 
@@ -129,7 +129,28 @@ element.style {
 }
 
 
+
 /* Homepage */
+a#left-tabs-example-tab-first.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+}
+
+a#left-tabs-example-tab-second.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+}
+
+a#left-tabs-example-tab-third.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+}
+
+a#left-tabs-example-tab-fourth.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+}
+
+a#left-tabs-example-tab-fifth.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #2f2f2f !important;
   background-color: #fcd001d1 !important;
@@ -238,3 +259,5 @@ a:hover {
   color: #000000 !important;
   /* text-decoration: underline; */
 }
+
+

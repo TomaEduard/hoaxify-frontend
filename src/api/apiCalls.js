@@ -74,6 +74,11 @@ export const deleteHoax = (hoaxId) => {
     return axios.delete('/api/1.0/hoaxes/' + hoaxId);
 };
 
+export const setPreference = (hoaxId, file) => {
+    return axios.post('/api/1.0/preference/' + hoaxId , file);
+};
+
+
 
 
 

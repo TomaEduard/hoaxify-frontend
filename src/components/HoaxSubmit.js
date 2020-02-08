@@ -68,7 +68,7 @@ class HoaxSubmit extends Component {
     };
 
     // #2
-    onClickHoadify = () => {
+    onClickHoaxify = () => {
         const body = {
             content: this.state.content,
             attachment: this.state.attachment
@@ -156,7 +156,7 @@ class HoaxSubmit extends Component {
                                 <ButtonWithProgress
                                     className="btn btn-success" 
                                     disabled={this.state.pendingApiCall}
-                                    onClick={this.onClickHoadify}
+                                    onClick={this.onClickHoaxify}
                                     pendingApiCall={this.state.pendingApiCall}
                                     text="Hoaxify"
                                 /> 

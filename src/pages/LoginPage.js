@@ -80,13 +80,12 @@ export class LoginPage extends React.Component {
       // TODO: remove scrollbar on login page
       <div className="background-image" id="background-image" >
 
-
         <div className="container pt-5">
 
           <div className="row">
             <div className="contact-form col-lg-5 mt-3 shadow mb-5 bg-white pt-1">
 
-              <div className="login-logo"> 
+              <div className="d-flex justify-content-center"> 
                 <img className="m-auto pl-3 pt-3" src={image} width="270" alt="Hoaxify" />
               </div>
 
@@ -173,13 +172,14 @@ export class LoginPage extends React.Component {
 
                 </div>
 
-                <p className="text-center text-login-page text-secondary pt-3">By continuing, you agree to Hoxify's
+                <p className="text-center text-login-page text-secondary pt-3">
+                  By continuing, you agree to Hoxify's&nbsp;
                   <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
-                    &nbsp;Terms of Service, Privacy Policy
+                    Terms of Service, Privacy Policy
                   </a>
-                  &nbsp;and
+                  &nbsp;and&nbsp;
                   <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
-                    &nbsp;Cookie use.
+                    Cookie use.
                   </a>
                 </p>
 

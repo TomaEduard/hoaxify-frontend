@@ -5,34 +5,54 @@ import { Link } from 'react-router-dom';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
+import * as apiCalls from '../api/apiCalls';
 
 // Lightbox
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import HoaxFeed from '../components/HoaxFeed';
+import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
 
 
 export class HoaxView extends Component {
-    
-    state = {
-        isOpen: false,
-        image: '',
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+            image: '',
+
+            id: this.props.hoax.id,
+            favorite: this.props.hoax.userPreference.favorite,
+            like: this.props.hoax.userPreference.like,
+            bookmark: this.props.hoax.userPreference.bookmark,
+        };
+        console.log(this.props);
     };
 
-    // changeOpen = (imageValue) => {
-    // this.setState({ 
-    //     image: imageValue,
-    //     isOpen: !this.state.isOpen
-    // });
-    // console.log('image - ' + this.state.image)
-    // console.log('isOpen - ' + this.state.isOpen)
-    // };
+    // function for change favorite
+    changeFavorite = () => {
+
+        this.setState({
+        favorite: !this.state.favorite,
+        },
+            function() { 
+                var body = ({
+                    "favorite": this.state.favorite,
+                    "like": this.state.like,
+                    "bookmark": this.state.bookmark
+                })
+            
+                apiCalls.setPreference(this.state.id , body);
+                // no need .then .catch at the moment
+
+            }
+        );
+    }
 
     changeOpen = (imageValue) => {
         this.setState({ 
@@ -47,16 +67,17 @@ export class HoaxView extends Component {
         const { hoax, onClickDelete } = this.props;
         const { user, date } = hoax;
         const { username, displayName, image } = user;
+        const { favorite, like, bookmark } = this.props.hoax.userPreference;
         const relativeDate = format(date);
         const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
-        // const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
         
         // verify for show arrow button
         const ownedByLoggedInUser = user.id === this.props.loggedInUser.id;
 
+        console.log("#3 : " + this.state.favorite);
+        // console.log("HoaxView - this.props.hoax.id - " + this.props)
+        
         return (
-            
-
             <div className="card p-1">
 
                 {this.state.isOpen && (
@@ -77,7 +98,7 @@ export class HoaxView extends Component {
                     <div className="flex-fill m-auto pl-2">
                         <Link to={`/${username}`} className="list-group-item-action">
                             <h6 className="d-inline">
-                                {displayName}@{username}
+                                {this.state.id}{displayName}@{username}
                             </h6>
 
                         </Link>
@@ -91,11 +112,8 @@ export class HoaxView extends Component {
                             <DropdownButton
                                 key=""
                                 variant=""
-                                // id="dropdown-button-drop-up"
                                 id="dropdown-menu-align-left"
                                 drop="down"
-                                // title="More"
-                                // title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
                                 title=""
                             >
                                     
@@ -127,7 +145,7 @@ export class HoaxView extends Component {
                                     </Dropdown.Item>
                         
 
-                                    <Dropdown.Divider />
+                                    {/* <Dropdown.Divider /> */}
                                     
                                 </div>
                             </DropdownButton>
@@ -137,12 +155,9 @@ export class HoaxView extends Component {
                             <DropdownButton
                                 key=""
                                 variant=""
-                                // id="dropdown-button-drop-up"
                                 id="dropdown-menu-align-left"
-                                drop="left"
-                                // title="More"
+                                drop="down"
                                 // title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
-                                title=""
                             >
                                     
                                 <div className="shadow text-more">
@@ -159,9 +174,19 @@ export class HoaxView extends Component {
 
                                     <Dropdown.Divider />
 
+                                    <Dropdown.Item eventKey="3" disabled={true}>
+                                        <i className="far fa-eye-slash text-secondary pr-2"></i>
+                                        Hide Post (Not implemented)
+                                    </Dropdown.Item>
+
+
+                                    <Dropdown.Item eventKey="3" disabled={true}>
+                                        <i className="fas fa-code text-secondary pr-2"></i>
+                                        embed (Not implemented)
+                                    </Dropdown.Item>
                                 </div>
                             </DropdownButton>
-                        )}      
+                        )}
 
                     {/* <button> Delete </button> */}
 
@@ -182,10 +207,27 @@ export class HoaxView extends Component {
                             src={`/images/attachments/${hoax.attachment.name}`}
                             className="img-fluid"
                             onClick={() => this.changeOpen(hoax.attachment.name)}
-                            
                         />
                     </div>
                 )}
+
+                <div className="row">
+                    {/* <Heart
+                        asd={this.state.id}
+                        favorite={favorite}
+                        changeFavorite={() => this.changeFavorite()}
+                    /> */}
+
+                    <div className="FavoriteHoax">
+                        <FavoriteHoax
+                            favorite={this.state.favorite}
+                            changeFavorite={this.changeFavorite}
+                        />
+                    </div>
+
+
+                </div>
+
             </div>
         )
     }
