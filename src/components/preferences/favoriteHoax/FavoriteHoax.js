@@ -18,7 +18,7 @@ class FavoriteHoax extends Component {
     let imageSrouce = "far fa-heart fa-lg text-decoration-none heart-false p-1";
     let toolTipFavoriteFalse = "Email must be validated"
 
-    if(this.props.emailVerificationStatus == true) {
+    if(this.props.emailVerificationStatus === true) {
       if(this.props.favorite) {
         imageSrouce = "fa fas fa-heart fa-lg text-decoration-none heart-true p-1"
       }

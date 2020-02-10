@@ -79,6 +79,16 @@ export const setPreference = (hoaxId, file) => {
 };
 
 
+// email-verification: resend, confirmation
+export const resendEmailVerification = (id) => {
+    return axios.post(`/api/1.0/users/email-verification/confirmation/${id}`);
+};
+
+// http://localhost:3000/#/verification/email_verification?token=$tokenValue
+
+export const emailVerification = (token) => {
+    return axios.get(`/api/1.0/users/email-verification/confirmation${token}`);
+};
 
 
 

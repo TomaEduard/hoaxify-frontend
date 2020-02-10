@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ProfileImageWithDefault from './ProfileImageWithDefault';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
 
@@ -13,11 +11,7 @@ import 'react-image-lightbox/style.css';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import HoaxFeed from '../components/HoaxFeed';
 import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
-
 
 export class HoaxView extends Component {
     constructor(props) {
@@ -31,7 +25,7 @@ export class HoaxView extends Component {
             like: this.props.hoax.userPreference.like,
             bookmark: this.props.hoax.userPreference.bookmark,
         };
-        console.log(this.props);
+        // console.log(this.props);
     };
 
     // function for change favorite
@@ -73,7 +67,6 @@ export class HoaxView extends Component {
         const { hoax, onClickDelete } = this.props;
         const { user, date } = hoax;
         const { username, displayName, image } = user;
-        const { favorite, like, bookmark } = this.props.hoax.userPreference;
         const relativeDate = format(date);
         const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
         
@@ -81,13 +74,6 @@ export class HoaxView extends Component {
         const ownedByLoggedInUser = user.id === this.props.loggedInUser.id;
         // const emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
         let emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
-        console.log("this.props.loggedInUser" + this.props.loggedInUser);
-        console.log("this.props.loggedInUser.emailVerificationStatus - " + this.props.loggedInUser.emailVerificationStatus);
-        console.log("emailVerificationStatus - " + emailVerificationStatus);
-        
-        
-        console.log("#3 : " + this.state.favorite);
-        // console.log("HoaxView - this.props.hoax.id - " + this.props)
         
         return (
             <div className="card p-1">

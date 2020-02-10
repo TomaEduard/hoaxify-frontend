@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import * as apiCalls from '../api/apiCalls';
 import SpinnerForComponents from './SpinnerForComponents';
 import HoaxView from './HoaxView';
-import Spinner from './Spinner';
 import Modal from './Modal';
-
-const image = [
-  'http://localhost:8080/images/attachment/521ca441cfe04460bf1916371277c006',
-];
 
 export default class HoaxFeed extends Component {
 
@@ -28,7 +23,7 @@ export default class HoaxFeed extends Component {
         this.setState({ isLoadingHoaxes: true })
         apiCalls.loadHoaxes(this.props.user).then(response => {
             this.setState({ page: response.data, isLoadingHoaxes: false }, () => {
-                this.counter = setInterval(this.checkCount, 999999);
+                this.counter = setInterval(this.checkCount, 2500);
             });
             
         });

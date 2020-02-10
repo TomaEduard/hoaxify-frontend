@@ -194,7 +194,7 @@ class UserPage extends Component {
                     onChangeDisplayName={this.onChangeDisplayName}
                     pendingUpdateCall={this.state.pendingUpdateCall}
                     entering={this.entering}
-                    
+
                     // value of image
                     loadedImage={this.state.image}
                     // function for change image
@@ -202,8 +202,10 @@ class UserPage extends Component {
 
                     // error
                     errors={this.state.errors}
-                />)
+                />
+            )
         }
+
         return (
             <div className="container">
                 <div className="row">
@@ -214,8 +216,9 @@ class UserPage extends Component {
                         </div>
                     </div>
 
-                    {this.state.userNotFound != true && (
+                    {this.state.userNotFound !== true && (
                         <div className="col">
+                            
                             <HoaxFeed user={this.props.match.params.username} />
                         </div>
                     )}

@@ -7,10 +7,6 @@ import Fallow from '../components/Fallow';
 import Favorite from '../components/Favorite';
 import Bookmarks from '../components/Bookmarks';
 import Like from '../components/Like';
-
-
-
-import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -19,11 +15,8 @@ import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
 import ProfileImageWithDefault from '../components/ProfileImageWithDefault';
 import HoaxFeed from '../components/HoaxFeed';
-
 
 class HomePage extends Component {
     state = { 
@@ -198,7 +191,11 @@ class HomePage extends Component {
                                     <Tab.Pane eventKey="first">
                                             
                                         {this.props.loggedInUser.isLoggedIn && [
-                                            <HoaxSubmit />,
+                                            
+                                            // TODO: add map of this component
+                                            <HoaxSubmit
+                                            
+                                            />,
                                             <HoaxFeed />
                                         ]}
                                         

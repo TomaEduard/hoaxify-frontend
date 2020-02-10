@@ -5,47 +5,47 @@ import ButtonWithProgressEmailConfirmation from '../components/ButtonWithProgres
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import * as apiCalls from '../api/apiCalls';
 
 class ResendConfirmationEmail extends Component {
     state = {
+        id: this.props.loggedInUser.id, 
+        pendingApiCall : false,
         apiError: undefined,
-        pendingApiCall : false
+        successfullyMessage: false,
+        setButtonDisabled: false,
     };
 
-    // onClickLogin = () => {
-    //     const body = {
-    //         username: this.state.username,
-    //         password: this.state.password
-    //     };
-    //     this.setState({pendingApiCall: true})
-    
-    //     // call reformating/rename postLogin dispatch function for jest 
-    //     this.props.actions.postLogin(body)
-    
-    //     .then((response) => {
-    //         this.setState({pendingApiCall: false}, () => {
-    //             this.props.history.push('/');
-    //         })
-    //     })
-    //     .catch((error) => {
-    //         if (error.response) {
-    //             this.setState({ 
-    //             apiError: error.response.data.message,
-    //             pendingApiCall: false,
-    //             });
-    //         }
-    //     });
-    // };
+    confirmationEmail = () => {
+        this.setState({pendingApiCall: true});
+        apiCalls.resendEmailVerification(this.state.id)
+            .then((response) => {
+            this.setState({
+                pendingApiCall: false,
+                successfullyMessage: true,
+                setButtonDisabled: true,
+            })
+        })
+        .catch((error) => {
+        if (error.response) {
+            this.setState({ 
+                apiError: error.response.data.message,
+                pendingApiCall: false,
+            });
+        }
+        });
+    }
 
+   
     render() {
         
         return (
             <div className="">
 
                 <div className="container card d-flex p-1 card-confirmation shadow-sm">
-                    <div className="alert text-center pt-4 pb-0 mb-0" role="alert">
+                    <div className="alert text-center pb-0 mb-0" role="alert">
                         <div className="login-logo"> 
-                            <img className="m-auto pl-3" src={image} width="270" alt="Hoaxify" />
+                            <img className="m-auto pl-3 pt-1" src={image} width="270" alt="Hoaxify" />
                         </div>
 
                         <div>
@@ -61,15 +61,7 @@ class ResendConfirmationEmail extends Component {
                         The confirmation of the email is necessary to have access to all the functionalities of the application. A confirmation email has been sent to <span className="font-weight-bold">{this.props.loggedInUser.username}</span> at account creation. Please access the link inside it to confirm the email address.
                         If this email has not been sent successfully you can resend it using the button below.
                             
-                        <div className="text-center pt-4">
-                            <ButtonWithProgressEmailConfirmation
-                                onClick={this.onClickLogin}
-                                // disabled={disableSubmit || this.state.pendingApiCall}
-                                disabled={false}
-                                // pendingApiCall={this.state.pendingApiCall}
-                                pendingApiCall={false}
-                            />
-                        </div>    
+  
                             
                             
                             {/* Authentication is required to see this content.
@@ -84,18 +76,37 @@ class ResendConfirmationEmail extends Component {
                             . */}
                         </p>
 
-                <p className="text-center display-5 text-secondary text-login-card-buttom pt-3">
-                    Have trouble or confused? Please contact the support at: &nbsp;
-                    <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold">
-                        support@hoaxify.com
-                    </a>
-                    .
-                </p>
+                        {this.state.successfullyMessage && (
+                            
+                            <h5 className="text-success font-weight-bold pt-3 text-center success-text-resend"> 
+                                <span className="far fa-check-circle fa-lg fa-2x"></span>
+                                <span className="">&nbsp;Email Resending was successfully!</span>
+                            </h5>
+                        )}
+
+                        <div className="text-center pt-4">
+                            <ButtonWithProgressEmailConfirmation
+                                onClick={this.confirmationEmail}
+                                // disabled={disableSubmit || this.state.pendingApiCall}
+                                disabled={this.state.setButtonDisabled}
+                                // pendingApiCall={this.state.pendingApiCall}
+                                pendingApiCall={this.state.pendingApiCall}
+                            />
+                        </div>  
+
+
+
+                        <p className="text-center display-5 text-secondary text-login-card-buttom pt-5">
+                            Have trouble or confused? Please contact the support at: &nbsp;
+                            <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold">
+                                support@hoaxify.com
+                            </a>
+                            .
+                        </p>
                   
                     </div>
 
                 </div>
-
                 
                 <div className="container">
 
