@@ -6,6 +6,9 @@ import NeedToBeAuthenticated from '../components/NeedToBeAuthenticated';
 import Fallow from '../components/Fallow';
 import Favorite from '../components/Favorite';
 import Bookmarks from '../components/Bookmarks';
+import Like from '../components/Like';
+
+
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -67,18 +70,25 @@ class HomePage extends Component {
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="fourth">
+                                            <i className="fas fa-thumbs-up text-secondary pr-2"></i>
+                                            Like
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                    <Nav.Link eventKey="fifth">
                                             <i className="fas fa-bookmark text-secondary pr-2"></i>
                                             Bookmarks
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="fifth">
-                                        <i className="fas fa-users text-secondary pr-2"></i>
+                                    <Nav.Link eventKey="sixth">
+                                            <i className="fas fa-users text-secondary pr-2"></i>
                                             Explor
                                         </Nav.Link>
                                     </Nav.Item>
+
                                     <Nav.Item>
-                                        <Nav.Link eventKey="sixth">
+                                        <Nav.Link eventKey="seventh">
                                             <i className="fas fa-user text-secondary pr-2"></i>
                                             Profile
                                         </Nav.Link>
@@ -207,19 +217,25 @@ class HomePage extends Component {
                                         {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
                                     </Tab.Pane>
 
-                                    {/* Bookmarks */}
+                                    {/* Like */}
                                     <Tab.Pane eventKey="fourth">
+                                        {this.props.loggedInUser.isLoggedIn && <Like />}
+                                        {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
+                                    </Tab.Pane>
+
+                                    {/* Bookmarks */}
+                                    <Tab.Pane eventKey="fifth">
                                         {this.props.loggedInUser.isLoggedIn && <Bookmarks/>}
                                         {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
                                     </Tab.Pane>
 
                                     {/* Explor */}
-                                    <Tab.Pane eventKey="fifth">
+                                    <Tab.Pane eventKey="sixth">
                                         <UserList />
                                     </Tab.Pane>
 
                                     {/* Profile */}
-                                    <Tab.Pane eventKey="sixth">
+                                    <Tab.Pane eventKey="seventh">
 
                                     </Tab.Pane>
                                 </Tab.Content>

@@ -37,7 +37,7 @@ element.style {
   transition: all 0.2s;
   opacity: 0.3;
   text-align: center;
-
+  /* pointer-events: none !important; */
 }
 
 .extraClass {
@@ -53,3 +53,5 @@ element.style {
   visibility: visible !important;
   opacity: 1 !important;
 }
+
+

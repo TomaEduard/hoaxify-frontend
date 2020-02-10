@@ -101,7 +101,7 @@ export class UserSignupPage extends React.Component {
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
                     label="Display Name"
-                    placeholder="Your display name"
+                    placeholder="Display Name"
                     value={this.state.displayName}
                     onChange={this.onChangeDisplayName}
                     hasError={this.state.errors.displayName && true}
@@ -110,8 +110,8 @@ export class UserSignupPage extends React.Component {
                 </div>
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
-                    label="Username"
-                    placeholder="Your username"
+                    label="Email"
+                    placeholder="Email"
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                     hasError={this.state.errors.username && true}
@@ -121,7 +121,7 @@ export class UserSignupPage extends React.Component {
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
                     label="Password"
-                    placeholder="Your password"
+                    placeholder="Password"
                     type="password"
                     value={this.state.password}
                     onChange={this.onChangePassword}

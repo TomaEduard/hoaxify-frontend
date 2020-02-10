@@ -63,6 +63,12 @@ export class HoaxView extends Component {
         console.log('isOpen - ' + this.state.isOpen)
     };
 
+    // Set your color here
+    entering = (e) => {
+        // e.children[0].style.borderTopColor = 'green';
+        e.children[1].style.backgroundColor = 'rgba(0,0,0,0.7)';
+    };
+
     render() {
         const { hoax, onClickDelete } = this.props;
         const { user, date } = hoax;
@@ -73,13 +79,18 @@ export class HoaxView extends Component {
         
         // verify for show arrow button
         const ownedByLoggedInUser = user.id === this.props.loggedInUser.id;
-
+        // const emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
+        let emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
+        console.log("this.props.loggedInUser" + this.props.loggedInUser);
+        console.log("this.props.loggedInUser.emailVerificationStatus - " + this.props.loggedInUser.emailVerificationStatus);
+        console.log("emailVerificationStatus - " + emailVerificationStatus);
+        
+        
         console.log("#3 : " + this.state.favorite);
         // console.log("HoaxView - this.props.hoax.id - " + this.props)
         
         return (
             <div className="card p-1">
-
                 {this.state.isOpen && (
                     <Lightbox 
                         // mainSrc={image[0]}
@@ -98,16 +109,15 @@ export class HoaxView extends Component {
                     <div className="flex-fill m-auto pl-2">
                         <Link to={`/${username}`} className="list-group-item-action">
                             <h6 className="d-inline">
-                                {this.state.id}{displayName}@{username}
+                                {displayName}
+                                {/* {this.state.id}{displayName}@{username} */}
                             </h6>
-
                         </Link>
                         <span className="text-black-50"></span>
                         {/* <br /> */}
                         <span>  -  </span>
                         <span className="text-black-50">{relativeDate}</span>
                     </div>
-                    
                         {ownedByLoggedInUser && (
                             <DropdownButton
                                 key=""
@@ -131,6 +141,17 @@ export class HoaxView extends Component {
 
                                     <Dropdown.Divider />
 
+                                    <Dropdown.Item eventKey="3" disabled={true}>
+                                        <i className="far fa-eye-slash text-secondary pr-2"></i>
+                                        Hide Post (Not implemented)
+                                    </Dropdown.Item>
+
+                                    <Dropdown.Item eventKey="3" disabled={true}>
+                                        <i className="fas fa-code text-secondary pr-2"></i>
+                                        embed (Not implemented)
+                                    </Dropdown.Item>
+                                    <Dropdown.Divider />
+
                                     <Dropdown.Item 
                                         eventKey="3" 
                                         onClick={onClickDelete} 
@@ -139,9 +160,9 @@ export class HoaxView extends Component {
                                         Delete Post
                                     </Dropdown.Item>                                
                                     
-                                    <Dropdown.Item eventKey="3">
+                                    <Dropdown.Item eventKey="3" disabled={true}>
                                         <i className="far fa-edit text-secondary pr-2"></i>
-                                        Edit Post
+                                        Edit Post (Not implemented)
                                     </Dropdown.Item>
                         
 
@@ -179,7 +200,6 @@ export class HoaxView extends Component {
                                         Hide Post (Not implemented)
                                     </Dropdown.Item>
 
-
                                     <Dropdown.Item eventKey="3" disabled={true}>
                                         <i className="fas fa-code text-secondary pr-2"></i>
                                         embed (Not implemented)
@@ -199,6 +219,7 @@ export class HoaxView extends Component {
 
                 <div className="pl-5">
                     {hoax.content}  
+
                 </div>                
                 {attachmentImageVisible && (
                     <div className="pl-5 img-max">
@@ -220,11 +241,21 @@ export class HoaxView extends Component {
 
                     <div className="FavoriteHoax">
                         <FavoriteHoax
+                            emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                            // emailVerificationStatus={false}
+                            // emailVerificationStatus={false}
+                            entering={this.entering}
                             favorite={this.state.favorite}
                             changeFavorite={this.changeFavorite}
                         />
                     </div>
 
+             
+                    {/* {!this.props.loggedInUser.emailVerificationStatus && (
+                        <div className="btn btn-success">
+                            Ca sa fie bine!
+                        </div>
+                    )} */}
 
                 </div>
 

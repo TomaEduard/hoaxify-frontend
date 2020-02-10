@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ButtonWithProgressLoginSignup = (props) => {
+const ButtonWithProgressEmailConfirmation = (props) => {
     return(
         <button
-          className="btn ButtonWithProgressLoginSignup"
+          className="btn ButtonWithProgressEmailConfirmation p-3"
           onClick={props.onClick}
           disabled={props.disabled}
         >
@@ -12,9 +12,9 @@ const ButtonWithProgressLoginSignup = (props) => {
               <span className="sr-only">Loading...</span>
             </div>
           )}
-          {props.text}
+          <span className="text-button-confirmation">Resend Confirmation Email &nbsp;&nbsp;</span><i className="fas fa-arrow-right fa-lg"></i>
         </button>
     )
 }
 
-export default ButtonWithProgressLoginSignup;
+export default ButtonWithProgressEmailConfirmation;

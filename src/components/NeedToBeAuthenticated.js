@@ -8,7 +8,7 @@ class NeedToBeAuthenticated extends Component {
     render() {
         
         return (
-            <div className="card d-flex p-1">
+            <div className="card d-flex p-1 shadow-sm">
              
                 <div className="alert text-center pt-4" role="alert">
                     <div className="login-logo"> 
@@ -21,14 +21,15 @@ class NeedToBeAuthenticated extends Component {
 
                     <p className="display-5 text-secondary pt-2 textNeedToBeAuthenticated-body">
                         Authentication is required to see this content.
-                        <br />You need to
+                        <br />You need to&nbsp;
                         <a href="http://localhost:3000/#/login" className="text-secondary font-weight-bold"> 
-                            &nbsp;Login
+                            Login
                         </a>
-                        &nbsp;or
+                        &nbsp;or&nbsp;
                         <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
-                            &nbsp;Sign Up.
+                            Sign Up
                         </a>
+                        .
                     </p>
 
                     <p className="display-5 text-secondary textNeedToBeAuthenticated pt-5">
@@ -36,8 +37,6 @@ class NeedToBeAuthenticated extends Component {
                         <a href="/"> support@hoaxify.com</a>
                     </p>
                 </div>
-
-
 
             </div>
         )

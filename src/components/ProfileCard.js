@@ -29,8 +29,16 @@ const ProfileCard = (props) => {
                 />   
             </div>
 
-            <div className="card-body text-center">
-                {!props.inEditMode && <h4>{`${displayName}@${username}`}</h4>}
+            <div className="card-body">
+                {!props.inEditMode && (
+                    // <h4>Displayname: {`${displayName}`} 
+                    // <br></br>
+                    // Email: {`${username}`} </h4>
+                    <div className="float-left">
+                        <h6 className="text-secondary">Displayname: {`${displayName}`}</h6>
+                        <h6 className="text-secondary">Email: {`${username}`}</h6>
+                    </div>
+                )}
 
                 {props.inEditMode && (
                     <div className="mb-2">
@@ -60,7 +68,6 @@ const ProfileCard = (props) => {
                     <OverlayTrigger
                         key={'bottom'}
                         placement={'bottom'}
-                        // overlay={this.tooltip} 
                         onEntering={props.entering}
                         overlay={
                             <Tooltip 
@@ -72,7 +79,7 @@ const ProfileCard = (props) => {
                     >
 
                         <button 
-                            className="btn btn-outline-primary mt-2"
+                            className="btn btn-outline-primary mt-5"
                             onClick={props.onClickEdit}
                         >
                             

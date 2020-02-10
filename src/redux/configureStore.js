@@ -15,7 +15,8 @@ const configureStore = (addLogger = true) => {
         displayName: '',
         image: '',
         password: '',
-        isLoggedIn: false
+        isLoggedIn: false,
+        emailVerificationStatus: false
     };
     if (localStorageData) {
         try {

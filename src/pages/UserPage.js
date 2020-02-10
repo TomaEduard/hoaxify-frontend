@@ -214,9 +214,11 @@ class UserPage extends Component {
                         </div>
                     </div>
 
-                    <div className="col">
-                        <HoaxFeed user={this.props.match.params.username} />
-                    </div>
+                    {this.state.userNotFound != true && (
+                        <div className="col">
+                            <HoaxFeed user={this.props.match.params.username} />
+                        </div>
+                    )}
                     
                 </div>
             </div>

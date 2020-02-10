@@ -95,21 +95,20 @@ export class LoginPage extends React.Component {
 
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
-                    placeholder="Your username"
+                    label="Email"
+                    placeholder="Email"
                     value={this.state.username}
-
                     onChange={this.onChangeUsername}
-                    label="Your username"
                   />
                 </div>
 
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
+                    label="Password"
                     placeholder="Your password"
                     type="password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
-                    label="Password"
                   />
                 </div>
 

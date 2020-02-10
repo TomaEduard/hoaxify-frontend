@@ -5,6 +5,7 @@ import LoginPage from '../pages/LoginPage';
 import UserSignupPage from '../pages/UserSignupPage';
 import UserPage from '../pages/UserPage';
 import TopBar from '../components/TopBar';
+import ResendConfirmationEmail from '../pages/ResendConfirmationEmail';
 import './App.css';
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={UserSignupPage} />
+          <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />
+
           <Route path="/:username" component={UserPage} />
         </Switch>
 
