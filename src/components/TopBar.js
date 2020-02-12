@@ -35,7 +35,7 @@ class TopBar extends React.Component {
         });
 
         const action = {
-            type: 'logout-success'
+            type: 'confirmation-token'
         };
         
         this.props.dispatch(action);

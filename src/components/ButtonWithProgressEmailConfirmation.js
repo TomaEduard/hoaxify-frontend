@@ -3,12 +3,12 @@ import React from 'react';
 const ButtonWithProgressEmailConfirmation = (props) => {
     return(
         <button
-          className="btn ButtonWithProgressEmailConfirmation p-3"
+          className="btn ButtonWithProgressEmailConfirmation p-3 "
           onClick={props.onClick}
           disabled={props.disabled}
         >
-          
-          <span className="text-button-confirmation">Resend Confirmation Email &nbsp;&nbsp;</span>
+          {props.values}
+          <span className="text-button-confirmation">{props.value}</span>
           
           {props.pendingApiCall && (
             <div className="spinner-border spinner-border-sm mr-1">

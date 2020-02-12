@@ -16,19 +16,17 @@ import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
 export class HoaxView extends Component {
     constructor(props) {
         super(props);
+        // console.log("HoaxView =>",this.props);
         this.state = {
             isOpen: false,
             image: '',
-
             id: this.props.hoax.id,
-            favorite: this.props.hoax.userPreference.favorite,
-            like: this.props.hoax.userPreference.like,
-            bookmark: this.props.hoax.userPreference.bookmark,
+            favorite: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.favorite : false),
+            like: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.like : false),
+            bookmark: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.favorite : false),
         };
-        // console.log(this.props);
     };
 
-    // function for change favorite
     changeFavorite = () => {
 
         this.setState({
@@ -74,7 +72,7 @@ export class HoaxView extends Component {
         const ownedByLoggedInUser = user.id === this.props.loggedInUser.id;
         // const emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
         let emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
-        
+
         return (
             <div className="card p-1">
                 {this.state.isOpen && (
@@ -110,7 +108,7 @@ export class HoaxView extends Component {
                                 variant=""
                                 id="dropdown-menu-align-left"
                                 drop="down"
-                                title=""
+                                title="English(United States)"
                             >
                                     
                                 <div className="shadow text-more">
@@ -164,7 +162,7 @@ export class HoaxView extends Component {
                                 variant=""
                                 id="dropdown-menu-align-left"
                                 drop="down"
-                                // title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
+                                title=""
                             >
                                     
                                 <div className="shadow text-more">
@@ -235,13 +233,6 @@ export class HoaxView extends Component {
                             changeFavorite={this.changeFavorite}
                         />
                     </div>
-
-             
-                    {/* {!this.props.loggedInUser.emailVerificationStatus && (
-                        <div className="btn btn-success">
-                            Ca sa fie bine!
-                        </div>
-                    )} */}
 
                 </div>
 

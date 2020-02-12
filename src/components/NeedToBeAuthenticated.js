@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import image from '../assets/authenticated.png';
 
 class NeedToBeAuthenticated extends Component {
-   
 
     render() {
         

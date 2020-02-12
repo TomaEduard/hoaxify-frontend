@@ -1,15 +1,19 @@
-import React from 'react';
-import { Route, Switch} from 'react-router-dom';
+import React, { Component } from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import UserSignupPage from '../pages/UserSignupPage';
 import UserPage from '../pages/UserPage';
 import TopBar from '../components/TopBar';
 import ResendConfirmationEmail from '../pages/ResendConfirmationEmail';
-import Email_Verification from '../pages/Email_Verification';
+import confirmationToken from '../pages/confirmationToken';
+import { connect } from 'react-redux';
+
 import './App.css';
 
-function App() {
+class App extends Component {
+// const App = () => {
+  render() {
   return (
     <div className="">
 
@@ -17,20 +21,38 @@ function App() {
 
       <div className="">
 
+        {/* <Route exact path="/">
+          {store.isLoggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
+        </Route> */}
+
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/signup" component={UserSignupPage} />
-          <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />
-          <Route path="/verification/email_verification" component={Email_Verification} />
+          <Route path="/signup" component={UserSignupPage} />     
+              
+          {/* <Route exact path="/verification/confirmationEmail">  */}
+          {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
+            : <Route exact path="/verification/confirmationToken" component={confirmationToken} />
+          }
 
-          <Route path="/:username" component={UserPage} />
+          {/* <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} /> */}
+          {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
+          : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />}
+          
+          <Route exact path="/:username" component={UserPage} />
         </Switch>
 
       </div>
 
     </div>
   );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        loggedInUser: state
+    }
+}
+
+export default connect(mapStateToProps)(App);

@@ -22,7 +22,6 @@ class FavoriteHoax extends Component {
       if(this.props.favorite) {
         imageSrouce = "fa fas fa-heart fa-lg text-decoration-none heart-true p-1"
       }
-  
     }
 
     return (

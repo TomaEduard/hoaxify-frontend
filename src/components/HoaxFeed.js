@@ -3,7 +3,7 @@ import * as apiCalls from '../api/apiCalls';
 import SpinnerForComponents from './SpinnerForComponents';
 import HoaxView from './HoaxView';
 import Modal from './Modal';
-
+ 
 export default class HoaxFeed extends Component {
 
     state = {

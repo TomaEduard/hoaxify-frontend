@@ -58,22 +58,13 @@ class ResendConfirmationEmail extends Component {
                         </h4>
 
                         <p className="text-secondary pt-2 textConfirmation">
-                        The confirmation of the email is necessary to have access to all the functionalities of the application. A confirmation email has been sent to <span className="font-weight-bold">{this.props.loggedInUser.username}</span> at account creation. Please access the link inside it to confirm the email address.
-                        If this email has not been sent successfully you can resend it using the button below.
+                        The confirmation of the email is necessary to have access to all the functionalities of 
+                        the application. A confirmation email has been sent to&nbsp;
+                        <span className="font-weight-bold">{this.props.loggedInUser.username}</span>
+                        &nbsp;at account creation. Please access the link inside it to confirm the email address. 
+                        If you cannot find the email in Inbox, please check in Spam/Promotion. 
+                        To submit a new one, click the button below.
                             
-  
-                            
-                            
-                            {/* Authentication is required to see this content.
-                            <br />You need to&nbsp;
-                            <a href="http://localhost:3000/#/login" className="text-secondary font-weight-bold"> 
-                                Login
-                            </a>
-                            &nbsp;or&nbsp;
-                            <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
-                                Sign Up 
-                            </a>
-                            . */}
                         </p>
 
                         {this.state.successfullyMessage && (
@@ -91,10 +82,9 @@ class ResendConfirmationEmail extends Component {
                                 disabled={this.state.setButtonDisabled}
                                 // pendingApiCall={this.state.pendingApiCall}
                                 pendingApiCall={this.state.pendingApiCall}
+                                value="Resend Confirmation Email &nbsp;&nbsp;"
                             />
                         </div>  
-
-
 
                         <p className="text-center display-5 text-secondary text-login-card-buttom pt-5">
                             Have trouble or confused? Please contact the support at: &nbsp;
@@ -111,24 +101,25 @@ class ResendConfirmationEmail extends Component {
                 <div className="container">
 
                     <div className="row p-0 mt-1">
-                    <DropdownButton
-                        className=""
-                        as={ButtonGroup}
-                        key="Primary"
-                        id="dropdown-button-drop-up"
-                        drop="up"
-                        variant="transparent"
-                        title="English(United States)"
-                    >
-                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                        <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </DropdownButton>{' '}
+                        <DropdownButton
+                            className=""
+                            as={ButtonGroup}
+                            key="Primary"
+                            id="dropdown-button-drop-up"
+                            drop="up"
+                            variant="transparent"
+                            title="English(United States)"
+                        >
+                            <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                            <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                            <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                        </DropdownButton>{' '}
 
-                    <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Help</p>
-                    <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Privacy</p>
+                        <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Help</p>
+                        <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Privacy</p>
+
                     </div>
                 </div>
 

@@ -62,9 +62,6 @@ const ProfileCard = (props) => {
                     
                     </div>
                 )}
-                {showEditButton && (
-                    <p>It's your account</p>
-                )}
 
                 {showEditButton && (
 

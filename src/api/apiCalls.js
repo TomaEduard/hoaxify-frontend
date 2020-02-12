@@ -86,8 +86,8 @@ export const resendEmailVerification = (id) => {
 
 // http://localhost:3000/#/verification/email_verification?token=$tokenValue
 
-export const emailVerification = (token) => {
-    return axios.get(`/api/1.0/users/email-verification/confirmation${token}`);
+export const confirmationToken = (token) => {
+    return axios.get(`/api/1.0/users/email-verification/confirmationToken/${token}`);
 };
 
 

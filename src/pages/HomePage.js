@@ -17,6 +17,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
 import ProfileImageWithDefault from '../components/ProfileImageWithDefault';
 import HoaxFeed from '../components/HoaxFeed';
+import UserPage from './UserPage';
 
 class HomePage extends Component {
     state = { 
@@ -82,8 +83,8 @@ class HomePage extends Component {
 
                                     <Nav.Item>
                                         <Nav.Link eventKey="seventh">
-                                            <i className="fas fa-user text-secondary pr-2"></i>
-                                            Profile
+                                            <i className="fas fa-sliders-h text-secondary pr-2"></i>
+                                            Prefferences
                                         </Nav.Link>
                                     </Nav.Item>
 
@@ -142,18 +143,27 @@ class HomePage extends Component {
 
                                                         <Dropdown.Divider />
 
-                                                        <Dropdown.Item eventKey="4" disabled={true}>
-                                                            <i className="fas fa-cogs text-secondary pr-2"></i>
-                                                            Settings and privacy
+                                                        <Dropdown.Item eventKey="4">   
+                                                            <Link to= {{
+                                                                pathname:`/${this.props.loggedInUser.username}`,
+                                                                tabValue: '1',
+                                                            }}
+                                                                style={{ textDecoration: 'none' }}
+
+                                                            >
+                                                                <i className="fas fa-cogs text-secondary pr-2"></i>
+                                                                Settings
+                                                            </Link>
                                                         </Dropdown.Item>
-                                                        <Dropdown.Item eventKey="4" disabled={true}>
+                                                        
+                                                        <Dropdown.Item eventKey="5" disabled={true}>
                                                             <i className="fas fa-info-circle text-secondary pr-2"></i>
                                                             Help Center
                                                         </Dropdown.Item>
 
                                                         <Dropdown.Divider />
 
-                                                        <Dropdown.Item eventKey="4"
+                                                        <Dropdown.Item eventKey="6"
                                                         onClick={this.onClickLogout}
                                                         >
                                                             <i className="fas fa-sign-out-alt text-secondary pr-2"></i>
@@ -231,12 +241,7 @@ class HomePage extends Component {
                                         <UserList />
                                     </Tab.Pane>
 
-                                    {/* Profile */}
-                                    <Tab.Pane eventKey="seventh">
-
-                                    </Tab.Pane>
                                 </Tab.Content>
-
                         
                             </Col>
                         </Row>
