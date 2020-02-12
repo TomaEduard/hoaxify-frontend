@@ -101,72 +101,81 @@ class HoaxSubmit extends Component {
         }
 
         return (
-            <div className="card d-flex flex-row p-1">
-                <ProfileImageWithDefault 
-                    className="rounded-circle m-1"
-                    width="32"
-                    height="32"
-                    image={this.props.loggedInUser.image}
-                />
-                <div className="flex-fill">
-                    <textarea 
-                        className={textAreaClassName}
-                        // if this.onFocus == true set rows to 3 if isn't set default to 1
-                        rows={this.state.focused ? 3 : 1}
-                        onFocus={this.onFocus}
-                        value={this.state.content}
-                        onChange={this.onChangeContent}
-                    />
-
-                    {this.state.errors.content && 
-                        <span className="invalid-feedback">
-                            {this.state.errors.content}
-                        </span>
-                    }
-
-                    {this.state.focused &&(
-                        <div className="">
-                            <div className="pt-1">
-                                <Input 
-                                    type="file"
-                                    onChange={this.onFileSelect}
-                                />
-                                    {this.state.image && 
-                                        <img 
-                                            className="mt-1 img-thumbnail"
-                                            src={this.state.image}
-                                            alt="upload"
-                                            width="128"
-                                            height="65"
+            <div>
+                {this.props.loggedInUser.emailVerificationStatus && ( 
+                    <div className="card d-flex flex-row p-1">
+    
+                        <ProfileImageWithDefault 
+                            className="rounded-circle m-1"
+                            width="32"
+                            height="32"
+                            image={this.props.loggedInUser.image}
+                        />
+                        
+                        <div className="flex-fill">
+                            <textarea 
+                                className={textAreaClassName}
+                                // if this.onFocus == true set rows to 3 if isn't set default to 1
+                                rows={this.state.focused ? 3 : 1}
+                                onFocus={this.onFocus}
+                                value={this.state.content}
+                                onChange={this.onChangeContent}
+                            />
+    
+                            {this.state.errors.content && 
+                                <span className="invalid-feedback">
+                                    {this.state.errors.content}
+                                </span>
+                            }
+    
+                            {this.state.focused &&(
+                                <div className="">
+                                    <div className="pt-1">
+                                        <Input 
+                                            type="file"
+                                            onChange={this.onFileSelect}
                                         />
-                                    }
-                            </div>
-
-                            <div className="text-right mt-1">
-                                <button 
-                                    disabled={this.state.pendingApiCall}
-                                    className="btn btn-light ml-1"
-                                    onClick={this.resetState}
-                                >
-                                    <i className="fas fa-times mr-1"></i>
-                                
-                                    Cancel
-                                </button>
-
-                                <ButtonWithProgress
-                                    className="btn btn-success" 
-                                    disabled={this.state.pendingApiCall}
-                                    onClick={this.onClickHoaxify}
-                                    pendingApiCall={this.state.pendingApiCall}
-                                    text="Hoaxify"
-                                /> 
-
-                            </div>
+                                            {this.state.image && 
+                                                <img 
+                                                    className="mt-1 img-thumbnail"
+                                                    src={this.state.image}
+                                                    alt="upload"
+                                                    width="128"
+                                                    height="65"
+                                                />
+                                            }
+                                    </div>
+    
+                                    <div className="text-right mt-1">
+                                        <button 
+                                            disabled={this.state.pendingApiCall}
+                                            className="btn btn-light ml-1"
+                                            onClick={this.resetState}
+                                        >
+                                            <i className="fas fa-times mr-1"></i>
+                                            Cancel
+                                        </button>
+    
+                                        <ButtonWithProgress
+                                            className="btn btn-success" 
+                                            disabled={this.state.pendingApiCall}
+                                            onClick={this.onClickHoaxify}
+                                            pendingApiCall={this.state.pendingApiCall}
+                                            text="Hoaxify"
+                                        /> 
+                                    </div>
+                                </div>
+                            )}
                         </div>
+                    </div>  
+                )}
 
-                    )}
-                    
-                </div>
+                {!this.props.loggedInUser.emailVerificationStatus && ( 
+                    <div className="card d-flex flex-row p-1 pl-2">
+                        You need validate your email for post.
+                    </div>
+                )}
+
             </div>
         )
     }

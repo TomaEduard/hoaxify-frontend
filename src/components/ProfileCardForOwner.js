@@ -35,7 +35,7 @@ class ProfileCardForOwner extends Component {
             
         return (
             <React.Fragment>
-                <div className="card">
+                <div className="card shadow-sm">
                     <Row>
                         <Col xs={12} md={12} xl={4}>
                             <div className="pt-3 pb-3 pl-2 text-center">
@@ -130,7 +130,7 @@ class ProfileCardForOwner extends Component {
                 </div>
 
 
-                <div className="card mt-4 p-2">
+                <div className="card mt-4 p-2 shadow-sm">
                     <Row>
                         <Col xs={12} md={8}>
                             <div className="card-body d-flex flex-column">
@@ -245,7 +245,7 @@ class ProfileCardForOwner extends Component {
                     </Row>
                 </div>
 
-                <div className="card  mt-4 p-4">
+                <div className="card mt-4 p-4 shadow-sm">
                     <Row>
                         <Col xs={12} md={8} lg={9}>
                             <div className="card-body d-flex flex-column">

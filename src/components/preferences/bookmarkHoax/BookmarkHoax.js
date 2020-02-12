@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './FavoriteHoax.css';
+import './BookmarkHoax.css';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-class FavoriteHoax extends Component {
+class BookmarkHoax extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +14,12 @@ class FavoriteHoax extends Component {
   render() {
     let entering = this.props.entering;
     // if emailVerificationStatus is true => rend normal values of component
-    let imageSrouce = "far fa-heart fa-lg text-decoration-none heart-false p-1";
-    let toolTipFavoriteFalse = "Email must be validated"
+    let imageSrouce = "far fa-bookmark text-decoration-none bookmark-false p-1";
+    let toolTipBookmarkFalse = "Email must be validated"
 
     if(this.props.emailVerificationStatus === true) {
-      if(this.props.favorite) {
-        imageSrouce = "fa fas fa-heart fa-lg text-decoration-none heart-true p-1"
+      if(this.props.bookmark) {
+        imageSrouce = "fas fa-bookmark text-decoration-none bookmark-true p-1"
       }
     }
 
@@ -37,7 +37,7 @@ class FavoriteHoax extends Component {
                   <Tooltip 
                   id="tooltip-bottom" 
                   >
-                    {toolTipFavoriteFalse}
+                    {toolTipBookmarkFalse}
                   </Tooltip>
                 }
               >
@@ -47,6 +47,7 @@ class FavoriteHoax extends Component {
                 </Link>
                 
               </OverlayTrigger>
+              {/* <p class="text-secondary pt-2 pl-2 text-favorite"> {favoriteText} </p> */}
 
           </div>
         )}
@@ -55,7 +56,7 @@ class FavoriteHoax extends Component {
           <div className="row">
             <Link to="#" className="nav-link m-2 menu-item"
               className={imageSrouce}
-              onClick={() => this.props.changeFavorite()}
+              onClick={() => this.props.changeBookmark()}
             >
             </Link>
           </div>
@@ -66,7 +67,7 @@ class FavoriteHoax extends Component {
   }
 }
 
-export default FavoriteHoax;
+export default BookmarkHoax;
 
 
 

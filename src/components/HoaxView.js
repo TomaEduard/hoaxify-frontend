@@ -12,6 +12,8 @@ import 'react-image-lightbox/style.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
+import LikeHoax from '../components/preferences/likeHoax/LikeHoax';
+import BookmarkHoax from '../components/preferences/bookmarkHoax/BookmarkHoax';
 
 export class HoaxView extends Component {
     constructor(props) {
@@ -19,19 +21,60 @@ export class HoaxView extends Component {
         // console.log("HoaxView =>",this.props);
         this.state = {
             isOpen: false,
+            isOpenProfile: false,
             image: '',
             id: this.props.hoax.id,
             favorite: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.favorite : false),
             like: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.like : false),
-            bookmark: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.favorite : false),
+            bookmark: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.bookmark : false),
         };
     };
 
     changeFavorite = () => {
 
         this.setState({
-        favorite: !this.state.favorite,
-        },
+            favorite: !this.state.favorite,
+            },
+        
+            function() { 
+                var body = ({
+                    "favorite": this.state.favorite,
+                    "like": this.state.like,
+                    "bookmark": this.state.bookmark
+                })
+            
+                apiCalls.setPreference(this.state.id , body);
+                // no need .then .catch at the moment
+            }
+        );
+    }
+
+    changeLike = () => {
+
+        this.setState({
+            like: !this.state.like,
+            },
+
+            function() { 
+                var body = ({
+                    "favorite": this.state.favorite,
+                    "like": this.state.like,
+                    "bookmark": this.state.bookmark
+                })
+            
+                apiCalls.setPreference(this.state.id , body);
+                // no need .then .catch at the moment
+
+            }
+        );
+    }
+
+    changeBookmark = () => {
+
+        this.setState({
+            bookmark: !this.state.bookmark,
+            },
+
             function() { 
                 var body = ({
                     "favorite": this.state.favorite,
@@ -55,6 +98,15 @@ export class HoaxView extends Component {
         console.log('isOpen - ' + this.state.isOpen)
     };
 
+    changeOpenProfileImage = (imageValue) => {
+        this.setState({ 
+            image: imageValue,
+            isOpenProfile: !this.state.isOpenProfile
+        });
+        console.log('image - ' + this.state.image)
+        console.log('isOpenProfile - ' + this.state.isOpenProfile)
+    };
+
     // Set your color here
     entering = (e) => {
         // e.children[0].style.borderTopColor = 'green';
@@ -73,22 +125,43 @@ export class HoaxView extends Component {
         // const emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
         let emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
 
+        let imageProfile = 'profile.png';
+        if(image !== 'profile.png') {
+            imageProfile = image
+        }
+
+        {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), */}
+
+
         return (
-            <div className="card p-1">
+            <div className="card-home p-1">
                 {this.state.isOpen && (
                     <Lightbox 
                         // mainSrc={image[0]}
                         mainSrc={`/images/attachments/${hoax.attachment.name}`}
                         onCloseRequest={() => this.setState({ isOpen: false })}
                     />
+                )}                
+                {this.state.isOpenProfile && (
+                    
+                    <Lightbox 
+                    // let profileImage = {`${image}`}
+                        // mainSrc={image[0]}
+                        mainSrc={`/images/profile/${imageProfile}`}
+                        // mainSrc={`/images/profile/${image}`}
+                        // mainSrc='/images/profile/profile.png'
+                        onCloseRequest={() => this.setState({ isOpenProfile: false })}
+                    />
                 )}
-            
+
+            {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), */}
                 <div className="d-flex">
                     <ProfileImageWithDefault
                         className="rounded-circle m-1"
-                        width="32"
-                        height="32"
+                        width="42"
+                        height="42"
                         image={image}
+                        onClick={() => this.changeOpenProfileImage(image)}
                     />
                     <div className="flex-fill m-auto pl-2">
                         <Link to={`/${username}`} className="list-group-item-action">
@@ -108,7 +181,7 @@ export class HoaxView extends Component {
                                 variant=""
                                 id="dropdown-menu-align-left"
                                 drop="down"
-                                title="English(United States)"
+                                title=""
                             >
                                     
                                 <div className="shadow text-more">
@@ -203,10 +276,10 @@ export class HoaxView extends Component {
 
                 <div className="pl-5">
                     {hoax.content}  
-
                 </div>                
+
                 {attachmentImageVisible && (
-                    <div className="pl-5 img-max">
+                    <div className="m-auto pt-3 img-max"> 
                         <img 
                             alt="attachment"
                             src={`/images/attachments/${hoax.attachment.name}`}
@@ -216,25 +289,53 @@ export class HoaxView extends Component {
                     </div>
                 )}
 
-                <div className="row">
-                    {/* <Heart
-                        asd={this.state.id}
-                        favorite={favorite}
-                        changeFavorite={() => this.changeFavorite()}
-                    /> */}
+                <div className="m-2 pl-4 mt-4">
+                    <div className="row">
+                        <div className="containerPreferences pr-3 ml-auto">
 
-                    <div className="FavoriteHoax">
-                        <FavoriteHoax
-                            emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
-                            // emailVerificationStatus={false}
-                            // emailVerificationStatus={false}
-                            entering={this.entering}
-                            favorite={this.state.favorite}
-                            changeFavorite={this.changeFavorite}
-                        />
+                            <FavoriteHoax
+                                emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                // emailVerificationStatus={false}
+                                // emailVerificationStatus={false}
+                                entering={this.entering}
+                                favorite={this.state.favorite}
+                                changeFavorite={this.changeFavorite}
+                            />
+                        </div>
+
+                        <div className="bookmarkPreference">
+                            <BookmarkHoax
+                                emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                // emailVerificationStatus={false}
+                                // emailVerificationStatus={false}
+                                entering={this.entering}
+                                bookmark={this.state.bookmark}
+                                changeBookmark={this.changeBookmark}
+                            />
+                        </div>
+
+                        <div className="likePreference pr-4">
+                            <LikeHoax
+                                emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                // emailVerificationStatus={false}
+                                // emailVerificationStatus={false}
+                                entering={this.entering}
+                                like={this.state.like}
+                                changeLike={this.changeLike}
+                            />
+                        </div>
+                        
+                        <i className="fas fa-link sharePreference"></i>
+
+                        <div className="">
+                            <button className="btn btn-primary-outline btn-sm pr-4">
+                                <i className="fas fa-reply-all text-secondary "></i>
+                                <span className="pl-2 replyPreference">Reply</span>
+                            </button>
+                        </div>
                     </div>
-
                 </div>
+                <hr width="100%"></hr>
 
             </div>
         )

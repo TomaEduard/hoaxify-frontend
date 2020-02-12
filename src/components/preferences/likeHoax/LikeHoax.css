@@ -7,35 +7,34 @@ element.style {
   text-decoration-color: initial;
 }
 
-.heart-false:before {
+.like-false:before {
   /* color: rgb(235, 192, 0); */
   /* color: rgba(0, 174, 255, 0.767); */
-  color: #DC254B;
+  color: rgba(0, 0, 0, 0.459) !important;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.198);
 }
 
-.heart-true:before {
+.like-true:before {
   /* color: rgb(235, 192, 0); */
-  /* color: rgba(0, 174, 255, 0.767); */
-  color: #DC254B;
+  color: rgba(0, 124, 182, 0.767) !important;
+  /* color: rgba(0, 0, 0, 0.938); */
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.198);
 }
 
-.heart-true {
-  font-size: 19px !important;
-  transition: all .35s;
-  opacity: 0.8;
-  text-align: center;
-}
-
-.heart-false {
-  font-size: 20px !important;
+.like-false {
+  font-size: 17px !important;
   transition: all 0.2s;
-  opacity: 0.45;
+  opacity: 0.3;
   text-align: center;
-  /* pointer-events: none !important; */
+}
+
+.like-true {
+  font-size: 17px !important;
+  transition: all .35s;
+  opacity: 0.9;
+  text-align: center;
 }
 
 .extraClass {

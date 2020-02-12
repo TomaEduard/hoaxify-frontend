@@ -156,6 +156,7 @@ export default class HoaxFeed extends Component {
                             hoax={hoax}
                             onClickDelete={() => this.onClickDeleteHoax(hoax)}
                         />
+                        
                     )
                 })}
             
@@ -182,6 +183,8 @@ export default class HoaxFeed extends Component {
                     onClickOk={this.onClickModalOk}
                     pandingApiCall={this.state.isDeletingHoax}
                 />
+
+
             </div>
         );
     }

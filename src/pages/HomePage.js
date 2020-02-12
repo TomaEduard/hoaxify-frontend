@@ -36,7 +36,7 @@ class HomePage extends Component {
         return (
                 
             <div className="container pt-2">
-                <div data-testid="homepage">Homepage
+                <div data-testid="homepage">
 
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                         <Row  className="pt-2 ">
@@ -104,7 +104,6 @@ class HomePage extends Component {
                                                     // title="More"
                                                     title={<span><i className="fas fa-ellipsis-h text-secondary"></i> More</span>}
                                                 >
-                                                        
                                                     <div className="shadow text-more">
                                                         <Dropdown.Item eventKey="1">
                                                             
@@ -207,6 +206,7 @@ class HomePage extends Component {
                                             
                                             />,
                                             <HoaxFeed />
+
                                         ]}
                                         
                                         {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}

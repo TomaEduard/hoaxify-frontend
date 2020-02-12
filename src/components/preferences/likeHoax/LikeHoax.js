@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './FavoriteHoax.css';
+import './LikeHoax.css';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-class FavoriteHoax extends Component {
+class LikeHoax extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,19 +14,19 @@ class FavoriteHoax extends Component {
   render() {
     let entering = this.props.entering;
     // if emailVerificationStatus is true => rend normal values of component
-    let imageSrouce = "far fa-heart fa-lg text-decoration-none heart-false p-1";
-    let toolTipFavoriteFalse = "Email must be validated"
+    let imageSrouceLike = "fas fa-thumbs-up fa-lg text-decoration-none like-false p-1";
+    let toolTipLikeFalse = "Email must be validated"
 
     if(this.props.emailVerificationStatus === true) {
-      if(this.props.favorite) {
-        imageSrouce = "fa fas fa-heart fa-lg text-decoration-none heart-true p-1"
+      if(this.props.like) {
+        imageSrouceLike = "fas fa-thumbs-up fa-lg text-decoration-none like-true p-1"
       }
     }
 
     return (
       <React.Fragment>
         {!this.props.emailVerificationStatus && (
-            <div className="row">
+            <div className="row ">
             
               <OverlayTrigger
                 key={'bottom'}
@@ -37,25 +37,24 @@ class FavoriteHoax extends Component {
                   <Tooltip 
                   id="tooltip-bottom" 
                   >
-                    {toolTipFavoriteFalse}
+                    {toolTipLikeFalse}
                   </Tooltip>
                 }
               >
                 <Link to="/verification/confirmationEmail" className="nav-link m-2 menu-item"
-                  className={imageSrouce}
+                  className={imageSrouceLike}
                 >
                 </Link>
                 
               </OverlayTrigger>
-
           </div>
         )}
 
         {this.props.emailVerificationStatus && (
           <div className="row">
             <Link to="#" className="nav-link m-2 menu-item"
-              className={imageSrouce}
-              onClick={() => this.props.changeFavorite()}
+              className={imageSrouceLike}
+              onClick={() => this.props.changeLike()}
             >
             </Link>
           </div>
@@ -66,7 +65,7 @@ class FavoriteHoax extends Component {
   }
 }
 
-export default FavoriteHoax;
+export default LikeHoax;
 
 
 
