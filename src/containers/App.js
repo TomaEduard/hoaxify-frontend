@@ -30,14 +30,14 @@ class App extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={UserSignupPage} />     
               
-          {/* <Route exact path="/verification/confirmationEmail">  */}
-          {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
+          <Route exact path="/verification/confirmationToken" component={confirmationToken}/> 
+          {/* {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
             : <Route exact path="/verification/confirmationToken" component={confirmationToken} />
-          }
+          } */}
 
           {/* <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} /> */}
-          {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
-          : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />}
+          {/* {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
+          : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />} */}
           
           <Route exact path="/:username" component={UserPage} />
         </Switch>

@@ -14,6 +14,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
 import LikeHoax from '../components/preferences/likeHoax/LikeHoax';
 import BookmarkHoax from '../components/preferences/bookmarkHoax/BookmarkHoax';
+import Row from 'react-bootstrap/Row';
 
 export class HoaxView extends Component {
     constructor(props) {
@@ -118,6 +119,7 @@ export class HoaxView extends Component {
         const { user, date } = hoax;
         const { username, displayName, image } = user;
         const relativeDate = format(date);
+        
         const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
         
         // verify for show arrow button
@@ -158,23 +160,36 @@ export class HoaxView extends Component {
                 <div className="d-flex">
                     <ProfileImageWithDefault
                         className="rounded-circle m-1"
-                        width="42"
-                        height="42"
+                        width="48"
+                        height="48"
                         image={image}
                         onClick={() => this.changeOpenProfileImage(image)}
                     />
-                    <div className="flex-fill m-auto pl-2">
-                        <Link to={`/${username}`} className="list-group-item-action">
-                            <h6 className="d-inline">
-                                {displayName}
-                                {/* {this.state.id}{displayName}@{username} */}
-                            </h6>
-                        </Link>
-                        <span className="text-black-50"></span>
-                        {/* <br /> */}
-                        <span>  -  </span>
-                        <span className="text-black-50">{relativeDate}</span>
-                    </div>
+
+                        <div className="flex-fill m-auto pl-2">
+
+                            {/* style={{ textDecoration: 'none' }} */}
+                            <Link to={`/${username}`} className="list-group-item-action">
+                                <h6 className="d-inline">
+                                    {displayName}
+                                    {/* {this.state.id}{displayName}@{username} */}
+                                </h6>
+                            </Link>
+                            {/* <span className="text-black-50"></span> */}
+
+                            <button className="btn btn-outline-dark btn-sm ml-2 fallowButton">
+                                <span className="fallowButtonText">Follow</span>
+                            </button>    
+                            
+                            <br></br>
+
+                            <span className="text-black-50 pt-1 relativeDate-HoaxView">{relativeDate}</span>
+
+                        </div>
+{/* 
+                    <br></br>
+                    <hr></hr> */}
+
                         {ownedByLoggedInUser && (
                             <DropdownButton
                                 key=""
@@ -274,7 +289,7 @@ export class HoaxView extends Component {
                     </div>
                 </div>
 
-                <div className="pl-5">
+                <div className="pl-5 pt-3">
                     {hoax.content}  
                 </div>                
 
@@ -328,11 +343,12 @@ export class HoaxView extends Component {
                         <i className="fas fa-link sharePreference"></i>
 
                         <div className="">
-                            <button className="btn btn-primary-outline btn-sm pr-4">
-                                <i className="fas fa-reply-all text-secondary "></i>
-                                <span className="pl-2 replyPreference">Reply</span>
+                            <button className="btn btn-primary-outline btn-sm mr-4">
+                                <i className="fas fa-reply-all text-secondary pr-2"></i>
+                                <span className="replyPreference">Reply</span>
                             </button>
                         </div>
+
                     </div>
                 </div>
                 <hr width="100%"></hr>

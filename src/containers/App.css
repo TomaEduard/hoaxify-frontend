@@ -253,6 +253,87 @@ a:hover {
   /* color: rgba(0, 174, 255, 0.767); */
 }
 
+.btn-outline-dark {
+  color: rgb(122, 121, 91);
+  border-color: rgb(122, 121, 91);
+
+  font-weight: 500 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.btn-outline-dark:hover {
+  background-color:rgb(122, 121, 91) !important;
+  border-color:rgb(122, 121, 91) !important;
+  color: #e0e1e6 !important;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* .fallowButton {
+  font-weight: 500 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+
+  color: rgb(122, 121, 91);
+}
+
+.fallowButton:hover {
+  color: #212529;
+  text-decoration: none;
+}
+
+.fallowButton:hover {
+  background-color:rgb(122, 121, 91) !important;
+  border-color:rgb(122, 121, 91) !important;
+  color: #e0e0e0 !important;
+}
+
+.fallowButton {
+  border-color:rgb(122, 121, 91) !important;
+  color: #e0e0e0 !important;
+}
+
+span.fallowButtonText {
+  color:rgb(209, 209, 202) !important;
+} */
+
+
+
+/* fallowButton:not(:disabled) {
+  cursor: pointer;
+  color: rgb(165, 160, 36);
+}
+
+.fallowButton:hover {
+  background-color:rgb(122, 121, 91) !important;
+  color: #e0e0e0 !important;
+}
+
+.fallowButton {
+  border-color:rgb(122, 121, 91) !important;
+}
+
+.fallowButtonText {
+  color: rgb(122, 121, 91);
+}
+
+.fallowButtonText:hover {
+  color: rgb(255, 255, 255);
+} */
+
+/*
+.fallowButtonText:hover {
+  color: #ffffff;
+} */
+
 .textNeedToBeAuthenticated-body {
   font-size: 22px;
 }
@@ -395,6 +476,10 @@ a:hover {
 /* 
   HoaxView
 */
+
+.relativeDate-HoaxView {
+  font-size: 15px;
+}
 
 .card-home {
   border: 0px !important;

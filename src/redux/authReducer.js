@@ -25,7 +25,7 @@ export default function authReducer(state = initialState, action) {
     } 
     else if (action.type === 'confirmation-token') {
         return {
-            ...action.payload,
+            ...state,
             emailVerificationStatus: true
         }
     }

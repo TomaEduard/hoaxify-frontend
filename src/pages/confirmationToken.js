@@ -80,11 +80,6 @@ class confirmationToken extends Component {
                                 <img className="m-auto pl-3 pt-3" src={yes_icon} width="200" alt="Hoaxify" />
                             </div>
 
-                            {/* <div>
-                                <i className="fas fa-envelope-open-text mail-icon"></i>
-                                <span className="text-span font-weight-bold"> &nbsp;You've got mail!</span>
-                            </div> */}
-
                             <h4 className="pt-5 confirmation-header">
                                 Your email has been successfully confirmed.
                             </h4>
@@ -179,7 +174,7 @@ class confirmationToken extends Component {
                             </h4>
 
                             <p className="text-secondary pt-4 textConfirmation">
-                                You must be authenticated and submit a valid token within the url.
+                                You must be authenticated before accessing the link in the email.
                             </p>
 
                             {this.state.successfullyMessage && (
