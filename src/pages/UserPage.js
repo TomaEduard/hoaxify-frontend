@@ -8,8 +8,10 @@ import Spinner from '../components/Spinner';
 import Home from '../components/Home';
 import PersonalInfo from '../components/PersonalInfo';
 import Security from '../components/Security';
-import PeopleAndSharing from '../components/PeopleAndSharing';
-import Communication from '../components/Communication';
+import BlockedUsers from '../components/BlockedUsers';
+import SharingSettings from '../components/SharingSettings';
+import SocialSettings from '../components/SocialSettings';
+import CloseAccount from '../components/CloseAccount';
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -194,6 +196,7 @@ class UserPage extends Component {
 
         reader.readAsDataURL(file); 
     };
+    
     render() { 
         console.log(" x1111111 this.props.state.tabValue =>", this.state.tabValue);
 
@@ -236,36 +239,50 @@ class UserPage extends Component {
 
                                     <Nav.Item >
                                         <Nav.Link eventKey="1" >
-                                            <i className="fas fa-user text-secondary pr-2"></i>
-                                            My Profile
+                                            {/* <i className="fas fa-user text-secondary pr-2"></i> */}
+                                            Edit Profile
                                         </Nav.Link>
                                     </Nav.Item>
 
                                     <Nav.Item>
                                         <Nav.Link eventKey="2">
-                                            <i className="fas fa-unlock-alt text-secondary pr-2"></i>
+                                            {/* <i className="fas fa-unlock-alt text-secondary pr-2"></i> */}
                                             Security
                                         </Nav.Link>
                                     </Nav.Item>
 
                                     <Nav.Item>
                                         <Nav.Link eventKey="3">
-                                            <i className="fas fa-users text-secondary pr-2"></i>
-                                            People & sharing
+                                            {/* <i className="fas fa-unlock-alt text-secondary pr-2"></i> */}
+                                            Blocked Users
                                         </Nav.Link>
                                     </Nav.Item>
 
                                     <Nav.Item>
                                         <Nav.Link eventKey="4">
-                                            <i className="far fa-comment-dots text-secondary pr-2"></i>
-                                            Communication
+                                            {/* <i className="fas fa-unlock-alt text-secondary pr-2"></i> */}
+                                            Social Settings
                                         </Nav.Link>
                                     </Nav.Item>
 
                                     <Nav.Item>
                                         <Nav.Link eventKey="5">
-                                            <i className="fas fa-history text-secondary pr-2"></i>
+                                            {/* <i className="fas fa-users text-secondary pr-2"></i> */}
+                                            Sharing Settings
+                                        </Nav.Link>
+                                    </Nav.Item>
+
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="6">
+                                            {/* <i className="fas fa-history text-secondary pr-2"></i> */}
                                             History
+                                        </Nav.Link>
+                                    </Nav.Item>
+
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="7">
+                                            {/* <i className="fas fa-history text-secondary pr-2"></i> */}
+                                            Close Account
                                         </Nav.Link>
                                     </Nav.Item>
 
@@ -304,18 +321,25 @@ class UserPage extends Component {
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="2">
-                                        <Security />
+                                        <Security 
+                                            user={this.state.user}
+                                            emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                        />
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="3">
-                                        <PeopleAndSharing />
+                                        <BlockedUsers />
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="4">
-                                        <Communication />
+                                        <SocialSettings />
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="5">
+                                        <SharingSettings />
+                                    </Tab.Pane>
+
+                                    <Tab.Pane eventKey="6">
                                         <div className="row">
                                             {this.state.userNotFound !== true && (
                                                 <div className="col">
@@ -324,6 +348,11 @@ class UserPage extends Component {
                                             )}
                                         </div>
                                     </Tab.Pane>
+
+                                    <Tab.Pane eventKey="7">
+                                        
+                                    </Tab.Pane>
+
 
                                 </Tab.Content>
                         

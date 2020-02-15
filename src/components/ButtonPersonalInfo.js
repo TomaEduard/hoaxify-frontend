@@ -3,7 +3,7 @@ import React from 'react';
 const ButtonPersonalInfo = (props) => {
     return(
         <button
-          className="btn ButtonPersonalInfo p-3 "
+          className="btn editProfile p-2"
         >
           {props.values}
           <span className="text-button-confirmation">{props.value}</span>

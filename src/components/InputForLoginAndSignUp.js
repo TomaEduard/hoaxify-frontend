@@ -9,8 +9,6 @@ const InputForLoginAndSignUp = (props) => {
   
   return (
     <div >
-
-      {/* {props.label && <label>{props.label}</label>} */}
       <input
         className={inputClassName}
         type={props.type || 'text'}

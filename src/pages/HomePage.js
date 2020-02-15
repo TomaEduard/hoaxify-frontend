@@ -3,10 +3,16 @@ import UserList from '../components/UserList';
 import HoaxSubmit from '../components/HoaxSubmit';
 import { connect } from 'react-redux';
 import NeedToBeAuthenticated from '../components/NeedToBeAuthenticated';
-import Fallow from '../components/Fallow';
-import Favorite from '../components/Favorite';
-import Bookmarks from '../components/Bookmarks';
-import Like from '../components/Like';
+
+// import Fallow from '../components/Fallow';
+// import Favorite from '../components/Favorite';
+// import Bookmarks from '../components/Bookmarks';
+
+import Prefferences from '../components/Prefferences';
+import FeedPage from '../assets/FeedPage.png';
+import Preferences from '../assets/Preferences.png';
+import Explor from '../assets/Explor.png';
+
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -41,53 +47,32 @@ class HomePage extends Component {
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                         <Row  className="pt-2 ">
                             
-                            <Col className="" sm={3} >
+                            <Col className="" sm={3}>
 
                                 <Nav variant="pills" className="flex-column sticky-menu">
                                     <Nav.Item>
                                         <Nav.Link eventKey="first">
-                                            <i className="fas fa-home text-secondary pr-2"></i>
-                                            Home
+                                            {/* <i className="fas fa-home text-secondary pr-2"></i> */}
+                                            <img src={FeedPage} width="40" alt="FeedPage" />
+                                            <span className="pl-2">Feed Page</span>
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">
-                                            <i className="fas fa-user-plus text-secondary pr-2"></i>
-                                            Fallow
+                                            {/* <i className="fas fa-user-plus text-secondary pr-2"></i> */}
+                                            <img src={Preferences} width="40" alt="Preferences" />
+                                            <span className="pl-2">Preferences</span>
                                         </Nav.Link>
                                     </Nav.Item>
+
                                     <Nav.Item>
                                         <Nav.Link eventKey="third">
-                                            <i className="fas fa-heart text-secondary pr-2"></i>
-                                            Favorites
+                                            {/* <i className="fas fa-heart text-secondary pr-2"></i> */}
+                                            <img src={Explor} width="40" alt="Explor" />
+                                            <span className="pl-2">Explor</span>
                                         </Nav.Link>
                                     </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link eventKey="fourth">
-                                            <i className="fas fa-thumbs-up text-secondary pr-2"></i>
-                                            Like
-                                        </Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                    <Nav.Link eventKey="fifth">
-                                            <i className="fas fa-bookmark text-secondary pr-2"></i>
-                                            Bookmarks
-                                        </Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                    <Nav.Link eventKey="sixth">
-                                            <i className="fas fa-users text-secondary pr-2"></i>
-                                            Explor
-                                        </Nav.Link>
-                                    </Nav.Item>
-
-                                    <Nav.Item>
-                                        <Nav.Link eventKey="seventh">
-                                            <i className="fas fa-sliders-h text-secondary pr-2"></i>
-                                            Prefferences
-                                        </Nav.Link>
-                                    </Nav.Item>
-
+                           
                                     <hr width="70%"></hr>
 
                                     <div className="">
@@ -166,7 +151,7 @@ class HomePage extends Component {
                                                         onClick={this.onClickLogout}
                                                         >
                                                             <i className="fas fa-sign-out-alt text-secondary pr-2"></i>
-                                                            Log out
+                                                            Logout
                                                             
                                                         </Dropdown.Item>
                                                         
@@ -191,12 +176,12 @@ class HomePage extends Component {
                                 </Nav>
 
 
-
                             </Col>
 
                             <Col sm={9}>
                                 <Tab.Content className="">
-                                    {/* Home */}
+
+                                    {/* Feed Page */}
                                     <Tab.Pane eventKey="first">
                                             
                                         {this.props.loggedInUser.isLoggedIn && [
@@ -212,32 +197,14 @@ class HomePage extends Component {
                                         {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
                                     </Tab.Pane>
 
-                                    {/* Fallow */}
+                                    {/* Preferences */}
                                     <Tab.Pane eventKey="second">
-                                        {this.props.loggedInUser.isLoggedIn && <Fallow />}
-                                        {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
-                                    </Tab.Pane>
-
-                                    {/* Favorites */}
-                                    <Tab.Pane eventKey="third">
-                                        {this.props.loggedInUser.isLoggedIn && <Favorite />}
-                                        {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
-                                    </Tab.Pane>
-
-                                    {/* Like */}
-                                    <Tab.Pane eventKey="fourth">
-                                        {this.props.loggedInUser.isLoggedIn && <Like />}
-                                        {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
-                                    </Tab.Pane>
-
-                                    {/* Bookmarks */}
-                                    <Tab.Pane eventKey="fifth">
-                                        {this.props.loggedInUser.isLoggedIn && <Bookmarks/>}
+                                        {this.props.loggedInUser.isLoggedIn && <Prefferences />}
                                         {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
                                     </Tab.Pane>
 
                                     {/* Explor */}
-                                    <Tab.Pane eventKey="sixth">
+                                    <Tab.Pane eventKey="third">
                                         <UserList />
                                     </Tab.Pane>
 
@@ -247,19 +214,7 @@ class HomePage extends Component {
                         </Row>
                     </Tab.Container>
 
-                    {/* <div className="row">
-
-                        <div className="col-8">
-                            {this.props.loggedInUser.isLoggedIn && <HoaxSubmit />}
-                            {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
-                        </div>
-
-                        <div className="col-4">
-                            <UserList />
-                        </div>
-                        
-                    </div> */}
-
+                   
                 </div>
             </div>
        
@@ -274,4 +229,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(HomePage); 
+export default connect(mapStateToProps)(HomePage);

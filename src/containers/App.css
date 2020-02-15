@@ -18,6 +18,10 @@
   width:68% !important;
 }
 
+/* .form-control {
+  border: 0px !important;
+} */
+
 .dropdown-item.active, .dropdown-item:active {
   background-color: rgb(252,208,2) !important;
 
@@ -111,6 +115,25 @@ hr {
   font-size: 79%;
 }
 
+
+/* ProfileCardForOwner */
+.editProfileButton {
+  color: rgb(0, 0, 0) !important;
+  border-color: transparent !important;
+  background-color: #FFD92F !important;
+
+  font-weight: 200 !important;
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.editProfileButton:hover {
+  background-color: #fde475 !important;
+  transition: all .3s;
+}
+
 /* InputProfileCard */
 .invalid-feedback-forprofileCard {
   font-size: 80%;
@@ -129,7 +152,44 @@ element.style {
 }
 
 
+.textSettingsSecurityChangePassword {
+  font-size: 1.4rem !important;
+  font-weight: 300 !important;
+}
+
 /* Homepage */
+a#left-tabs-example-tab-first.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+  border-radius: 30px 30px 30px 30px;
+  margin: 0px !important;
+  padding: 0px !important;
+  transition: all .45s;
+}
+
+a#left-tabs-example-tab-second.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+  border-radius: 30px 30px 30px 30px;
+  margin: 0px !important;
+  padding: 0px !important;
+  transition: all .45s;
+}
+
+a#left-tabs-example-tab-third.nav-link.active {
+  background: rgb(253, 213, 33) !important;
+  border-radius: 30px 30px 30px 30px;
+  margin: 0px !important;
+  padding: 0px !important;
+  transition: all .45s;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background: rgb(253, 213, 33) !important;
+  border-radius: 30px 30px 30px 30px;
+  /* margin: 0px !important;
+  padding: 0px !important; */
+  transition: all .25s;
+}
+
 a#left-tabs-example-tab-first.nav-link.active {
   background: rgb(253, 213, 33) !important;
 }
@@ -253,86 +313,45 @@ a:hover {
   /* color: rgba(0, 174, 255, 0.767); */
 }
 
+.displayNameHoaxView {
+  font-size: 21px !important;
+  padding-top: 50px !important;
+  font-weight: 500 !important;
+}
+
 .btn-outline-dark {
-  color: rgb(122, 121, 91);
-  border-color: rgb(122, 121, 91);
+  color: rgb(177, 155, 57) !important;
+  border-color: rgba(98, 81, 5, 0.452) !important;
 
   font-weight: 500 !important;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+button.btn.btn-outline-dark.btn-sm.ml-2.mb-2.active {
+  background: rgb(177, 155, 57) !important;
+}
+
+span.followButtonTextActive {
+  font-size: 12px;
+  color: #ebebe8;
+}
+
+span.followButtonText {
+  font-size: 12px;
 }
 
 .btn-outline-dark:hover {
-  background-color:rgb(122, 121, 91) !important;
-  border-color:rgb(122, 121, 91) !important;
-  color: #e0e1e6 !important;
+  background-color:rgb(177, 155, 57) !important;
+  color: #ebebe8 !important;
 }
 
 .btn:focus,.btn:active {
   outline: none !important;
   box-shadow: none !important;
 }
-
-/* .fallowButton {
-  font-weight: 500 !important;
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
-
-  color: rgb(122, 121, 91);
-}
-
-.fallowButton:hover {
-  color: #212529;
-  text-decoration: none;
-}
-
-.fallowButton:hover {
-  background-color:rgb(122, 121, 91) !important;
-  border-color:rgb(122, 121, 91) !important;
-  color: #e0e0e0 !important;
-}
-
-.fallowButton {
-  border-color:rgb(122, 121, 91) !important;
-  color: #e0e0e0 !important;
-}
-
-span.fallowButtonText {
-  color:rgb(209, 209, 202) !important;
-} */
-
-
-
-/* fallowButton:not(:disabled) {
-  cursor: pointer;
-  color: rgb(165, 160, 36);
-}
-
-.fallowButton:hover {
-  background-color:rgb(122, 121, 91) !important;
-  color: #e0e0e0 !important;
-}
-
-.fallowButton {
-  border-color:rgb(122, 121, 91) !important;
-}
-
-.fallowButtonText {
-  color: rgb(122, 121, 91);
-}
-
-.fallowButtonText:hover {
-  color: rgb(255, 255, 255);
-} */
-
-/*
-.fallowButtonText:hover {
-  color: #ffffff;
-} */
 
 .textNeedToBeAuthenticated-body {
   font-size: 22px;
@@ -421,6 +440,25 @@ span.fallowButtonText {
   padding-bottom: 0px !important;
 }
 
+.ButtonWithProgressEmailConfirmation:hover {
+  background-color: #fde475 !important;
+  transition: all .3s;
+}
+
+.ButtonSecurityChangePassword {
+  background-color: #ffd930 !important;
+  width: 37% !important;
+  border-color: rgba(0, 0, 0, 0.041) !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.ButtonSecurityChangePassword:hover {
+  background-color: #fde475 !important;
+  transition: all .3s;
+}
+
 .text-button-confirmation {
   font-size: 16px;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -465,9 +503,9 @@ span.fallowButtonText {
   
 }
 
-.ButtonPersonalInfo {
+.editProfile {
   background-color: #ffd930e7 !important;
-  width: 52% !important;
+  width: 46% !important;
   border-color: rgba(0, 0, 0, 0.041) !important;
   margin-bottom: 0px !important;
   padding-bottom: 0px !important;
@@ -484,6 +522,17 @@ span.fallowButtonText {
 .card-home {
   border: 0px !important;
 }
+
+
+/* 
+  UserList
+*/
+.textUserList {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
 
 /* 
   Another component

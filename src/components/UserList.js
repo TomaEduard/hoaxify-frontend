@@ -39,7 +39,8 @@ class UserList extends React.Component {
     render() { 
         return (
             <div className="card">
-                <h3 className="card-title m-auto">Users</h3>
+                <div className="card-title m-auto textUserList">Users</div>
+
                 <div className="list-group list-group-flush" data-testid="usergroup">
                     {this.state.page.content.map((user) => {
                         return <UserListItem key={user.username} user={user} />

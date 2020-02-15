@@ -75,12 +75,11 @@ class ResendConfirmationEmail extends Component {
                             </h5>
                         )}
 
-                        <div className="text-center pt-4">
+                        <div className="text-center">
                             <ButtonWithProgressEmailConfirmation
                                 onClick={this.confirmationEmail}
                                 // disabled={disableSubmit || this.state.pendingApiCall}
                                 disabled={this.state.setButtonDisabled}
-                                // pendingApiCall={this.state.pendingApiCall}
                                 pendingApiCall={this.state.pendingApiCall}
                                 value="Resend Confirmation Email &nbsp;&nbsp;"
                             />

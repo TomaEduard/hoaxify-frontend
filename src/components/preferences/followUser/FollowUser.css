@@ -1,0 +1,54 @@
+element.style {
+  text-align: center;
+  opacity: 0.4;
+  text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+}
+
+.like-false:before {
+  /* color: rgb(235, 192, 0); */
+  /* color: rgba(0, 174, 255, 0.767); */
+  color: rgba(0, 0, 0, 0.459) !important;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.198);
+}
+
+.like-true:before {
+  /* color: rgb(235, 192, 0); */
+  color: rgba(0, 124, 182, 0.767) !important;
+  /* color: rgba(0, 0, 0, 0.938); */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.198);
+}
+
+.like-false {
+  font-size: 17px !important;
+  transition: all 0.2s;
+  opacity: 0.3;
+  text-align: center;
+}
+
+.like-true {
+  font-size: 17px !important;
+  transition: all .35s;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.extraClass {
+  opacity: 1 !important;
+  font-size: 15px !important;
+  pointer-events: auto !important;
+  padding: 4px !important;
+  margin: 0px !important;
+  font-family: "Montserrat", sans-serif;
+}
+
+.extraClass:hover {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+

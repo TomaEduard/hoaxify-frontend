@@ -35,7 +35,7 @@ class TopBar extends React.Component {
         });
 
         const action = {
-            type: 'confirmation-token'
+            type: 'logout-success'
         };
         
         this.props.dispatch(action);
@@ -96,14 +96,16 @@ class TopBar extends React.Component {
                                 className="dropdown-item"
                                 onClick={this.onClickMyProfile}
                             >
-                                <i className="fas fa-user text-secondary"></i> My Profile
+                                {/* <i className="fas fa-user text-secondary"></i>  */}
+                                Settings
                             </Link>
                             <span
                                 className="dropdown-item"
                                 onClick={this.onClickLogout}
                                 style={{cursor: 'pointer'}}
                             >
-                                <i className="fas fa-sign-out-alt text-secondary"></i> Logout
+                                {/* <i className="fas fa-sign-out-alt text-secondary"></i>  */}
+                                Logout
                             </span>
                         </div>
                     </li>

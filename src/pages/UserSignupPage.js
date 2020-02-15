@@ -100,22 +100,22 @@ export class UserSignupPage extends React.Component {
 
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
-                    label="Display Name"
-                    placeholder="Display Name"
-                    value={this.state.displayName}
-                    onChange={this.onChangeDisplayName}
-                    hasError={this.state.errors.displayName && true}
-                    error={this.state.errors.displayName}
-                  />
-                </div>
-                <div className="form-group py-4">
-                  <InputForLoginAndSignUp
                     label="Email"
                     placeholder="Email"
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                     hasError={this.state.errors.username && true}
                     error={this.state.errors.username}
+                  />
+                </div>
+                <div className="form-group py-4">
+                  <InputForLoginAndSignUp
+                    label="Display Name"
+                    placeholder="Display Name"
+                    value={this.state.displayName}
+                    onChange={this.onChangeDisplayName}
+                    hasError={this.state.errors.displayName && true}
+                    error={this.state.errors.displayName}
                   />
                 </div>
                 <div className="form-group py-4">

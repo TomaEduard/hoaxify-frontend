@@ -26,28 +26,28 @@ class BookmarkHoax extends Component {
     return (
       <React.Fragment>
         {!this.props.emailVerificationStatus && (
-            <div className="row">
-            
-              <OverlayTrigger
-                key={'bottom'}
-                placement={'bottom'}
-                // overlay={this.tooltip} 
-                onEntering={entering}
-                overlay={
-                  <Tooltip 
-                  id="tooltip-bottom" 
-                  >
-                    {toolTipBookmarkFalse}
-                  </Tooltip>
-                }
-              >
-                <Link to="/verification/confirmationEmail" className="nav-link m-2 menu-item"
-                  className={imageSrouce}
+          <div className="row">
+          
+            <OverlayTrigger
+              key={'bottom'}
+              placement={'bottom'}
+              // overlay={this.tooltip} 
+              onEntering={entering}
+              overlay={
+                <Tooltip 
+                id="tooltip-bottom" 
                 >
-                </Link>
-                
-              </OverlayTrigger>
-              {/* <p class="text-secondary pt-2 pl-2 text-favorite"> {favoriteText} </p> */}
+                  {toolTipBookmarkFalse}
+                </Tooltip>
+              }
+            >
+              <Link to="/verification/confirmationEmail" className="nav-link m-2 menu-item"
+                className={imageSrouce}
+              >
+              </Link>
+              
+            </OverlayTrigger>
+            {/* <p class="text-secondary pt-2 pl-2 text-favorite"> {favoriteText} </p> */}
 
           </div>
         )}

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-// import image from '../../../assets/authenticated.png';
 
-class PeopleAndSharing extends Component {
+
+class CloseAccount extends Component {
 
     render() {
         
         return (
             <div className="">
              
-               <p>PeopleAndSharing</p>
+               <p>Close Account</p>
 
             </div>
         )
@@ -22,4 +22,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(PeopleAndSharing);
+export default connect(mapStateToProps)(CloseAccount);

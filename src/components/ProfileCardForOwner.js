@@ -16,6 +16,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { connect } from 'react-redux';
 import Input from './Input';
+import InputForLoginAndSignUp from './InputForLoginAndSignUp';
 
 
 class ProfileCardForOwner extends Component {
@@ -30,8 +31,8 @@ class ProfileCardForOwner extends Component {
 
         // console.log("UserPage -> ProfilCard: props.user.image:  " + props.user.image);
 
-            const { displayName, username, image, emailVerificationStatus } = this.props.user;
-            const showEditButton = this.props.isEditable && !this.props.inEditMode;
+        const { displayName, username, image, emailVerificationStatus } = this.props.user;
+        const showEditButton = this.props.isEditable && !this.props.inEditMode;
             
         return (
             <React.Fragment>
@@ -49,8 +50,8 @@ class ProfileCardForOwner extends Component {
                                 />   
                             </div>
                         </Col>
-                        <Col xs={12} md={6} xl={5}>
-                            <div className="card-body d-flex flex-column m-2 pl-4">
+                        <Col xs={12} md={12} xl={5}>
+                            <div className="card-body d-flex flex-column m-2 float-left pl-5">
                                 <Row className="pt-2 mb-0">
                                     <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold clickable-text"> 
                                     Fallowers
@@ -116,12 +117,11 @@ class ProfileCardForOwner extends Component {
                                     </Row>
                                 )}
 
-
                             </div>
                         </Col>
 
-                        <Col xs={12} md={6} lg={6} xl={3}>
-                            <div className="d-flex justify-content-center personalInfo pr-5 "> 
+                        <Col xs={12} md={12} lg={6} xl={3}>
+                            <div className="d-flex justify-content-center personalInfo pr-5"> 
                                 <img className="" src={personalInfo} width="250" alt="Hoaxify" />
                             </div>
                             
@@ -129,44 +129,42 @@ class ProfileCardForOwner extends Component {
                     </Row>
                 </div>
 
-
                 <div className="card mt-4 p-2 shadow-sm">
                     <Row>
-                        <Col xs={12} md={8}>
+                        <Col xs={12} md={12} lg={8}>
                             <div className="card-body d-flex flex-column">
                                 {!this.props.inEditMode && (
                                     // <h4>Displayname: {`${displayName}`} 
                                     // <br></br>
                                     // Email: {`${username}`} </h4>
-                                    <div className="float-left pl-4">
+                                    <div className="float-left pl-5">
 
-                                        <Row className="">
-                                            <div className="text-secondary font-weight-bold clickable-text"> 
-                                                Display name:
-                                            </div>
-                                            <p className="text-login-page text-secondary notClickable-text">
-                                                {/* &nbsp;{`${displayName}`} */}
-                                            </p>
-                                        </Row>
-                                    
                                         <Row>
                                             <div className="text-secondary font-weight-bold">Email:</div>
                                             <p className="text-login-page text-secondary notClickable-text">
-                                                {/* &nbsp;{`${username}`} */}
+                                                &nbsp;{this.props.loggedInUser.username}
+                                            </p>
+    
+                                        </Row>
+
+                                        <Row className="pt-1">
+                                            <div className="text-secondary font-weight-bold">Display name:</div>
+                                            <p className="text-login-page text-secondary notClickable-text">
+                                                &nbsp;{this.props.loggedInUser.displayName}
                                             </p>
                                         </Row>
 
-                                        <Row>
+                                        <Row className="pt-1">
                                             <div className="text-secondary font-weight-bold">Address:</div>
                                             <p className="text-login-page text-secondary notClickable-text">
-                                                &nbsp;address
+                                                &nbsp; Not Implemented
                                             </p>
                                         </Row>
 
-                                        <Row>
+                                        <Row className="pt-1">
                                             <div className="text-secondary font-weight-bold">Name:</div>
                                             <p className="text-login-page text-secondary notClickable-text">
-                                                &nbsp;Test Name
+                                                &nbsp; Not Implemented
                                             </p>
                                         </Row>
                                     </div>
@@ -182,6 +180,7 @@ class ProfileCardForOwner extends Component {
                                             hasError={this.props.errors.displayName && true}
                                             error={this.props.errors.displayName}
                                         />
+                                    
                                         
                                         <div className="mt-2">
                                             <Input 
@@ -225,18 +224,18 @@ class ProfileCardForOwner extends Component {
                                 <div className="mt-1 ml-auto">
                                     {showEditButton && (
                                         <button 
-                                            className="btn btn-outline-primary"
+                                            className="btn btn-outline-primary px-4 editProfileButton"
                                             onClick={this.props.onClickEdit}
                                         >
-                                            <i className="far fa-edit mr-2 "></i>
-                                            Edit
+                                            {/* <i className="far fa-edit mr-2"></i> */}
+                                                Edit Profile
                                         </button> 
                                     )}
                                 </div>
                             </div>
                         </Col>
 
-                        <Col xs={12} md={4}>
+                        <Col xs={12} md={12} lg={4}>
                             <div className="d-flex justify-content-center personalInfo2 pr-5"> 
                                 <img className="m-auto" src={personalInfo2} width="250" alt="Hoaxify" />
                             </div>
@@ -245,9 +244,9 @@ class ProfileCardForOwner extends Component {
                     </Row>
                 </div>
 
-                <div className="card mt-4 p-4 shadow-sm">
+                <div className="card mt-4 p-2 shadow-sm">
                     <Row>
-                        <Col xs={12} md={8} lg={9}>
+                        <Col xs={12} md={12} lg={12} xl={8}>
                             <div className="card-body d-flex flex-column">
                                 {/* {`${emailVerificationStatus}`} */}
                                 {emailVerificationStatus ? (
@@ -258,16 +257,27 @@ class ProfileCardForOwner extends Component {
                                 </h5>                            
                                 ):( 
                                     <div>
+                                        
+                                        <div //  text-center 
+                                            className="card-title m-auto textSettingsSecurityChangePassword pb-2">
+                                                Your e-mail is not confirmed yet!
+                                        </div>
 
-                                        <h6 className="text-center text-login-page text-secondary notClickable-text"> 
-                                            <span className="">Your e-mail is not confirmed yet, you can access
-                                                the more button that will redirect you to a page where you will 
-                                                find the necessary information to confirm.
-                                            </span>
+                                        <h6 className="text-login-page text-secondary notClickable-text">
+                                            Can access the button down below that will 
+                                            redirect you to a page where you will find the necessary 
+                                            information to confirm.
                                         </h6>
 
+                                        {this.state.successfullyMessage && (
+                                            <h5 className="text-success font-weight-bold pt-4 text-center success-text-resend"> 
+                                                <span className="far fa-check-circle fa-lg fa-2x"></span>
+                                                <span className="">&nbsp;Email Resending was successfully!</span>
+                                            </h5>
+                                        )}
+
                                         <Link to="/verification/confirmationEmail" className="list-group-item-action">
-                                            <div className="text-center pt-4">
+                                            <div className="text-center mt-3">
                                                 <ButtonPersonalInfo
                                                     onClick={false}
                                                     // disabled={disableSubmit || this.state.pendingApiCall}
@@ -286,8 +296,8 @@ class ProfileCardForOwner extends Component {
                             </div>
                         </Col>
 
-                        <Col xs={12} md={4} lg={3}>
-                            <div className="d-flex justify-content-center personalInfo2 pr-5"> 
+                        <Col xs={12} md={12} lg={12} xl={4}>
+                            <div className="d-flex justify-content-center pr-5 pt-4 pb-2"> 
                                 <img className="m-auto" src={confirmationEmail} width="230" alt="Hoaxify" />
                             </div>
                         </Col>
@@ -295,27 +305,7 @@ class ProfileCardForOwner extends Component {
                     </Row>
                 </div>
 
-                <div className="row p-0 mt-1">
-                    <DropdownButton
-                        className=""
-                        as={ButtonGroup}
-                        key="Primary"
-                        id="dropdown-button-drop-up"
-                        drop="up"
-                        variant="transparent"
-                        title="English(United States)"
-                    >
-                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                        <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </DropdownButton>{' '}
 
-                    <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Help</p>
-                    <p className="text-secondary pl-5 pt-3 text-login-card-buttom">Privacy</p>
-
-                </div>
 
             </React.Fragment>
         );

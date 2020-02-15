@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-class Favorite extends Component {
+class Preferences extends Component {
 
     render() {
         
@@ -9,8 +9,11 @@ class Favorite extends Component {
             <div className="card d-flex p-1">
              
                 <div className="alert text-center pt-4" role="alert">
-                    <i className="fas fa-heart text-secondary pr-2"></i>
-                    <h4>Favorite content</h4>
+
+                    <i className="fas fa-user-plus text-secondary pr-2"></i>
+                    
+                    <h4>Preferences content</h4>
+
                 </div>
 
             </div>
@@ -24,4 +27,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Favorite);
+export default connect(mapStateToProps)(Preferences);

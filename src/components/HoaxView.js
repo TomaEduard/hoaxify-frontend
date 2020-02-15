@@ -4,17 +4,19 @@ import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Row from 'react-bootstrap/Row';
 
 // Lightbox
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+// preferences
+import FollowUser from '../components/preferences/followUser/FollowUser';
 import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
 import LikeHoax from '../components/preferences/likeHoax/LikeHoax';
 import BookmarkHoax from '../components/preferences/bookmarkHoax/BookmarkHoax';
-import Row from 'react-bootstrap/Row';
 
 export class HoaxView extends Component {
     constructor(props) {
@@ -25,11 +27,32 @@ export class HoaxView extends Component {
             isOpenProfile: false,
             image: '',
             id: this.props.hoax.id,
+            follow: false,
             favorite: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.favorite : false),
             like: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.like : false),
             bookmark: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.bookmark : false),
         };
     };
+
+    changeFollow = () => {
+
+        this.setState({
+            follow: !this.state.follow,
+            },
+        
+            function() { 
+                var body = ({
+                    "follow": this.state.follow,
+                    "favorite": this.state.favorite,
+                    "like": this.state.like,
+                    "bookmark": this.state.bookmark
+                })
+            
+                apiCalls.setPreference(this.state.id , body);
+                // no need .then .catch at the moment
+            }
+        );
+    }
 
     changeFavorite = () => {
 
@@ -160,35 +183,40 @@ export class HoaxView extends Component {
                 <div className="d-flex">
                     <ProfileImageWithDefault
                         className="rounded-circle m-1"
-                        width="48"
-                        height="48"
+                        width="52"
+                        height="52"
                         image={image}
                         onClick={() => this.changeOpenProfileImage(image)}
                     />
 
                         <div className="flex-fill m-auto pl-2">
-
+                        
                             {/* style={{ textDecoration: 'none' }} */}
                             <Link to={`/${username}`} className="list-group-item-action">
-                                <h6 className="d-inline">
+                                <h6 className="d-inline displayNameHoaxView">
                                     {displayName}
                                     {/* {this.state.id}{displayName}@{username} */}
                                 </h6>
                             </Link>
-                            {/* <span className="text-black-50"></span> */}
 
-                            <button className="btn btn-outline-dark btn-sm ml-2 fallowButton">
-                                <span className="fallowButtonText">Follow</span>
-                            </button>    
+                                <FollowUser
+                                    emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                    entering={this.entering}
+                                    // follow={this.state.follow}
+                                    follow={false}
+                                    changeFollow={this.changeFollow}
+                                />
                             
                             <br></br>
 
                             <span className="text-black-50 pt-1 relativeDate-HoaxView">{relativeDate}</span>
 
                         </div>
-{/* 
+                        
+                    {/* 
                     <br></br>
-                    <hr></hr> */}
+                    <hr></hr> 
+                    */}
 
                         {ownedByLoggedInUser && (
                             <DropdownButton
