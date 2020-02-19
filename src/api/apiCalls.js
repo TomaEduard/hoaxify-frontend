@@ -78,17 +78,32 @@ export const setPreference = (hoaxId, file) => {
     return axios.post('/api/1.0/preference/' + hoaxId , file);
 };
 
-
-// email-verification: resend, confirmation
+// email-verification: generate token for email verification
 export const resendEmailVerification = (id) => {
     return axios.post(`/api/1.0/users/email-verification/confirmation/${id}`);
 };
 
 // http://localhost:3000/#/verification/email_verification?token=$tokenValue
-
+// confirm token
 export const confirmationToken = (token) => {
     return axios.get(`/api/1.0/users/email-verification/confirmationToken/${token}`);
 };
 
+// changeEmail generate token
+export const changeEmail = (id) => {
+    return axios.post(`/api/1.0/users/email-verification/changeEmail/${id}`);
+};
 
+// confirm token + body
+// http://www.localhost:8080/api/1.0/users/email-verification/changeEmailToken/ TOKEN AICI 
+export const saveChangeEmail = (token, file) => {
+    console.log("--------------- newEmail => ", token);
+    console.log("--------------- newEmail ", file);
 
+    const daaaaa = file
+    console.log("--------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx------- newEmail ", file);
+
+    // return axios.get(path , file);
+    return axios.post('api/1.0/users/email-verification/changeEmailToken/' + token , file);
+
+};

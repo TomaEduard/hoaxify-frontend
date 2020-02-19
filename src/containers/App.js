@@ -6,7 +6,9 @@ import UserSignupPage from '../pages/UserSignupPage';
 import UserPage from '../pages/UserPage';
 import TopBar from '../components/TopBar';
 import ResendConfirmationEmail from '../pages/ResendConfirmationEmail';
-import confirmationToken from '../pages/confirmationToken';
+import ChangeEmail from '../pages/ChangeEmail';
+
+import ConfirmationToken from '../pages/confirmationToken';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -30,14 +32,18 @@ class App extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={UserSignupPage} />     
               
-          <Route exact path="/verification/confirmationToken" component={confirmationToken}/> 
+          {/* Email routes */}
+          <Route exact path="/verification/changeEmail" component={ChangeEmail}/> 
+          <Route exact path="/verification/confirmationToken" component={ConfirmationToken}/> 
           {/* {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
-            : <Route exact path="/verification/confirmationToken" component={confirmationToken} />
+            : <Route exact path="/verification/confirmationToken" component={ConfirmationToken} />
           } */}
 
           {/* <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} /> */}
           {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
           : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />}
+          
+
           
           <Route exact path="/:username" component={UserPage} />
         </Switch>

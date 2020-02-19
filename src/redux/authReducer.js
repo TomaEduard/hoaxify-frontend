@@ -29,6 +29,8 @@ export default function authReducer(state = initialState, action) {
             emailVerificationStatus: true
         }
     }
-    
+    else if (action.type === 'change-email') {
+        return { ...initialState };
+    }
     return state;
 }

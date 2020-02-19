@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
 import ButtonWithProgress from './ButtonWithProgress';
 import Input from './Input';
+import exclamationSecurity from '../assets/exclamationSecurity.png';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 class HoaxSubmit extends Component {
     state ={
@@ -149,20 +152,21 @@ class HoaxSubmit extends Component {
                                     <div className="text-right mt-1">
                                         <button 
                                             disabled={this.state.pendingApiCall}
-                                            className="btn btn-light ml-1"
+                                            className="cancelButtonHoaxSubmit"
                                             onClick={this.resetState}
                                         >
-                                            <i className="fas fa-times mr-1"></i>
+                                            {/* <i className="fas fa-times mr-1"></i> */}
                                             Cancel
                                         </button>
     
                                         <ButtonWithProgress
-                                            className="btn btn-success" 
+                                            // className="btn btn-success" 
                                             disabled={this.state.pendingApiCall}
                                             onClick={this.onClickHoaxify}
                                             pendingApiCall={this.state.pendingApiCall}
-                                            text="Hoaxify"
+                                            text="Post"
                                         /> 
+
                                     </div>
                                 </div>
                             )}
@@ -171,9 +175,32 @@ class HoaxSubmit extends Component {
                 )}
 
                 {!this.props.loggedInUser.emailVerificationStatus && ( 
-                    <div className="card d-flex flex-row p-1 pl-2">
-                        You need validate your email for post.
-                    </div>
+                    // <div className="card d-flex flex-row p-1 pl-2">
+                    //     You need validate your email for post.
+                    // </div>
+
+                    <div className="card mt-4 mb-3 verticalLineHoaxSubmit">
+                        <Row>
+                            <Col xs={11} md={11} lg={11} xl={10}>
+                                <div className="card-body d-flex flex-column ">
+
+                                    <p className="text-secondary mb-0">
+                                        Must &nbsp;
+                                        <span className="font-weight-bold mb-0">validate the email </span>
+                                        to have access for post Hoax.
+                                    </p>
+
+                                </div>
+                            </Col>
+
+                            <Col xs={1} md={1} lg={1} xl={2}>
+                                <div className="d-flex justify-content-center exclamationHoaxSubmit"> 
+                                    <img className="m-auto" src={exclamationSecurity} width="26" alt="Hoaxify" />
+                                </div>
+                            </Col>
+                            
+                        </Row>
+                    </div>  
                 )}
 
             </div>

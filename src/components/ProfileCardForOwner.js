@@ -198,7 +198,7 @@ class ProfileCardForOwner extends Component {
                                     <div className="row m-1 pt-1">
                                         <div className="">
                                             <ButtonWithProgress 
-                                                className="btn btn-outline-primary" 
+                                                className="btn btn-outline-primary editProfileButton" 
                                                 onClick={this.props.onClickSave}
                                                 text={
                                                     <span>
@@ -211,7 +211,7 @@ class ProfileCardForOwner extends Component {
                                         </div>
 
                                         <button 
-                                            className="btn btn-outline-secondary ml-auto" 
+                                            className="btn btn-outline-secondary ml-auto editProfileButton" 
                                             onClick={this.props.onClickCancel}
                                             disabled={this.props.pendingUpdateCall}
                                         >

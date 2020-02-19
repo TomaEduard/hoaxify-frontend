@@ -350,7 +350,10 @@ class UserPage extends Component {
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="7">
-                                        
+                                        <CloseAccount 
+                                            id={this.state.user.id}
+                                            password={this.props.loggedInUser.password}
+                                        />
                                     </Tab.Pane>
 
 

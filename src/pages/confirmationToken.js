@@ -11,8 +11,7 @@ import { connect } from 'react-redux';
 import ButtonWithProgressEmailConfirmation from '../components/ButtonWithProgressEmailConfirmation';
 import { Link } from 'react-router-dom';
 
-
-class confirmationToken extends Component {
+class ConfirmationToken extends Component {
     state = { 
         token: this.props.match.params.token,
         isLoadingToken: false,
@@ -174,7 +173,7 @@ class confirmationToken extends Component {
                             </h4>
 
                             <p className="text-secondary pt-4 textConfirmation">
-                                You must be authenticated before accessing the link in the email.
+                                The token is expired or the server is offline.
                             </p>
 
                             {this.state.successfullyMessage && (
@@ -254,4 +253,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(confirmationToken);
+export default connect(mapStateToProps)(ConfirmationToken);

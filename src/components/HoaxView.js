@@ -61,7 +61,7 @@ export class HoaxView extends Component {
             },
         
             function() { 
-                var body = ({
+                let body = ({
                     "favorite": this.state.favorite,
                     "like": this.state.like,
                     "bookmark": this.state.bookmark
@@ -201,6 +201,20 @@ export class HoaxView extends Component {
 
                                 <FollowUser
                                     emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                    entering={this.entering}
+                                    // follow={this.state.follow}
+                                    follow={true}
+                                    changeFollow={this.changeFollow}
+                                />
+                                <FollowUser
+                                    emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
+                                    entering={this.entering}
+                                    // follow={this.state.follow}
+                                    follow={false}
+                                    changeFollow={this.changeFollow}
+                                />
+                                <FollowUser
+                                    emailVerificationStatus={false}
                                     entering={this.entering}
                                     // follow={this.state.follow}
                                     follow={false}

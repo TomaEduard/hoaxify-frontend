@@ -42,6 +42,7 @@ class FollowUser extends Component {
     )
 
   } else if (this.props.follow) {
+    // active
     pageContent = (
       <button className="btn btn-outline-dark btn-sm ml-2 mb-2 active">
         <span className="followButtonTextActive">Follow 2</span>

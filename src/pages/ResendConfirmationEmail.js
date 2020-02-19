@@ -64,18 +64,17 @@ class ResendConfirmationEmail extends Component {
                         &nbsp;at account creation. Please access the link inside it to confirm the email address. 
                         If you cannot find the email in Inbox, please check in Spam/Promotion. 
                         To submit a new one, click the button below.
-                            
                         </p>
 
                         {this.state.successfullyMessage && (
                             
                             <h5 className="text-success font-weight-bold pt-3 text-center success-text-resend"> 
                                 <span className="far fa-check-circle fa-lg fa-2x"></span>
-                                <span className="">&nbsp;Email Resending was successfully!</span>
+                                <span className="">&nbsp;Email was successfully sending!</span>
                             </h5>
                         )}
 
-                        <div className="text-center">
+                        <div className="text-center pt-4">
                             <ButtonWithProgressEmailConfirmation
                                 onClick={this.confirmationEmail}
                                 // disabled={disableSubmit || this.state.pendingApiCall}

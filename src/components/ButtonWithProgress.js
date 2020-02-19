@@ -5,7 +5,8 @@ const ButtonWithProgress = (props) => {
   // ButtonWithProgress
     return(
         <button
-            className={props.className || 'btn btn-primary'}
+            // className={props.className || 'btn btn-primary'}
+            className="ButtonPostHoaxSubmit"
             onClick={props.onClick}
             disabled={props.disabled}
         >

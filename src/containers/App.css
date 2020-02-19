@@ -18,6 +18,14 @@
   width:68% !important;
 }
 
+/* Remove outline */
+:focus {
+  outline: -webkit-focus-ring-color auto 1px;
+  outline-color: -webkit-focus-ring-color;
+  outline-style: auto;
+  outline-width: 0px;
+}
+
 /* .form-control {
   border: 0px !important;
 } */
@@ -267,9 +275,14 @@ a:hover {
 
 /* Components */
 .ButtonWithProgressLoginSignup {
-  background-color: #ffe881 !important;
+  background-color: #ffd930 !important;
   width: 100% !important;
   border-color: rgba(0, 0, 0, 0.041) !important;
+}
+
+.ButtonWithProgressLoginSignup:hover {
+  background-color: #fde475 !important;
+  transition: all .3s !;
 }
 
 /* Exclamation mark of User not found! */
@@ -333,6 +346,8 @@ a:hover {
 button.btn.btn-outline-dark.btn-sm.ml-2.mb-2.active {
   background: rgb(177, 155, 57) !important;
 }
+
+
 
 span.followButtonTextActive {
   font-size: 12px;
@@ -447,11 +462,28 @@ span.followButtonText {
 
 .ButtonSecurityChangePassword {
   background-color: #ffd930 !important;
-  width: 37% !important;
+  width: 100% !important;
   border-color: rgba(0, 0, 0, 0.041) !important;
   margin-bottom: 0px !important;
   padding-bottom: 0px !important;
   padding-top: 0px !important;
+}
+
+.verticalLine {
+  border-left: thick solid #FFD930 !important;
+  border-top: thick solid transparent !important;
+  border-right: thick solid transparent !important;
+  border-bottom: thick solid transparent !important;
+}
+
+.textSecurityTop {
+  font-size: 14px;
+}
+
+.exclamationSecurity {
+  opacity: 0.23;
+  padding-right: 100px;
+  margin: 7px;
 }
 
 .ButtonSecurityChangePassword:hover {
@@ -504,16 +536,86 @@ span.followButtonText {
 }
 
 .editProfile {
-  background-color: #ffd930e7 !important;
+  background-color: #FFD92F !important;
   width: 46% !important;
   border-color: rgba(0, 0, 0, 0.041) !important;
   margin-bottom: 0px !important;
   padding-bottom: 0px !important;
 }
+.editProfile:hover {
+  background-color: #fde475 !important;
+  transition: all .3s;
+}
 
-/* 
-  HoaxView
-*/
+/* HoaxSubmit */
+.verticalLineHoaxSubmit {
+  border-left: thick solid #FFD930 !important;
+  border-top: 1px solid #fde475 !important;
+  border-right: 1px solid #fde475 !important;
+  border-bottom: 1px solid #fde475 !important;
+}
+
+.textHoaxSubmit {
+  font-size: 19px;
+}
+
+.exclamationHoaxSubmit {
+  opacity: 0.23;
+  padding-top: 5px;
+  padding-right: 0px;
+  margin: 7px;
+}
+/* textarea */
+.form-control {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/*  */
+.cancelButtonHoaxSubmit {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.cancelButtonHoaxSubmit {
+  color: rgb(0, 0, 0) !important;
+  border-color: transparent !important;
+  background-color: rgba(80, 80, 80, 0) !important;
+
+  font-weight: 200 !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  margin-right: 3px !important;
+}
+
+.cancelButtonHoaxSubmit:hover {
+  background-color: #fde475 !important;
+  transition: all .3s;
+}
+/*  */
+.ButtonPostHoaxSubmit {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.ButtonPostHoaxSubmit {
+  color: rgb(0, 0, 0) !important;
+  border-color: transparent !important;
+  background-color: #FFD92F !important;
+  font-weight: 200 !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.ButtonPostHoaxSubmit:hover {
+  background-color: #fde475 !important;
+  transition: all .3s;
+}
+
+
+/* HoaxView */
 
 .relativeDate-HoaxView {
   font-size: 15px;
@@ -533,7 +635,21 @@ span.followButtonText {
   line-height: 1.2;
 }
 
+/* ChangeEmail */
+.containerChangeEmail {
+  /* width:31% !important; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+.changeEmailSubtextSize {
+  font-size: 1rem !important;
+  text-color: gray !important;
+}
 
+.form-group-closeAccount {
+  font-size: 1.1rem !important;
+}
 /* 
   Another component
 */

@@ -186,7 +186,7 @@ class HomePage extends Component {
                                             
                                         {this.props.loggedInUser.isLoggedIn && [
                                             
-                                            // TODO: add map of this component
+                                            // TODO: add map for this component
                                             <HoaxSubmit
                                             
                                             />,
