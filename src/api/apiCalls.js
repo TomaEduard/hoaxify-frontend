@@ -97,13 +97,9 @@ export const changeEmail = (id) => {
 // confirm token + body
 // http://www.localhost:8080/api/1.0/users/email-verification/changeEmailToken/ TOKEN AICI 
 export const saveChangeEmail = (token, file) => {
-    console.log("--------------- newEmail => ", token);
-    console.log("--------------- newEmail ", file);
-
-    const daaaaa = file
-    console.log("--------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx------- newEmail ", file);
-
-    // return axios.get(path , file);
     return axios.post('api/1.0/users/email-verification/changeEmailToken/' + token , file);
+};
 
+export const loadHoaxesByPreferences = (id, file) => {
+    return axios.post('api/1.0/preference/favorite/' + id , file)
 };

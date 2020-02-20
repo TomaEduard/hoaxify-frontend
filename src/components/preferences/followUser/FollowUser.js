@@ -12,7 +12,7 @@ class FollowUser extends Component {
 
   render() {
 
-  let toolTipLikeFalse = "Email must be validated"
+  let toolTipLikeFalse = "Not implemented yet"
   let pageContent;
 
   if(!this.props.emailVerificationStatus) {

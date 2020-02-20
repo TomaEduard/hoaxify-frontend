@@ -7,7 +7,7 @@ class UserList extends React.Component {
         page: {
             content: [],
             number: 0,
-            size: 3,
+            size: 10,
         }
     }
 

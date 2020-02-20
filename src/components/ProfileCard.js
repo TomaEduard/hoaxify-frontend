@@ -5,15 +5,17 @@ import ButtonWithProgress from './ButtonWithProgress';
 
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { format } from 'timeago.js';
 
 import Input from './Input';
 
 const ProfileCard = (props) => {
-    const { displayName, username, image } = props.user;
+    const { displayName, username, image, date} = props.user;
 
     const showEditButton = props.isEditable && !props.inEditMode;
     // console.log("UserPage -> ProfilCard: props.user.image:  " + props.user.image);
-    
+    const relativeDate = format(date);
+
     return (
 
         <div className="card">
@@ -35,9 +37,12 @@ const ProfileCard = (props) => {
                     // <br></br>
                     // Email: {`${username}`} </h4>
                     <div className="float-left">
-                        <h6 className="text-secondary">Displayname: {`${displayName}`}</h6>
-                        <h6 className="text-secondary">Email: {`${username}`}</h6>
+                        <div className="text-login-page text-secondary notClickable-text">Displayname: {`${displayName}`}</div>
+                        <div className="text-login-page text-secondary notClickable-text">Email: {`${username}`}</div>
+                        <div className="text-login-page text-secondary notClickable-text">Registration date: {`${relativeDate}`}</div>
+                        
                     </div>
+                    
                 )}
 
                 {props.inEditMode && (

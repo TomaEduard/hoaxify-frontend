@@ -231,6 +231,8 @@ a#left-tabs-example-tab-fifth.nav-link.active {
   z-index: 1;
 }
 
+
+
 .sticky-header {
   position: -webkit-sticky;
   position:sticky !important;
@@ -650,6 +652,128 @@ span.followButtonText {
 .form-group-closeAccount {
   font-size: 1.1rem !important;
 }
+
+
+/* Preferences */
+label.custom-control-label::after {
+  outline: 0 !important
+}
+label.custom-control-label:focus {
+  outline: 0 !important
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label:focus {
+  outline: 0 !important;
+}
+
+.category-text:focus {
+  outline: 0 !important;
+}
+
+.resetButtonPreferences {
+  margin-top: auto;
+  margin-bottom: 30px !important;
+  margin-left:55px !important;
+}
+
+.sticky-preferences {
+  position: -webkit-sticky;
+  position:sticky !important;
+  top:20px !important;
+  z-index: 1;
+}
+.cardPreferences {
+  /* background-color: #ffd930 !important;
+  width: 100% !important; */
+  border-color: gray !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  margin-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-left: 45px !important;
+  padding-bottom: 10px !important;
+}
+
+.searchPreferences {
+  padding-left: 30px;
+  margin-top: 70px;
+
+}
+
+.textSearchPreferences {
+  margin-top: 30px !important;
+}
+
+/* Padding all Category element */
+/* .pl-5,
+.px-5 {
+  padding-left: 12rem !important;
+} */
+
+.radio-padding {
+  padding-top: 7px;
+  padding-right: 3px;
+}
+
+.padding-row2-row4-rating {
+  padding-top: 7px;
+}
+
+.category-text {
+  /* padding-bottom: 3px; */
+  /* margin-bottom: 0px; */
+  font-size: 1.13em;
+}
+
+.rating-inline-1 {
+  padding-top: 7px;
+  margin-right: 0px;
+}
+
+.stars {
+  color: #fdd784;
+  text-shadow: 1px 1px 2px #ccc;
+  font-size: 0.8em;
+}
+
+/* reset button */
+.button {
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+}
+
+/* edit effect checkbox and radio */
+
+/* .custom-control-label:before {
+  background-color: red;
+} */
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #f7ac0b;
+  border-color: rgba(134, 134, 134, 0.411);
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #f7ac0b;
+  border-color: rgba(134, 134, 134, 0.411);
+}
+
+/* Reset button */
+.btn-outline-warning:hover {
+  color: #24282c;
+  background-color: rgba(255, 208, 105, 0.836);
+  border-color: #ffc107;
+}
+
+/* Search bar */
+.search {
+  /* position: relative;
+  padding-top: 70px;
+  padding-right: 60px; */
+  /* padding-top: 70px; */
+}
+
 /* 
   Another component
 */

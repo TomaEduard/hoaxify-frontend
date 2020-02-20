@@ -8,10 +8,11 @@ import NeedToBeAuthenticated from '../components/NeedToBeAuthenticated';
 // import Favorite from '../components/Favorite';
 // import Bookmarks from '../components/Bookmarks';
 
-import Prefferences from '../components/Prefferences';
+import Preferences from '../components/Preferences';
 import FeedPage from '../assets/FeedPage.png';
-import Preferences from '../assets/Preferences.png';
+import preferences from '../assets/preferences.png';
 import Explor from '../assets/Explor.png';
+import MyProfile from '../assets/myProfile.png';
 
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
@@ -23,7 +24,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
 import ProfileImageWithDefault from '../components/ProfileImageWithDefault';
 import HoaxFeed from '../components/HoaxFeed';
-import UserPage from './UserPage';
 
 class HomePage extends Component {
     state = { 
@@ -60,7 +60,7 @@ class HomePage extends Component {
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">
                                             {/* <i className="fas fa-user-plus text-secondary pr-2"></i> */}
-                                            <img src={Preferences} width="40" alt="Preferences" />
+                                            <img src={preferences} width="40" alt="Preferences" />
                                             <span className="pl-2">Preferences</span>
                                         </Nav.Link>
                                     </Nav.Item>
@@ -73,7 +73,20 @@ class HomePage extends Component {
                                         </Nav.Link>
                                     </Nav.Item>
                            
-                                    <hr width="70%"></hr>
+                                    <hr width="93%"></hr>
+                                    
+                                    {/* <img src={logo} width="100" alt="Hoaxify" /> */}
+                                    {/* <img src={logo} width="150" alt="Hoaxify" /> */}
+
+                                    <Link to= {{
+                                        pathname:`/${this.props.loggedInUser.username}`,
+                                        tabValue: '1',
+                                    }}
+                                        style={{ textDecoration: 'none' }}
+                                    >
+                                        <img src={MyProfile} width="40" alt="Explor" />
+                                        <span className="pl-2">My Profile</span>
+                                    </Link>
 
                                     <div className="">
                                         {this.props.loggedInUser.isLoggedIn && (
@@ -130,13 +143,13 @@ class HomePage extends Component {
                                                         <Dropdown.Item eventKey="4">   
                                                             <Link to= {{
                                                                 pathname:`/${this.props.loggedInUser.username}`,
-                                                                tabValue: '1',
+                                                                tabValue: '2',
                                                             }}
                                                                 style={{ textDecoration: 'none' }}
 
                                                             >
                                                                 <i className="fas fa-cogs text-secondary pr-2"></i>
-                                                                Settings
+                                                                Security
                                                             </Link>
                                                         </Dropdown.Item>
                                                         
@@ -199,7 +212,7 @@ class HomePage extends Component {
 
                                     {/* Preferences */}
                                     <Tab.Pane eventKey="second">
-                                        {this.props.loggedInUser.isLoggedIn && <Prefferences />}
+                                        {this.props.loggedInUser.isLoggedIn && <Preferences />}
                                         {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
                                     </Tab.Pane>
 
@@ -207,6 +220,11 @@ class HomePage extends Component {
                                     <Tab.Pane eventKey="third">
                                         <UserList />
                                     </Tab.Pane>
+
+                                    <Link to ="/" className="navbar-brand">
+                                        <Tab.Pane eventKey="forth">
+                                        </Tab.Pane>
+                                    </Link>
 
                                 </Tab.Content>
                         

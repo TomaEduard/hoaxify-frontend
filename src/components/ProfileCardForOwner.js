@@ -4,19 +4,21 @@ import InputProfileCard from './InputProfileCard';
 import ButtonWithProgress from './ButtonWithProgress';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import personalInfo from '../assets/personalInfo.png';
 import personalInfo2 from '../assets/personalInfo2.png';
 import confirmationEmail from '../assets/confirmationEmail.png';
 import ButtonPersonalInfo from './ButtonPersonalInfo';
 import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { connect } from 'react-redux';
 import Input from './Input';
-import InputForLoginAndSignUp from './InputForLoginAndSignUp';
+import { format } from 'timeago.js';
+
+// import Tooltip from 'react-bootstrap/Tooltip';
+// import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+// import Dropdown from 'react-bootstrap/Dropdown';
+// import DropdownButton from 'react-bootstrap/DropdownButton';
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
+// import InputForLoginAndSignUp from './InputForLoginAndSignUp';
 
 
 class ProfileCardForOwner extends Component {
@@ -31,9 +33,11 @@ class ProfileCardForOwner extends Component {
 
         // console.log("UserPage -> ProfilCard: props.user.image:  " + props.user.image);
 
-        const { displayName, username, image, emailVerificationStatus } = this.props.user;
+        const { displayName, image, emailVerificationStatus, date} = this.props.user;
         const showEditButton = this.props.isEditable && !this.props.inEditMode;
             
+        const relativeDate = format(date);
+
         return (
             <React.Fragment>
                 <div className="card shadow-sm">
@@ -51,7 +55,7 @@ class ProfileCardForOwner extends Component {
                             </div>
                         </Col>
                         <Col xs={12} md={12} xl={5}>
-                            <div className="card-body d-flex flex-column m-2 float-left pl-5">
+                            <div className="card-body d-flex flex-column m-2 float-left pl-3">
                                 <Row className="pt-2 mb-0">
                                     <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold clickable-text"> 
                                     Fallowers
@@ -73,17 +77,6 @@ class ProfileCardForOwner extends Component {
                                     <p className="text-center text-login-page text-secondary notClickable-text">: &nbsp;Not Implemented</p>
                                 </Row>
 
-                                <Row className="mb-0">
-                                    <a className="text-secondary font-weight-bold clickable-text"> 
-                                        {/* <button 
-                                            className="btn btn-success "
-                                            onClick={this.props.changeTabValue(5)}
-                                        >
-                                            Cancel
-                                        </button> */}
-                                    </a>
-                                </Row>  
-
                                 {/* <hr width="65%"></hr> */}
 
                                 <Row>
@@ -94,17 +87,19 @@ class ProfileCardForOwner extends Component {
                                 </Row>
                                 
                                 <Row>
-                                    <div className="text-secondary  clickable-text"> 
-                                    Registration Data
+                                    <div className="text-secondary clickable-text"> 
+                                        Registration date
                                     </div>
-                                    <p className="text-center text-login-page text-secondary notClickable-text">: &nbsp;26/16/2020</p>
+                                    <p className="text-center text-login-page text-secondary notClickable-text">
+                                        : &nbsp;{relativeDate}
+                                    </p>
                                 </Row> 
 
                                 {emailVerificationStatus ? (
                                                                 
                                     <Row>
                                         <div className="text-secondary lickable-text"> 
-                                        Email Verification Status: 
+                                        Email verification status: 
                                         </div>
                                         <p className="text-success font-weight-bold success-text-resend notClickable-text">&nbsp;Confirmed</p>
                                     </Row>

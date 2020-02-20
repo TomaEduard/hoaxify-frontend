@@ -18,7 +18,7 @@ import FavoriteHoax from '../components/preferences/favoriteHoax/FavoriteHoax';
 import LikeHoax from '../components/preferences/likeHoax/LikeHoax';
 import BookmarkHoax from '../components/preferences/bookmarkHoax/BookmarkHoax';
 
-export class HoaxView extends Component {
+export class HoaxViewForPrefferences extends Component {
     constructor(props) {
         super(props);
         // console.log("HoaxView =>",this.props);
@@ -94,6 +94,7 @@ export class HoaxView extends Component {
     }
 
     changeBookmark = () => {
+
         this.setState({
             bookmark: !this.state.bookmark,
             },
@@ -405,4 +406,4 @@ const mapStateProps = (state) => {
     }
 }
 
-export default connect(mapStateProps)(HoaxView);
+export default connect(mapStateProps)(HoaxViewForPrefferences);

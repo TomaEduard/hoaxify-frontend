@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import queryString from 'query-string';
 import * as apiCalls from '../api/apiCalls';
-import Spinner from '../components/Spinner';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';

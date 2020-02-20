@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ButtonSecurityChangePassword from './ButtonSecurityChangePassword';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import changePassword from '../assets/changePassword.png';
 import changeEmail from '../assets/changeEmail.png';
 import exclamationSecurity from '../assets/exclamationSecurity.png';
@@ -15,13 +15,13 @@ class Security extends Component {
 
         // Email
         pendingApiCallChangeEmail: false,
-        apiErrorChangeEmail: undefined,
         successfullyMessageChangeEmail: false,
         setButtonDisabledChangeEmail: false,
         apiErrorChangeEmail: false,
         successfullyEmailMessage: false,
 
         // Password
+        pendingApiCallChangePassword: false,
 
     };
 
@@ -49,7 +49,6 @@ class Security extends Component {
     }
 
     render() {
-        const { displayName, username, image, emailVerificationStatus } = this.props.user;
 
         return (
             <React.Fragment>
@@ -155,7 +154,6 @@ class Security extends Component {
                                         // disabled={disableSubmit || this.state.pendingApiCall}
                                         disabled={this.state.setButtonDisabledChangePassword}
                                         pendingApiCall={this.state.pendingApiCallChangePassword}
-                                        pendingApiCall={false}
                                         value="Send Email&nbsp;&nbsp;"
                                     />
                                 </div>  
