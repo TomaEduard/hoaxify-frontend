@@ -154,17 +154,17 @@ export class UserSignupPage extends React.Component {
                 </div>
 
                 <p className="text-center text-login-page text-secondary pt-2">Creating an account means you’re okay with Hoaxify’s&nbsp;
-                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                  <a href="#/signup" className="text-secondary font-weight-bold"> 
                     Business Terms of Service
                   </a>
                   &nbsp;and&nbsp;
-                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                  <a href="#/signup" className="text-secondary font-weight-bold"> 
                     Privacy Policy.</a>
                 </p>
 
                 <hr width="50%"></hr>
 
-                <a className="not-on-hoaxify" href="http://localhost:3000/#/login"> 
+                <a className="not-on-hoaxify" href="#/login"> 
                   <p className="text-center">Already have an account? Sign In</p>
                 </a>
 

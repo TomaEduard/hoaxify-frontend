@@ -57,21 +57,21 @@ class ProfileCardForOwner extends Component {
                         <Col xs={12} md={12} xl={5}>
                             <div className="card-body d-flex flex-column m-2 float-left pl-3">
                                 <Row className="pt-2 mb-0">
-                                    <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold clickable-text"> 
+                                    <a href="#/signup" className="text-secondary font-weight-bold clickable-text"> 
                                     Fallowers
                                     </a>
                                     <p className="text-center text-login-page text-secondary notClickable-text">: &nbsp;number</p>
                                 </Row>
 
                                 <Row className="mb-0">
-                                    <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold clickable-text"> 
+                                    <a href="#/signup" className="text-secondary font-weight-bold clickable-text"> 
                                     Fallowing
                                     </a>
                                     <p className="text-center text-login-page text-secondary notClickable-text">: &nbsp;number</p>
                                 </Row>
 
                                 <Row className="mb-0">
-                                    <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold clickable-text"> 
+                                    <a href="#/signup" className="text-secondary font-weight-bold clickable-text"> 
                                     Groups
                                     </a>
                                     <p className="text-center text-login-page text-secondary notClickable-text">: &nbsp;Not Implemented</p>
@@ -105,7 +105,7 @@ class ProfileCardForOwner extends Component {
                                     </Row>
                                 ):( 
                                     <Row>
-                                        <a href="http://localhost:3000/#/verification/confirmationEmail" className="text-secondary font-weight-bold clickable-text"> 
+                                        <a href="#/verification/confirmationEmail" className="text-secondary font-weight-bold clickable-text"> 
                                         Email Verification Status: 
                                         </a>
                                         <p className="text-danger font-weight-bold success-text-resend notClickable-text"> &nbsp;False</p>

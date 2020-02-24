@@ -9,6 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import image from '../assets/2asd.png';
+import { Link } from 'react-router-dom';
 
 import {
   TwitterIcon,
@@ -171,20 +172,28 @@ export class LoginPage extends React.Component {
 
                 </div>
 
+                {/* <Link to={`/${username}`}  */}
+                {/* <Link to="#"
+                  className="list-group-item-action">
+                  <h6 className="d-inline displayNameHoaxView">
+                      Terms of Service, Privacy Policy
+                  </h6>
+                </Link> */}
+
                 <p className="text-center text-login-page text-secondary pt-3">
                   By continuing, you agree to Hoxify's&nbsp;
-                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                  <a href="#/signup" className="text-secondary font-weight-bold"> 
                     Terms of Service, Privacy Policy
                   </a>
                   &nbsp;and&nbsp;
-                  <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                  <a href="#/signup" className="text-secondary font-weight-bold"> 
                     Cookie use.
                   </a>
                 </p>
 
                 <hr width="50%"></hr>
 
-                <a className="not-on-hoaxify" href="http://localhost:3000/#/signup"> 
+                <a className="not-on-hoaxify" href="#/signup"> 
                   <p className="text-center">Not on hoaxify yet? Sign up</p>
                 </a>
 

@@ -43,8 +43,6 @@ class App extends Component {
           {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
           : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />}
           
-
-          
           <Route exact path="/:username" component={UserPage} />
         </Switch>
 

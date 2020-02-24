@@ -21,11 +21,11 @@ class NeedToBeAuthenticated extends Component {
                     <p className="display-5 text-secondary pt-2 textNeedToBeAuthenticated-body">
                         Authentication is required to see this content.
                         <br />You need to&nbsp;
-                        <a href="http://localhost:3000/#/login" className="text-secondary font-weight-bold"> 
+                        <a href="#/login" className="text-secondary font-weight-bold"> 
                             Login
                         </a>
                         &nbsp;or&nbsp;
-                        <a href="http://localhost:3000/#/signup" className="text-secondary font-weight-bold"> 
+                        <a href="#/signup" className="text-secondary font-weight-bold"> 
                             Sign Up
                         </a>
                         .
