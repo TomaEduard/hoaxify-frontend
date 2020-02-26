@@ -21,7 +21,7 @@ export default class HoaxFeed extends Component {
 
     componentDidMount() {
         this.setState({ isLoadingHoaxes: true })
-        apiCalls.loadHoaxes()
+        apiCalls.loadHoaxes(this.props.user)
             .then(response => {
                 this.setState({ 
                     page: response.data, 

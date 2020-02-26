@@ -4,7 +4,7 @@ import axios from 'axios';
 const API_URL = 'http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0';
 
 export const signup = (user) => {
-    return axios.post(`${API_URL}/users`, user);
+    return axios.post('http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0/users', user);
 };
 
 export const login = (user) => {
@@ -38,6 +38,8 @@ export const postHoax = (hoax) => {
 };
 
 export const loadHoaxes = (username) => {
+    console.log('apiCall - loadHoaxes - username - ', username);
+    
     const basePath = username ? `${API_URL}/users/${username}/hoaxes` : `${API_URL}/hoaxes`
     return axios.get(basePath + '?page=0&size=5&sort=id,desc')
 };
@@ -61,10 +63,7 @@ export const loadNewHoaxes = (hoaxId, username) => {
 };
 
 export const loadNewHoaxCount = (hoaxId, username) => {
-    const basePath = username 
-    ? `${API_URL}/users/${username}/hoaxes` 
-    : `${API_URL}/hoaxes`
-
+    const basePath = username ? `${API_URL}/users/${username}/hoaxes` : `${API_URL}/hoaxes`
     const path =  `${basePath}/${hoaxId}?direction=after&count=true`;
     return axios.get(path);
 };
