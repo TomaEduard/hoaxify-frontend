@@ -21,15 +21,16 @@ export default class HoaxFeed extends Component {
 
     componentDidMount() {
         this.setState({ isLoadingHoaxes: true })
-        apiCalls.loadHoaxes(this.props.user).then(response => {
-            this.setState({ 
-                page: response.data, 
-                isLoadingHoaxes: false 
-            }, () => {
-                this.counter = setInterval(this.checkCount, 99999999999999);
-            });
+        apiCalls.loadHoaxes()
+            .then(response => {
+                this.setState({ 
+                    page: response.data, 
+                    isLoadingHoaxes: false 
+                }, () => {
+                    this.counter = setInterval(this.checkCount, 2000);
+                });
             
-        });
+            });
     };
 
     componentWillUnmount() {

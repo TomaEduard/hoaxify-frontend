@@ -10,6 +10,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import image from '../assets/2asd.png';
 import { Link } from 'react-router-dom';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 import {
   TwitterIcon,
@@ -66,7 +68,15 @@ export class LoginPage extends React.Component {
     });
   };
 
+    // Set your color here
+    entering = (e) => {
+        // e.children[0].style.borderTopColor = 'green';
+        e.children[1].style.backgroundColor = 'rgba(0,0,0,0.8)';
+    };
+
   render() {
+    let toolTipLikeFalse = "Not implemented yet"
+
     let disableSubmit = false;
     if (this.state.username === '') {
       disableSubmit = true;
@@ -97,7 +107,7 @@ export class LoginPage extends React.Component {
                 <div className="form-group py-4">
                   <InputForLoginAndSignUp
                     label="Email"
-                    placeholder="Email"
+                    placeholder="Your Email"
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                   />
@@ -162,13 +172,29 @@ export class LoginPage extends React.Component {
                 </div>
  
                 <div className="text-center text-secondary pt-3">
+
                   <p>OR</p>
 
-                  <div className="social-media-login-icons">
-                    <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                    <FacebookIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                    <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                  </div>
+                  <OverlayTrigger
+                    key={'bottom'}
+                    placement={'bottom'}
+                    // overlay={this.tooltip} 
+                    onEntering={this.entering}
+                    overlay={
+                      <Tooltip 
+                      id="tooltip-bottom" 
+                      >
+                        {toolTipLikeFalse}
+                      </Tooltip>
+                    }
+                  >
+                    <div className="social-media-login-icons">
+                      <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                      <FacebookIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                      <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                    </div>
+
+                  </OverlayTrigger>
 
                 </div>
 

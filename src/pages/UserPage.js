@@ -198,7 +198,7 @@ class UserPage extends Component {
     };
     
     render() { 
-        console.log(" x1111111 this.props.state.tabValue =>", this.state.tabValue);
+        console.log(" UserPage - this.props.state.tabValue =>", this.state.tabValue);
 
         let pageContent;
         if(this.state.isLoadingUser) {

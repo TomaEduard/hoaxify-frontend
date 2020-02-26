@@ -455,11 +455,12 @@ span.followButtonText {
   border-color: rgba(0, 0, 0, 0.041) !important;
   margin-bottom: 0px !important;
   padding-bottom: 0px !important;
+  padding: 15px !important;
 }
 
 .ButtonWithProgressEmailConfirmation:hover {
   background-color: #fde475 !important;
-  transition: all .3s;
+  transition: all .3s !important;
 }
 
 .ButtonSecurityChangePassword {
@@ -467,8 +468,7 @@ span.followButtonText {
   width: 100% !important;
   border-color: rgba(0, 0, 0, 0.041) !important;
   margin-bottom: 0px !important;
-  padding-bottom: 0px !important;
-  padding-top: 0px !important;
+  padding: 7px !important;
 }
 
 .verticalLine {
@@ -479,28 +479,28 @@ span.followButtonText {
 }
 
 .textSecurityTop {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .exclamationSecurity {
-  opacity: 0.23;
-  padding-right: 100px;
-  margin: 7px;
+  opacity: 0.23 !important;
+  padding-right: 100px !important;
+  margin: 7px !important;
 }
 
 .ButtonSecurityChangePassword:hover {
   background-color: #fde475 !important;
-  transition: all .3s;
+  transition: all .3s !important;
 }
 
 .text-button-confirmation {
-  font-size: 16px;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-weight: lighter;
+  font-size: 16px !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+  font-weight: lighter !important;
 }
 
 .success-text-resend {
-  animation: animateMovieinfo 1s;
+  animation: animateMovieinfo 1s !important;
 }
 
 @keyframes animateMovieinfo {
@@ -570,6 +570,7 @@ span.followButtonText {
 /* textarea */
 .form-control {
   outline: none !important;
+  border-bottom: 0.1em solid #19160b26 !important;
   box-shadow: none !important;
 }
 

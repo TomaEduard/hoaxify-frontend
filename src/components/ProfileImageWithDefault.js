@@ -5,7 +5,7 @@ const ProfileImageWithDefault = (props) => {
     
     let imageSource = defaultPicture;
     if(props.image) {
-        imageSource = `/images/profile/${props.image}`;
+        imageSource = `http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile/${props.image}`;
     }
     
     return (

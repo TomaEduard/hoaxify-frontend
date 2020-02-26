@@ -17,6 +17,7 @@ class FollowUser extends Component {
 
   if(!this.props.emailVerificationStatus) {
     pageContent = (
+      
       <OverlayTrigger
         key={'bottom'}
         placement={'bottom'}
@@ -33,7 +34,7 @@ class FollowUser extends Component {
         <Link to="/verification/confirmationEmail">
 
           <button className="btn btn-outline-dark btn-sm ml-2 mb-2 disabled">
-              <span className="followButtonText">Follow 1</span>
+              <span className="followButtonText">Follow</span>
           </button>
 
         </Link>

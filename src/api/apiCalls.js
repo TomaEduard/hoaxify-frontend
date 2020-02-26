@@ -1,11 +1,14 @@
 import axios from 'axios';
 
+// const API_URL = 'http://localhost:8080';
+const API_URL = 'http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0';
+
 export const signup = (user) => {
-    return axios.post('/api/1.0/users', user);
+    return axios.post(`${API_URL}/users`, user);
 };
 
 export const login = (user) => {
-    return axios.post('/api/1.0/login', {}, {auth: user});
+    return axios.post(`${API_URL}/login`, {}, {auth: user});
 };
 
 export const setAuthorizationHeader = ({username, password, isLoggedIn}) => {
@@ -18,31 +21,31 @@ export const setAuthorizationHeader = ({username, password, isLoggedIn}) => {
 
 // if call this function without param, the default values is { page: 0, size: 3 }
 export const listUsers = (param = { page: 0, size: 3 }) => {
-    const path = `/api/1.0/users?page=${param.page || 0}&size=${param.size || 3}`;
+    const path = `${API_URL}/users?page=${param.page || 0}&size=${param.size || 3}`;
     return axios.get(path);
 };
 
 export const getUser = (username) => {
-    return axios.get(`/api/1.0/users/${username}`);
+    return axios.get(`${API_URL}/users/${username}`);
 };
 
 export const updateUser = (userId, body) => {
-    return axios.put('/api/1.0/users/' + userId, body);
+    return axios.put(`${API_URL}/users/` + userId, body);
 };
 
 export const postHoax = (hoax) => {
-    return axios.post('/api/1.0/hoaxes', hoax);
+    return axios.post(`${API_URL}/hoaxes`, hoax);
 };
 
 export const loadHoaxes = (username) => {
-    const basePath = username ? `/api/1.0/users/${username}/hoaxes` : '/api/1.0/hoaxes'
+    const basePath = username ? `${API_URL}/users/${username}/hoaxes` : `${API_URL}/hoaxes`
     return axios.get(basePath + '?page=0&size=5&sort=id,desc')
 };
 
 export const loadOldHoaxes = (hoaxId, username) => {
     const basePath = username 
-    ? `/api/1.0/users/${username}/hoaxes` 
-    : '/api/1.0/hoaxes'
+    ? `${API_URL}/users/${username}/hoaxes` 
+    : `${API_URL}/hoaxes`
 
     const path =  `${basePath}/${hoaxId}?direction=before?page=0&size=5&sort=id,desc`;
     return axios.get(path);
@@ -50,8 +53,8 @@ export const loadOldHoaxes = (hoaxId, username) => {
 
 export const loadNewHoaxes = (hoaxId, username) => {
     const basePath = username 
-    ? `/api/1.0/users/${username}/hoaxes` 
-    : '/api/1.0/hoaxes'
+    ? `${API_URL}/users/${username}/hoaxes` 
+    : `${API_URL}/hoaxes`
 
     const path =  `${basePath}/${hoaxId}?direction=after&sort=id,desc`;
     return axios.get(path);
@@ -59,47 +62,47 @@ export const loadNewHoaxes = (hoaxId, username) => {
 
 export const loadNewHoaxCount = (hoaxId, username) => {
     const basePath = username 
-    ? `/api/1.0/users/${username}/hoaxes` 
-    : '/api/1.0/hoaxes'
+    ? `${API_URL}/users/${username}/hoaxes` 
+    : `${API_URL}/hoaxes`
 
     const path =  `${basePath}/${hoaxId}?direction=after&count=true`;
     return axios.get(path);
 };
 
 export const postHoaxFile = (file) => {
-    return axios.post('/api/1.0/hoaxes/upload', file);
+    return axios.post(`${API_URL}/hoaxes/upload`, file);
 };
 
 export const deleteHoax = (hoaxId) => {
-    return axios.delete('/api/1.0/hoaxes/' + hoaxId);
+    return axios.delete(`${API_URL}/hoaxes/` + hoaxId);
 };
 
 export const setPreference = (hoaxId, file) => {
-    return axios.post('/api/1.0/preference/' + hoaxId , file);
+    return axios.post(`${API_URL}/preference/` + hoaxId , file);
 };
 
 // email-verification: generate token for email verification
 export const resendEmailVerification = (id) => {
-    return axios.post(`/api/1.0/users/email-verification/confirmation/${id}`);
+    return axios.post(`${API_URL}/users/email-verification/confirmation/${id}`);
 };
 
 // http://localhost:3000/#/verification/email_verification?token=$tokenValue
 // confirm token
 export const confirmationToken = (token) => {
-    return axios.get(`/api/1.0/users/email-verification/confirmationToken/${token}`);
+    return axios.get(`${API_URL}/users/email-verification/confirmationToken/${token}`);
 };
 
 // changeEmail generate token
 export const changeEmail = (id) => {
-    return axios.post(`/api/1.0/users/email-verification/changeEmail/${id}`);
+    return axios.post(`${API_URL}/users/email-verification/changeEmail/${id}`);
 };
 
 // confirm token + body
 // http://www.localhost:8080/api/1.0/users/email-verification/changeEmailToken/ TOKEN AICI 
 export const saveChangeEmail = (token, file) => {
-    return axios.post('api/1.0/users/email-verification/changeEmailToken/' + token , file);
+    return axios.post(`${API_URL}/users/email-verification/changeEmailToken/` + token , file);
 };
 
 export const loadHoaxesByPreferences = (id, file) => {
-    return axios.post('api/1.0/preference/favorite/' + id , file)
+    return axios.post(`${API_URL}/preference/favorite/` + id , file)
 };

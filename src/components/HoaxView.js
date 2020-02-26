@@ -107,7 +107,6 @@ export class HoaxView extends Component {
             
                 apiCalls.setPreference(this.state.id , body);
                 // no need .then .catch at the moment
-
             }
         );
     }
@@ -155,14 +154,12 @@ export class HoaxView extends Component {
         }
         // {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), }
 
-
-
         return (
             <div className="card-home p-1">
                 {this.state.isOpen && (
                     <Lightbox 
                         // mainSrc={image[0]}
-                        mainSrc={`/images/attachments/${hoax.attachment.name}`}
+                        mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
                         onCloseRequest={() => this.setState({ isOpen: false })}
                     />
                 )}                
@@ -171,7 +168,7 @@ export class HoaxView extends Component {
                     <Lightbox 
                     // let profileImage = {`${image}`}
                         // mainSrc={image[0]}
-                        mainSrc={`/images/profile/${imageProfile}`}
+                        mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile/${imageProfile}`}
                         // mainSrc={`/images/profile/${image}`}
                         // mainSrc='/images/profile/profile.png'
                         onCloseRequest={() => this.setState({ isOpenProfile: false })}
@@ -338,7 +335,7 @@ export class HoaxView extends Component {
                     <div className="m-auto pt-3 img-max"> 
                         <img 
                             alt="attachment"
-                            src={`/images/attachments/${hoax.attachment.name}`}
+                            src={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
                             className="img-fluid"
                             onClick={() => this.changeOpen(hoax.attachment.name)}
                         />

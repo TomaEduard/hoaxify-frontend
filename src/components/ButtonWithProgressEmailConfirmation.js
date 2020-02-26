@@ -3,7 +3,7 @@ import React from 'react';
 const ButtonWithProgressEmailConfirmation = (props) => {
     return(
         <button
-          className="btn ButtonWithProgressEmailConfirmation p-3 "
+          className="btn ButtonWithProgressEmailConfirmation p-3"
           onClick={props.onClick}
           disabled={props.disabled}
         >

@@ -116,7 +116,7 @@ class ConfirmationToken extends Component {
 
                             <p className="text-center display-5 text-secondary text-login-card-buttom pt-5">
                                 Have trouble or confused? Please contact the support at: &nbsp;
-                                <a href="#/signup" className="text-secondary font-weight-bold">
+                                <a href="/" className="text-secondary font-weight-bold">
                                     support@hoaxify.com
                                 </a>
                                 .
@@ -199,7 +199,7 @@ class ConfirmationToken extends Component {
 
                             <p className="text-center display-5 text-secondary text-login-card-buttom pt-5">
                                 Have trouble or confused? Please contact the support at: &nbsp;
-                                <a href="#/signup" className="text-secondary font-weight-bold">
+                                <a href="/" className="text-secondary font-weight-bold">
                                     support@hoaxify.com
                                 </a>
                                 .
