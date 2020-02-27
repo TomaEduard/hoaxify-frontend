@@ -327,7 +327,7 @@ export class HoaxView extends Component {
                     </div>
                 </div>
 
-                <div className="pl-5 pt-3">
+                <div className="pl-5 pt-3" style={{ whiteSpace: 'pre' }}>
                     {hoax.content}  
                 </div>                
 
