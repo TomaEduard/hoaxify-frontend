@@ -327,9 +327,9 @@ export class HoaxView extends Component {
                     </div>
                 </div>
 
-                <div className="pl-5 pt-3" style={{ whiteSpace: 'pre' }}>
-                    {hoax.content}  
-                </div>                
+                <div className="pl-5 pt-3" style={{ whiteSpace: 'pre-wrap' }}>
+                    {hoax.content}
+                </div>
 
                 {attachmentImageVisible && (
                     <div className="m-auto pt-3 img-max"> 
