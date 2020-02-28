@@ -1,14 +1,20 @@
 import axios from 'axios';
+// import { API_URL, API_KEY } from '../../../config';
+import { API_URL } from '../config';
 
-// const API_URL = 'http://localhost:8080';
-const API_URL = 'http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0';
+// const API_URL = '/api/1.0';
+// const API_URL = 'http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0';
 
 export const signup = (user) => {
-    return axios.post('http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0/users', user);
+    return axios.post(`${API_URL}/users`, user);
 };
 
 export const login = (user) => {
+    // const URL = ( `${API_URL}` !== undefined ? `${API_URL}/login` : '/login')
+    // return axios.post(URL, {}, {auth: user});
+
     return axios.post(`${API_URL}/login`, {}, {auth: user});
+    // return axios.post('/login', {}, {auth: user});
 };
 
 export const setAuthorizationHeader = ({username, password, isLoggedIn}) => {

@@ -6,6 +6,13 @@ import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+// import { API_URL, API_KEY } from '../../../config';
+import { 
+    API_URL, 
+    IMAGES_ATTACHMENTS,
+    IMAGES_PROFILE,
+
+} from '../config';
 // import Row from 'react-bootstrap/Row';
 
 // Lightbox
@@ -159,7 +166,8 @@ export class HoaxView extends Component {
                 {this.state.isOpen && (
                     <Lightbox 
                         // mainSrc={image[0]}
-                        mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
+                        // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
+                        mainSrc={`${IMAGES_ATTACHMENTS}/${hoax.attachment.name}`}
                         onCloseRequest={() => this.setState({ isOpen: false })}
                     />
                 )}                
@@ -168,7 +176,9 @@ export class HoaxView extends Component {
                     <Lightbox 
                     // let profileImage = {`${image}`}
                         // mainSrc={image[0]}
-                        mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile/${imageProfile}`}
+                        // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile/${imageProfile}`}
+                        mainSrc={`${IMAGES_PROFILE}/${imageProfile}`}
+
                         // mainSrc={`/images/profile/${image}`}
                         // mainSrc='/images/profile/profile.png'
                         onCloseRequest={() => this.setState({ isOpenProfile: false })}
@@ -335,7 +345,7 @@ export class HoaxView extends Component {
                     <div className="m-auto pt-3 img-max"> 
                         <img 
                             alt="attachment"
-                            src={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
+                            src={`${IMAGES_ATTACHMENTS}/${hoax.attachment.name}`}
                             className="img-fluid"
                             onClick={() => this.changeOpen(hoax.attachment.name)}
                         />

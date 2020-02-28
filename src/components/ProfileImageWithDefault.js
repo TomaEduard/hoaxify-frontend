@@ -1,11 +1,12 @@
 import React from 'react';
 import defaultPicture from '../assets/profile.png';
+import { IMAGES_PROFILE } from '../config';
 
 const ProfileImageWithDefault = (props) => {
     
     let imageSource = defaultPicture;
     if(props.image) {
-        imageSource = `http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile/${props.image}`;
+        imageSource = `${IMAGES_PROFILE}/${props.image}`;
     }
     
     return (
