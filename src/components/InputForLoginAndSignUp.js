@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InputForLoginAndSignUp = (props) => {
-  let inputClassName = 'form-control form-group my-2 p-2 input';
+  let inputClassName = 'form-control-login-signup form-group p-2 input';
   
   if (props.hasError !== undefined) {
     inputClassName += props.hasError ? ' is-invalid' : ' is-valid';

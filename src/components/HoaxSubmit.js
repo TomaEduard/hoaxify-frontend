@@ -23,13 +23,21 @@ class HoaxSubmit extends Component {
 
     onChangeContent = (event) => {
         const value = event.target.value;
+
+        // if click on Choose File second time, the previous error will be remove
         this.setState({
             content: value,
             errors: {}
         })
     };
 
+    // #1
     onFileSelect = (event) => {
+
+        this.setState({
+            errors: {}
+        })
+
         // make sure the file array contain 1 file
         if(event.target.files.length === 0) {
             return;
@@ -41,7 +49,8 @@ class HoaxSubmit extends Component {
         reader.onloadend = () => {
             this.setState({
                 image: reader.result,
-                file
+                file,
+                // errors: {}
             }, () => {
                 this.uploadFile()
             });
@@ -49,13 +58,28 @@ class HoaxSubmit extends Component {
         reader.readAsDataURL(file);
     };
 
-    // #1
+    // #2
     uploadFile = () => {
         const body = new FormData();
         body.append('file', this.state.file)
-        apiCalls.postHoaxFile(body).then(response => {
-            this.setState({ attachment: response.data })
-        })
+        apiCalls.postHoaxFile(body)
+            .then(response => {
+                this.setState({ attachment: response.data })
+            })
+            .catch((error) => {
+                // let errors = {}
+                // if(error.response && error.response.message) {
+                //     errors = {content: 'The maximum allowed image size is 1MB.'}
+                // }
+
+                this.setState({ 
+                    pendingApiCall: false,
+                    errors: {content: 'The maximum allowed image size is 1MB.'},
+                    image: undefined,
+                    file: undefined,
+                    attachment: undefined
+                })
+            })
     }
 
     resetState = () => {
@@ -70,7 +94,7 @@ class HoaxSubmit extends Component {
         });
     };
 
-    // #2
+    // #1
     onClickHoaxify = () => {
         const body = {
             content: this.state.content,
@@ -87,7 +111,6 @@ class HoaxSubmit extends Component {
                 errors = error.response.data.validationErrors
             }
             this.setState({ pendingApiCall: false, errors })
-            
         })
     };
 
@@ -101,6 +124,7 @@ class HoaxSubmit extends Component {
         let textAreaClassName = 'form-control w-100';
         if(this.state.errors.content) {
             textAreaClassName += ' is-invalid'
+            // textAreaClassName = 'is-invalid form-control-hoaxsubmit w-100'
         }
 
         return (

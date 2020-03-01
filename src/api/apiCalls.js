@@ -1,20 +1,13 @@
 import axios from 'axios';
-// import { API_URL, API_KEY } from '../../../config';
 import { API_URL } from '../config';
 
-// const API_URL = '/api/1.0';
-// const API_URL = 'http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/api/1.0';
 
 export const signup = (user) => {
     return axios.post(`${API_URL}/users`, user);
 };
 
 export const login = (user) => {
-    // const URL = ( `${API_URL}` !== undefined ? `${API_URL}/login` : '/login')
-    // return axios.post(URL, {}, {auth: user});
-
     return axios.post(`${API_URL}/login`, {}, {auth: user});
-    // return axios.post('/login', {}, {auth: user});
 };
 
 export const setAuthorizationHeader = ({username, password, isLoggedIn}) => {
@@ -91,7 +84,6 @@ export const resendEmailVerification = (id) => {
     return axios.post(`${API_URL}/users/email-verification/confirmation/${id}`);
 };
 
-// http://localhost:3000/#/verification/email_verification?token=$tokenValue
 // confirm token
 export const confirmationToken = (token) => {
     return axios.get(`${API_URL}/users/email-verification/confirmationToken/${token}`);
@@ -103,11 +95,10 @@ export const changeEmail = (id) => {
 };
 
 // confirm token + body
-// http://www.localhost:8080/api/1.0/users/email-verification/changeEmailToken/ TOKEN AICI 
 export const saveChangeEmail = (token, file) => {
     return axios.post(`${API_URL}/users/email-verification/changeEmailToken/` + token , file);
 };
 
 export const loadHoaxesByPreferences = (id, file) => {
-    return axios.post(`${API_URL}/preference/favorite/` + id , file)
+    return axios.post(`${API_URL}/preference/filter/` + id , file)
 };

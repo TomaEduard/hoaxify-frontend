@@ -81,7 +81,6 @@ export class HoaxView extends Component {
     }
 
     changeLike = () => {
-
         this.setState({
             like: !this.state.like,
             },
