@@ -164,6 +164,27 @@ export class HoaxView extends Component {
         }
         // {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), }
 
+        // ReactPlayer
+        // hoax.content
+
+        const hoaxContent = hoax.content;
+        let approvalVariable = "a"
+
+        console.log('#1 hoax.content - ', hoaxContent);
+
+        var ifHoaxContainContainYouTubeVideo = hoaxContent.includes("youtube.com/watch");
+        var ifHoaxContainContainSoundCloudVideo = hoaxContent.includes("soundcloud.com/");
+        var ifHoaxContainContainMixCloudVideo = hoaxContent.includes("mixcloud.com/");
+        var ifHoaxContainContainTwitchVideo = hoaxContent.includes("twitch.tv/");
+
+
+        console.log('#2 if hoax.content.includes youtube - ', ifHoaxContainContainYouTubeVideo);
+        console.log('#2 if hoax.content.includes soundcloud - ', ifHoaxContainContainYouTubeVideo);
+
+        // let value = 'cat dog';
+        // const pets = 'cat';
+        // console.log(pets.includes(value));
+
         return (
             <div className="card-home p-1">
                 {this.state.isOpen && (
@@ -311,21 +332,65 @@ export class HoaxView extends Component {
                         </ButtonToolbar> */}
                     </div>
                 </div>
-
              
                 <Linkify>
                     <div className="pl-5 pt-3" style={{ whiteSpace: 'pre-wrap' }}>
                         {hoax.content}
                         
-                        <div className='player-wrapper mt-3'>
-                            <ReactPlayer 
-                                className='react-player'
-                                url={hoax.content}
-                                width='100%'
-                                height='100%'
-                                // playing
-                            />
-                        </div>
+                        {ifHoaxContainContainSoundCloudVideo && (
+                            <div className='player-wrapper mt-3'>
+                                <ReactPlayer 
+                                    className='react-player'
+                                    url={hoax.content}
+                                    // width='100%'
+                                    // height='40vh'
+                                    width='100%'
+                                    height='100%'
+                                    // playing
+                                />
+                            </div>
+                        )}
+
+                        {ifHoaxContainContainYouTubeVideo && (
+                            <div className='player-wrapper mt-3'>
+                                <ReactPlayer 
+                                    className='react-player'
+                                    url={hoax.content}
+                                    // width='100%'
+                                    // height='40vh'
+                                    width='100%'
+                                    height='100%'
+                                    // playing
+                                />
+                            </div>
+                        )}
+
+                        {ifHoaxContainContainMixCloudVideo && (
+                            <div className='mix-cloud mt-3'>
+                                <ReactPlayer 
+                                    // className='react-player'
+                                    url={hoax.content}
+                                    width='100%'
+                                    height='100%'
+                                    // playing
+                                />
+                            </div>
+                        )}
+
+                        {ifHoaxContainContainTwitchVideo && (
+                            <div className='player-wrapper mt-3'>
+                                <ReactPlayer 
+                                    className='react-player'
+                                    url={hoax.content}
+                                    // width='100%'
+                                    // height='40vh'
+                                    width='100%'
+                                    height='100%'
+                                    // playing
+                                />
+                            </div>
+                        )}
+
                     </div>
                 </Linkify>
 
