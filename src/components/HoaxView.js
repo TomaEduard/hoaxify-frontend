@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-// import { API_URL, API_KEY } from '../../../config';
+import Linkify from 'react-linkify';
+
 import { 
     API_URL, 
     IMAGES_ATTACHMENTS,
@@ -173,18 +174,11 @@ export class HoaxView extends Component {
                 {this.state.isOpenProfile && (
                     
                     <Lightbox 
-                    // let profileImage = {`${image}`}
-                        // mainSrc={image[0]}
-                        // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile/${imageProfile}`}
                         mainSrc={`${IMAGES_PROFILE}/${imageProfile}`}
-
-                        // mainSrc={`/images/profile/${image}`}
-                        // mainSrc='/images/profile/profile.png'
                         onCloseRequest={() => this.setState({ isOpenProfile: false })}
                     />
                 )}
 
-            {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), */}
                 <div className="d-flex">
                     <ProfileImageWithDefault
                         className="rounded-circle m-1"
@@ -196,35 +190,19 @@ export class HoaxView extends Component {
 
                         <div className="flex-fill m-auto pl-2">
                         
-                            {/* style={{ textDecoration: 'none' }} */}
                             <Link to={`/${username}`} className="list-group-item-action">
                                 <h6 className="d-inline displayNameHoaxView">
                                     {displayName}
-                                    {/* {this.state.id}{displayName}@{username} */}
                                 </h6>
                             </Link>
 
-                                {/* <FollowUser
-                                    emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
-                                    entering={this.entering}
-                                    // follow={this.state.follow}
-                                    follow={true}
-                                    changeFollow={this.changeFollow}
-                                />
-                                <FollowUser
-                                    emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
-                                    entering={this.entering}
-                                    // follow={this.state.follow}
-                                    follow={false}
-                                    changeFollow={this.changeFollow}
-                                /> */}
-                                <FollowUser
-                                    emailVerificationStatus={false}
-                                    entering={this.entering}
-                                    // follow={this.state.follow}
-                                    follow={false}
-                                    changeFollow={this.changeFollow}
-                                />
+                            <FollowUser
+                                emailVerificationStatus={false}
+                                entering={this.entering}
+                                // follow={this.state.follow}
+                                follow={false}
+                                changeFollow={this.changeFollow}
+                            />
                             
                             <br></br>
 
@@ -232,11 +210,6 @@ export class HoaxView extends Component {
 
                         </div>
                         
-                    {/* 
-                    <br></br>
-                    <hr></hr> 
-                    */}
-
                         {ownedByLoggedInUser && (
                             <DropdownButton
                                 key=""
@@ -336,9 +309,12 @@ export class HoaxView extends Component {
                     </div>
                 </div>
 
-                <div className="pl-5 pt-3" style={{ whiteSpace: 'pre-wrap' }}>
-                    {hoax.content}
-                </div>
+             
+                <Linkify>
+                    <div className="pl-5 pt-3" style={{ whiteSpace: 'pre-wrap' }}>
+                        {hoax.content}
+                    </div>
+                </Linkify>
 
                 {attachmentImageVisible && (
                     <div className="m-auto pt-3 img-max"> 

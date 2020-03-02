@@ -140,6 +140,8 @@ class HoaxSubmit extends Component {
                         />
                         
                         <div className="flex-fill">
+                         
+
                             <textarea 
                                 className={textAreaClassName}
                                 // if this.onFocus == true set rows to 3 if isn't set default to 1
@@ -197,6 +199,7 @@ class HoaxSubmit extends Component {
                         </div>
                     </div>  
                 )}
+
 
                 {!this.props.loggedInUser.emailVerificationStatus && ( 
                     // <div className="card d-flex flex-row p-1 pl-2">
