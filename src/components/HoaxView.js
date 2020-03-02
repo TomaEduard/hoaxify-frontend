@@ -6,7 +6,10 @@ import { connect } from 'react-redux';
 import * as apiCalls from '../api/apiCalls';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+
+// link and videos of hoax 
 import Linkify from 'react-linkify';
+import ReactPlayer from 'react-player'
 
 import { 
     API_URL, 
@@ -313,8 +316,19 @@ export class HoaxView extends Component {
                 <Linkify>
                     <div className="pl-5 pt-3" style={{ whiteSpace: 'pre-wrap' }}>
                         {hoax.content}
+                        
+                        <div className='player-wrapper mt-3'>
+                            <ReactPlayer 
+                                className='react-player'
+                                url={hoax.content}
+                                width='100%'
+                                height='100%'
+                                // playing
+                            />
+                        </div>
                     </div>
                 </Linkify>
+
 
                 {attachmentImageVisible && (
                     <div className="m-auto pt-3 img-max"> 
