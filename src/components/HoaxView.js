@@ -417,12 +417,11 @@ export class HoaxView extends Component {
 
                 <div className="m-2 pl-4 mt-4">
                     <div className="row">
-                        <div className="containerPreferences pr-3 ml-auto">
 
+                        <div className="containerPreferences pr-3 ml-auto">
                             <FavoriteHoax
                                 emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
-                                // emailVerificationStatus={false}
-                                // emailVerificationStatus={false}
+                                isLoggedIn={this.props.loggedInUser.isLoggedIn}
                                 entering={this.entering}
                                 favorite={this.state.favorite}
                                 changeFavorite={this.changeFavorite}
@@ -432,8 +431,7 @@ export class HoaxView extends Component {
                         <div className="bookmarkPreference">
                             <BookmarkHoax
                                 emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
-                                // emailVerificationStatus={false}
-                                // emailVerificationStatus={false}
+                                isLoggedIn={this.props.loggedInUser.isLoggedIn}
                                 entering={this.entering}
                                 bookmark={this.state.bookmark}
                                 changeBookmark={this.changeBookmark}
@@ -443,8 +441,7 @@ export class HoaxView extends Component {
                         <div className="likePreference pr-4">
                             <LikeHoax
                                 emailVerificationStatus={this.props.loggedInUser.emailVerificationStatus}
-                                // emailVerificationStatus={false}
-                                // emailVerificationStatus={false}
+                                isLoggedIn={this.props.loggedInUser.isLoggedIn}
                                 entering={this.entering}
                                 like={this.state.like}
                                 changeLike={this.changeLike}

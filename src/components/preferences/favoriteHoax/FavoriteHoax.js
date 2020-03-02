@@ -15,7 +15,8 @@ class FavoriteHoax extends Component {
     let entering = this.props.entering;
     // if emailVerificationStatus is true => rend normal values of component
     let imageSrouce = "far fa-heart fa-lg text-decoration-none heart-false p-1";
-    let toolTipFavoriteFalse = "Email must be validated"
+    let toolTipBookmarkNoAuthenticated = "Need to be Authenticated";
+    let toolTipBookmarkNoValidatedEmail = "Email must be validated";
 
     if(this.props.emailVerificationStatus === true) {
       if(this.props.favorite) {
@@ -37,7 +38,13 @@ class FavoriteHoax extends Component {
                   <Tooltip 
                   id="tooltip-bottom" 
                   >
-                    {toolTipFavoriteFalse}
+                  {!this.props.isLoggedIn && (
+                    toolTipBookmarkNoAuthenticated
+                  )}
+
+                  {this.props.isLoggedIn && (
+                    toolTipBookmarkNoValidatedEmail
+                  )}
                   </Tooltip>
                 }
               >

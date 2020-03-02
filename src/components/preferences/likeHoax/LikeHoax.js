@@ -15,7 +15,8 @@ class LikeHoax extends Component {
     let entering = this.props.entering;
     // if emailVerificationStatus is true => rend normal values of component
     let imageSrouceLike = "fas fa-thumbs-up fa-lg text-decoration-none like-false p-1";
-    let toolTipLikeFalse = "Email must be validated"
+    let toolTipBookmarkNoAuthenticated = "Need to be Authenticated";
+    let toolTipBookmarkNoValidatedEmail = "Email must be validated";
 
     if(this.props.emailVerificationStatus === true) {
       if(this.props.like) {
@@ -37,7 +38,13 @@ class LikeHoax extends Component {
                   <Tooltip 
                   id="tooltip-bottom" 
                   >
-                    {toolTipLikeFalse}
+                  {!this.props.isLoggedIn && (
+                    toolTipBookmarkNoAuthenticated
+                  )}
+
+                  {this.props.isLoggedIn && (
+                    toolTipBookmarkNoValidatedEmail
+                  )}
                   </Tooltip>
                 }
               >

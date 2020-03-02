@@ -15,7 +15,8 @@ class BookmarkHoax extends Component {
     let entering = this.props.entering;
     // if emailVerificationStatus is true => rend normal values of component
     let imageSrouce = "far fa-bookmark text-decoration-none bookmark-false p-1";
-    let toolTipBookmarkFalse = "Email must be validated"
+    let toolTipBookmarkNoAuthenticated = "Need to be Authenticated";
+    let toolTipBookmarkNoValidatedEmail = "Email must be validated";
 
     if(this.props.emailVerificationStatus === true) {
       if(this.props.bookmark) {
@@ -37,7 +38,13 @@ class BookmarkHoax extends Component {
                 <Tooltip 
                 id="tooltip-bottom" 
                 >
-                  {toolTipBookmarkFalse}
+                  {!this.props.isLoggedIn && (
+                    toolTipBookmarkNoAuthenticated
+                  )}
+
+                  {this.props.isLoggedIn && (
+                    toolTipBookmarkNoValidatedEmail
+                  )}
                 </Tooltip>
               }
             >
