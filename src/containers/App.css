@@ -349,8 +349,6 @@ button.btn.btn-outline-dark.btn-sm.ml-2.mb-2.active {
   background: rgb(177, 155, 57) !important;
 }
 
-
-
 span.followButtonTextActive {
   font-size: 12px;
   color: #ebebe8;
@@ -638,6 +636,7 @@ span.followButtonText {
 
 
 /* HoaxView */
+
 .player-wrapper {
   position: relative;
   padding-top: 56.25%;
@@ -645,7 +644,6 @@ span.followButtonText {
 
 .mix-cloud {
   position: relative;
-  padding-top: 26.25%;
 }
 
 .react-player {

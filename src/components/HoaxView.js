@@ -164,26 +164,20 @@ export class HoaxView extends Component {
         }
         // {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), }
 
-        // ReactPlayer
-        // hoax.content
-
         const hoaxContent = hoax.content;
-        let approvalVariable = "a"
 
-        console.log('#1 hoax.content - ', hoaxContent);
-
+        // console.log('#1 hoax.content - ', hoaxContent);
         var ifHoaxContainContainYouTubeVideo = hoaxContent.includes("youtube.com/watch");
         var ifHoaxContainContainSoundCloudVideo = hoaxContent.includes("soundcloud.com/");
         var ifHoaxContainContainMixCloudVideo = hoaxContent.includes("mixcloud.com/");
         var ifHoaxContainContainTwitchVideo = hoaxContent.includes("twitch.tv/");
+        // var ifHoaxContainContainFacebookVideo = hoaxContent.includes("/videos/");
 
-
-        console.log('#2 if hoax.content.includes youtube - ', ifHoaxContainContainYouTubeVideo);
-        console.log('#2 if hoax.content.includes soundcloud - ', ifHoaxContainContainYouTubeVideo);
-
-        // let value = 'cat dog';
-        // const pets = 'cat';
-        // console.log(pets.includes(value));
+        // console.log('#2 if hoax.content.includes YouTube - ', ifHoaxContainContainYouTubeVideo);
+        // console.log('#2 if hoax.content.includes SoundCloud - ', ifHoaxContainContainYouTubeVideo);
+        // console.log('#2 if hoax.content.includes MixCloud - ', ifHoaxContainContainMixCloudVideo);
+        // console.log('#2 if hoax.content.includes Twitch - ', ifHoaxContainContainTwitchVideo);
+        // console.log('#2 if hoax.content.includes Facebook - ', ifHoaxContainContainFacebookVideo);
 
         return (
             <div className="card-home p-1">
@@ -337,6 +331,19 @@ export class HoaxView extends Component {
                     <div className="pl-5 pt-3" style={{ whiteSpace: 'pre-wrap' }}>
                         {hoax.content}
                         
+                        {/* Not work if comming with message */}
+                        {/* {ifHoaxContainContainFacebookVideo && (
+                            <div className='mix-cloud mt-4'>
+                                <ReactPlayer 
+                                    // className='react-player'
+                                    url={hoax.content}
+                                    width='100%'
+                                    height='100%'
+                                    // playing
+                                />
+                            </div>
+                        )} */}
+
                         {ifHoaxContainContainSoundCloudVideo && (
                             <div className='player-wrapper mt-3'>
                                 <ReactPlayer 
@@ -366,7 +373,7 @@ export class HoaxView extends Component {
                         )}
 
                         {ifHoaxContainContainMixCloudVideo && (
-                            <div className='mix-cloud mt-3'>
+                            <div className='mix-cloud mt-4'>
                                 <ReactPlayer 
                                     // className='react-player'
                                     url={hoax.content}
@@ -390,6 +397,8 @@ export class HoaxView extends Component {
                                 />
                             </div>
                         )}
+
+                      
 
                     </div>
                 </Linkify>

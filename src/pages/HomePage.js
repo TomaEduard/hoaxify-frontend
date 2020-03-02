@@ -196,18 +196,18 @@ class HomePage extends Component {
 
                                     {/* Feed Page */}
                                     <Tab.Pane eventKey="first">
-                                            
-                                        {this.props.loggedInUser.isLoggedIn && [
-                                            
+                                        <HoaxSubmit/>
+                                        <HoaxFeed />
+
+                                        {/* Need to be authenticate to see thhis content */}
+                                        {/* {this.props.loggedInUser.isLoggedIn && [
                                             // TODO: add map for this component
                                             <HoaxSubmit
-                                            
                                             />,
                                             <HoaxFeed />
-
-                                        ]}
+                                        ]} */}
                                         
-                                        {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />}
+                                        {/* {!this.props.loggedInUser.isLoggedIn && <NeedToBeAuthenticated />} */}
                                     </Tab.Pane>
 
                                     {/* Preferences */}

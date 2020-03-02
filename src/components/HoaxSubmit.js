@@ -212,8 +212,10 @@ class HoaxSubmit extends Component {
                                 <div className="card-body d-flex flex-column ">
 
                                     <p className="text-secondary mb-0">
-                                        Must&nbsp;
-                                        <span className="font-weight-bold mb-0">validate the email </span>
+                                        Need to be
+                                        <span className="font-weight-bold mb-0"> Authenticated </span>
+                                        and
+                                        <span className="font-weight-bold mb-0"> validate the email </span>
                                         to have access for post Hoax.
                                     </p>
 
