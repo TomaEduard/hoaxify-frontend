@@ -29,21 +29,22 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/signup" component={UserSignupPage} />     
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={UserSignupPage} />     
               
-          {/* Email routes */}
           <Route exact path="/verification/changeEmail" component={ChangeEmail}/> 
           <Route exact path="/verification/confirmationToken" component={ConfirmationToken}/> 
           {/* {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
             : <Route exact path="/verification/confirmationToken" component={ConfirmationToken} />
           } */}
 
+          <Route exact path="/:username" component={UserPage}/> 
+
           {/* <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} /> */}
           {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
           : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />}
           
-          <Route exact path="/:username" component={UserPage} />
+
         </Switch>
 
       </div>

@@ -200,13 +200,12 @@ class HoaxSubmit extends Component {
                     </div>  
                 )}
 
-
                 {!this.props.loggedInUser.emailVerificationStatus && ( 
                     // <div className="card d-flex flex-row p-1 pl-2">
                     //     You need validate your email for post.
                     // </div>
 
-                    <div className="card mt-4 mb-3 verticalLineHoaxSubmit">
+                    <div className="card mb-3 verticalLineHoaxSubmit">
                         <Row>
                             <Col xs={11} md={11} lg={11} xl={10}>
                                 <div className="card-body d-flex flex-column ">

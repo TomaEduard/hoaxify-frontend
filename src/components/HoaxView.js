@@ -190,7 +190,6 @@ export class HoaxView extends Component {
                     />
                 )}                
                 {this.state.isOpenProfile && (
-                    
                     <Lightbox 
                         mainSrc={`${IMAGES_PROFILE}/${imageProfile}`}
                         onCloseRequest={() => this.setState({ isOpenProfile: false })}
@@ -345,7 +344,7 @@ export class HoaxView extends Component {
                         )} */}
 
                         {ifHoaxContainContainSoundCloudVideo && (
-                            <div className='player-wrapper mt-3'>
+                            <div className='player-wrapper-sound-cloud mt-3'>
                                 <ReactPlayer 
                                     className='react-player'
                                     url={hoax.content}
