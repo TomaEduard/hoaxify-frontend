@@ -119,7 +119,7 @@ class UserPage extends Component {
         };
         this.setState({ pendingUpdateCall: true })
         apiCalls
-            .updateUser(userId, userUpdate)
+            .updateUser(userId, userUpdate, this.props.loggedInUser.jwt)
             .then((response) => {
 
                 const user = { ...this.state.user }
@@ -343,7 +343,10 @@ class UserPage extends Component {
                                         <div className="row">
                                             {this.state.userNotFound !== true && (
                                                 <div className="col">
-                                                    <HoaxFeed user={this.props.match.params.username} />
+                                                    <HoaxFeed 
+                                                        user={this.props.match.params.username}
+                                                        userId={this.state.user.id}
+                                                    />
                                                 </div>
                                             )}
                                         </div>
@@ -399,7 +402,7 @@ class UserPage extends Component {
                         {this.state.userNotFound !== true && (
                             <div className="col">
                                 
-                                <HoaxFeed user={this.props.match.params.username} />
+                                <HoaxFeed user={this.state.user.id} />
                             </div>
                         )}
                         

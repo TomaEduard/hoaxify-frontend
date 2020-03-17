@@ -18,7 +18,7 @@ class ResendConfirmationEmail extends Component {
 
     confirmationEmail = () => {
         this.setState({pendingApiCall: true});
-        apiCalls.resendEmailVerification(this.state.id)
+        apiCalls.resendEmailVerification(this.state.id, this.props.loggedInUser.jwt)
             .then((response) => {
             this.setState({
                 pendingApiCall: false,

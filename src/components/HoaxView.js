@@ -12,7 +12,6 @@ import Linkify from 'react-linkify';
 import ReactPlayer from 'react-player'
 
 import { 
-    API_URL, 
     IMAGES_ATTACHMENTS,
     IMAGES_PROFILE,
 
@@ -43,6 +42,7 @@ export class HoaxView extends Component {
             like: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.like : false),
             bookmark: (this.props.hoax.userPreference !== null ? this.props.hoax.userPreference.bookmark : false),
         };
+        console.log('state - HoaxView ',this.state.favorite)
     };
 
     changeFollow = () => {
@@ -59,7 +59,7 @@ export class HoaxView extends Component {
                     "bookmark": this.state.bookmark
                 })
             
-                apiCalls.setPreference(this.state.id , body);
+                apiCalls.setPreference(this.state.id , body, this.props.loggedInUser.jwt);
                 // no need .then .catch at the moment
             }
         );
@@ -78,7 +78,7 @@ export class HoaxView extends Component {
                     "bookmark": this.state.bookmark
                 })
             
-                apiCalls.setPreference(this.state.id , body);
+                apiCalls.setPreference(this.state.id , body, this.props.loggedInUser.jwt);
                 // no need .then .catch at the moment
             }
         );
@@ -96,7 +96,7 @@ export class HoaxView extends Component {
                     "bookmark": this.state.bookmark
                 })
             
-                apiCalls.setPreference(this.state.id , body);
+                apiCalls.setPreference(this.state.id , body, this.props.loggedInUser.jwt);
                 // no need .then .catch at the moment
 
             }
@@ -115,7 +115,7 @@ export class HoaxView extends Component {
                     "bookmark": this.state.bookmark
                 })
             
-                apiCalls.setPreference(this.state.id , body);
+                apiCalls.setPreference(this.state.id , body, this.props.loggedInUser.jwt);
                 // no need .then .catch at the moment
             }
         );
@@ -152,7 +152,7 @@ export class HoaxView extends Component {
         const relativeDate = format(date);
         
         const attachmentImageVisible = hoax.attachment && hoax.attachment.fileType.startsWith('image');
-        
+
         // verify for show arrow button
         const ownedByLoggedInUser = user.id === this.props.loggedInUser.id;
         // const emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
@@ -181,21 +181,22 @@ export class HoaxView extends Component {
 
         return (
             <div className="card-home p-1">
-                {this.state.isOpen && (
-                    <Lightbox 
-                        // mainSrc={image[0]}
-                        // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
-                        mainSrc={`${IMAGES_ATTACHMENTS}/${hoax.attachment.name}`}
-                        onCloseRequest={() => this.setState({ isOpen: false })}
-                    />
+            {this.state.isOpen && (
+                <Lightbox 
+                // mainSrc={image[0]}
+                // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
+                mainSrc={`${IMAGES_ATTACHMENTS}/${hoax.attachment.name}`}
+                onCloseRequest={() => this.setState({ isOpen: false })}
+                />
                 )}                
                 {this.state.isOpenProfile && (
+                    
                     <Lightbox 
                         mainSrc={`${IMAGES_PROFILE}/${imageProfile}`}
                         onCloseRequest={() => this.setState({ isOpenProfile: false })}
                     />
                 )}
-
+                        
                 <div className="d-flex">
                     <ProfileImageWithDefault
                         className="rounded-circle m-1"
@@ -205,117 +206,117 @@ export class HoaxView extends Component {
                         onClick={() => this.changeOpenProfileImage(image)}
                     />
 
-                        <div className="flex-fill m-auto pl-2">
+                    <div className="flex-fill m-auto pl-2">
+                    
+                        <Link to={`/${username}`} className="list-group-item-action">
+                            <h6 className="d-inline displayNameHoaxView">
+                                {displayName}
+                            </h6>
+                        </Link>
+
+                        <FollowUser
+                            emailVerificationStatus={false}
+                            entering={this.entering}
+                            // follow={this.state.follow}
+                            follow={false}
+                            changeFollow={this.changeFollow}
+                        />
                         
-                            <Link to={`/${username}`} className="list-group-item-action">
-                                <h6 className="d-inline displayNameHoaxView">
-                                    {displayName}
-                                </h6>
-                            </Link>
+                        <br></br>
 
-                            <FollowUser
-                                emailVerificationStatus={false}
-                                entering={this.entering}
-                                // follow={this.state.follow}
-                                follow={false}
-                                changeFollow={this.changeFollow}
-                            />
-                            
-                            <br></br>
+                        <span className="text-black-50 pt-1 relativeDate-HoaxView">{relativeDate}</span>
 
-                            <span className="text-black-50 pt-1 relativeDate-HoaxView">{relativeDate}</span>
+                    </div>
+                    
+                    {ownedByLoggedInUser && (
+                        <DropdownButton
+                            key=""
+                            variant=""
+                            id="dropdown-menu-align-left"
+                            drop="down"
+                            title=""
+                        >
+                                
+                            <div className="shadow text-more">
+                                                                        
+                                <Dropdown.Item eventKey="1" disabled={true}>
+                                    <i className="fas fa-ban text-secondary pr-2" ></i>
+                                    Block (Not implemented)
+                                </Dropdown.Item>
 
-                        </div>
-                        
-                        {ownedByLoggedInUser && (
-                            <DropdownButton
-                                key=""
-                                variant=""
-                                id="dropdown-menu-align-left"
-                                drop="down"
-                                title=""
-                            >
-                                    
-                                <div className="shadow text-more">
-                                                                            
-                                    <Dropdown.Item eventKey="1" disabled={true}>
-                                        <i className="fas fa-ban text-secondary pr-2" ></i>
-                                        Block (Not implemented)
-                                    </Dropdown.Item>
+                                <Dropdown.Item eventKey="2" disabled={true}>
+                                    <i className="far fa-flag text-secondary pr-2"></i>
+                                    Report (Not implemented)
+                                </Dropdown.Item>
 
-                                    <Dropdown.Item eventKey="2" disabled={true}>
-                                        <i className="far fa-flag text-secondary pr-2"></i>
-                                        Report (Not implemented)
-                                    </Dropdown.Item>
+                                <Dropdown.Divider />
 
-                                    <Dropdown.Divider />
+                                <Dropdown.Item eventKey="3" disabled={true}>
+                                    <i className="far fa-eye-slash text-secondary pr-2"></i>
+                                    Hide Post (Not implemented)
+                                </Dropdown.Item>
 
-                                    <Dropdown.Item eventKey="3" disabled={true}>
-                                        <i className="far fa-eye-slash text-secondary pr-2"></i>
-                                        Hide Post (Not implemented)
-                                    </Dropdown.Item>
+                                <Dropdown.Item eventKey="3" disabled={true}>
+                                    <i className="fas fa-code text-secondary pr-2"></i>
+                                    embed (Not implemented)
+                                </Dropdown.Item>
+                                <Dropdown.Divider />
 
-                                    <Dropdown.Item eventKey="3" disabled={true}>
-                                        <i className="fas fa-code text-secondary pr-2"></i>
-                                        embed (Not implemented)
-                                    </Dropdown.Item>
-                                    <Dropdown.Divider />
+                                <Dropdown.Item 
+                                    eventKey="3" 
+                                    onClick={onClickDelete} 
+                                >
+                                    <i className="far fa-trash-alt text-secondary pr-2"></i>
+                                    Delete Post
+                                </Dropdown.Item>                                
+                                
+                                <Dropdown.Item eventKey="3" disabled={true}>
+                                    <i className="far fa-edit text-secondary pr-2"></i>
+                                    Edit Post (Not implemented)
+                                </Dropdown.Item>
+                    
 
-                                    <Dropdown.Item 
-                                        eventKey="3" 
-                                        onClick={onClickDelete} 
-                                    >
-                                        <i className="far fa-trash-alt text-secondary pr-2"></i>
-                                        Delete Post
-                                    </Dropdown.Item>                                
-                                    
-                                    <Dropdown.Item eventKey="3" disabled={true}>
-                                        <i className="far fa-edit text-secondary pr-2"></i>
-                                        Edit Post (Not implemented)
-                                    </Dropdown.Item>
-                        
+                                {/* <Dropdown.Divider /> */}
+                                
+                            </div>
+                        </DropdownButton>
+                    )}
 
-                                    {/* <Dropdown.Divider /> */}
-                                    
-                                </div>
-                            </DropdownButton>
-                        )}
+                    {!ownedByLoggedInUser && (
+                        <DropdownButton
+                            key=""
+                            variant=""
+                            id="dropdown-menu-align-left"
+                            drop="down"
+                            title=""
+                        >
+                                
+                            <div className="shadow text-more">
+                                                                        
+                                <Dropdown.Item eventKey="1" disabled={true}>
+                                    <i className="fas fa-ban text-secondary pr-2" ></i>
+                                    Block (Not implemented)
+                                </Dropdown.Item>
 
-                        {!ownedByLoggedInUser && (
-                            <DropdownButton
-                                key=""
-                                variant=""
-                                id="dropdown-menu-align-left"
-                                drop="down"
-                                title=""
-                            >
-                                    
-                                <div className="shadow text-more">
-                                                                            
-                                    <Dropdown.Item eventKey="1" disabled={true}>
-                                        <i className="fas fa-ban text-secondary pr-2" ></i>
-                                        Block (Not implemented)
-                                    </Dropdown.Item>
+                                <Dropdown.Item eventKey="2" disabled={true}>
+                                    <i className="far fa-flag text-secondary pr-2"></i>
+                                    Report (Not implemented)
+                                </Dropdown.Item>
 
-                                    <Dropdown.Item eventKey="2" disabled={true}>
-                                        <i className="far fa-flag text-secondary pr-2"></i>
-                                        Report (Not implemented)
-                                    </Dropdown.Item>
+                                <Dropdown.Divider />
 
-                                    <Dropdown.Divider />
+                                <Dropdown.Item eventKey="3" disabled={true}>
+                                    <i className="far fa-eye-slash text-secondary pr-2"></i>
+                                    Hide Post (Not implemented)
+                                </Dropdown.Item>
 
-                                    <Dropdown.Item eventKey="3" disabled={true}>
-                                        <i className="far fa-eye-slash text-secondary pr-2"></i>
-                                        Hide Post (Not implemented)
-                                    </Dropdown.Item>
-
-                                    <Dropdown.Item eventKey="3" disabled={true}>
-                                        <i className="fas fa-code text-secondary pr-2"></i>
-                                        embed (Not implemented)
-                                    </Dropdown.Item>
-                                </div>
-                            </DropdownButton>
-                        )}
+                                <Dropdown.Item eventKey="3" disabled={true}>
+                                    <i className="fas fa-code text-secondary pr-2"></i>
+                                    embed (Not implemented)
+                                </Dropdown.Item>
+                            </div>
+                        </DropdownButton>
+                    )}
 
                     {/* <button> Delete </button> */}
 
@@ -344,9 +345,9 @@ export class HoaxView extends Component {
                         )} */}
 
                         {ifHoaxContainContainSoundCloudVideo && (
-                            <div className='player-wrapper-sound-cloud mt-3'>
+                            <div className='player-wrapper mt-3'>
                                 <ReactPlayer 
-                                    className='react-player'
+                                    className='react-player-sound-cloud'
                                     url={hoax.content}
                                     // width='100%'
                                     // height='40vh'
@@ -397,11 +398,9 @@ export class HoaxView extends Component {
                             </div>
                         )}
 
-                      
 
                     </div>
                 </Linkify>
-
 
                 {attachmentImageVisible && (
                     <div className="m-auto pt-3 img-max"> 

@@ -6,6 +6,7 @@ const initialState = {
     password: '',
     isLoggedIn: false,
     emailVerificationStatus: false
+
 };
 
 export default function authReducer(state = initialState, action) {

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as apiCalls from '../api/apiCalls';
-import HoaxViewForPrefferences from './HoaxViewForPrefferences';
 import HoaxView from './HoaxView';
 import SpinnerForComponents from './SpinnerForComponents';
 import InputForCloseAccount from '../components/InputForCloseAccount';
@@ -20,11 +19,6 @@ class Preferences extends Component {
             isLoadingHoaxes: false,
 
             content: []
-            // page: {
-            //     content: []
-            // },
-            // isLoadingOldHoaxes: false,
-            // isLoadingNewHoaxes: false,
         };
         console.log('FAVORITE  ' + this.state.favorite);
         
@@ -48,7 +42,8 @@ class Preferences extends Component {
         })
         // console.log("#2 fetchLocalItems - After  " + this.state.favorite);
 
-        apiCalls.loadHoaxesByPreferences(this.props.loggedInUser.id, body).then(response => {
+        apiCalls.loadHoaxesByPreferences(this.props.loggedInUser.id, body, this.props.loggedInUser.jwt)
+            .then(response => {
         //    console.log("#4 Preferences - componentDidMount - response => ", response);
             this.setState({ 
                 content: response.data, 
@@ -209,7 +204,6 @@ class Preferences extends Component {
                     </Button>
                 </div>
                 </div>
-
 
                     {this.state.isLoadingHoaxes && (
                         <div className="mt-2 pt-3">

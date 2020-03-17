@@ -62,7 +62,7 @@ class HoaxSubmit extends Component {
     uploadFile = () => {
         const body = new FormData();
         body.append('file', this.state.file)
-        apiCalls.postHoaxFile(body)
+        apiCalls.postHoaxFile(body, this.props.loggedInUser.jwt)
             .then(response => {
                 this.setState({ attachment: response.data })
             })
@@ -74,7 +74,7 @@ class HoaxSubmit extends Component {
 
                 this.setState({ 
                     pendingApiCall: false,
-                    errors: {content: 'The maximum allowed image size is 1MB.'},
+                    errors: {content: error.response.data.message,},
                     image: undefined,
                     file: undefined,
                     attachment: undefined
@@ -97,11 +97,12 @@ class HoaxSubmit extends Component {
     // #1
     onClickHoaxify = () => {
         const body = {
+            userId: this.props.loggedInUser.id,
             content: this.state.content,
             attachment: this.state.attachment
         };
         this.setState({ pendingApiCall: true });
-        apiCalls.postHoax(body)
+        apiCalls.postHoax(body, this.props.loggedInUser.jwt)
         .then((response) => {
             this.resetState();
         })
@@ -129,7 +130,7 @@ class HoaxSubmit extends Component {
 
         return (
             <div>
-                {this.props.loggedInUser.emailVerificationStatus && ( 
+                {this.props.loggedInUser.emailVerificationStatus && this.props.loggedInUser.isLoggedIn && ( 
                     <div className="card d-flex flex-row p-1">
     
                         <ProfileImageWithDefault 

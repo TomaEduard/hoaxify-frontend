@@ -3,8 +3,9 @@ import * as apiCalls from '../api/apiCalls';
 import SpinnerForComponents from './SpinnerForComponents';
 import HoaxView from './HoaxView';
 import Modal from './Modal';
+import { connect } from 'react-redux';
  
-export default class HoaxFeed extends Component {
+class HoaxFeed extends Component {
 
     state = {
         page: {
@@ -21,13 +22,13 @@ export default class HoaxFeed extends Component {
 
     componentDidMount() {
         this.setState({ isLoadingHoaxes: true })
-        apiCalls.loadHoaxes(this.props.user)
+        apiCalls.loadHoaxes(this.props.userId, this.props.loggedInUser.jwt)
             .then(response => {
                 this.setState({ 
                     page: response.data, 
                     isLoadingHoaxes: false 
                 }, () => {
-                    this.counter = setInterval(this.checkCount, 2000);
+                    this.counter = setInterval(this.checkCount, 99999999);
                 });
             
             });
@@ -57,7 +58,7 @@ export default class HoaxFeed extends Component {
         const hoaxAtBottom = hoaxes[hoaxes.length - 1];
         this.setState({isLoadingOldHoaxes: true})
 
-        apiCalls.loadOldHoaxes(hoaxAtBottom.id, this.props.user)
+        apiCalls.loadOldHoaxes(hoaxAtBottom.id, this.props.user, this.props.loggedInUser.jwt)
             .then((response) => {
                 const page = { ...this.state.page }
                 page.content = [...page.content, ...response.data.content];
@@ -76,7 +77,7 @@ export default class HoaxFeed extends Component {
             topHoaxId = hoaxes[0].id;
         }
         this.setState({isLoadingNewHoaxes: true});
-        apiCalls.loadNewHoaxes(topHoaxId, this.props.user)
+        apiCalls.loadNewHoaxes(topHoaxId, this.props.user, this.props.loggedInUser.jwt)
             .then((response) => {
                 const page = { ...this.state.page };
                 // update content with this new response data + the page existing content 
@@ -102,7 +103,7 @@ export default class HoaxFeed extends Component {
 
     onClickModalOk = () => {
         this.setState({ isDeletingHoax: true });
-        apiCalls.deleteHoax(this.state.hoaxToBeDeleted.id)
+        apiCalls.deleteHoax(this.state.hoaxToBeDeleted.id, this.props.loggedInUser.jwt)
             .then((response) => {
                 // take the current page
                 const page = { ...this.state.page };
@@ -117,6 +118,7 @@ export default class HoaxFeed extends Component {
     }
 
     render() {
+        console.log('this.state.content ', this.state.page.content)
         if(this.state.isLoadingHoaxes) {
             return (
                 <SpinnerForComponents value="Loading..."/>
@@ -193,3 +195,10 @@ export default class HoaxFeed extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        loggedInUser: state
+    }
+}
+
+export default connect(mapStateToProps)(HoaxFeed);

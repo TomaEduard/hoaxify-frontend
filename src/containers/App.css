@@ -642,12 +642,6 @@ span.followButtonText {
   padding-top: 56.25%;
 }
 
-.player-wrapper-sound-cloud {
-  position: relative;
-  padding-top: 19.25%;
-  /* padding-top: 56.25%; */
-}
-
 .mix-cloud {
   position: relative;
 }
@@ -658,7 +652,11 @@ span.followButtonText {
   left: 0;
 }
 
-
+.react-player-sound-cloud {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 /* remove youtube wrapper */
 .ytrp_rb_fg_like {
