@@ -12,6 +12,11 @@ import image from '../assets/2asd.png';
 import { Link } from 'react-router-dom';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import fbLogo from '../assets/fb-logo.png';
+import googleLogo from '../assets/google-logo.png';
+import githubLogo from '../assets/github-logo.png';
+import Facebook from '../components/social-login/facebook/Facebook';
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, ACCESS_TOKEN } from '../config';
 
 import {
   TwitterIcon,
@@ -171,31 +176,83 @@ export class LoginPage extends React.Component {
                   />
                 </div>
  
-                <div className="text-center text-secondary pt-3">
+                <div className="text-center text-secondary">
 
-                  <p>OR</p>
+                  <div className="or-separator">
+                    <p className="or-text">OR</p>
+                  </div>
+                  <div className="social-login">
+                    {/*
+                      <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
+                          <img src={googleLogo} alt="Google" /> <span className="googleText">Log in with Google</span>
+                      </a>
+                      
+                      <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
+                          <img src={fbLogo} alt="Facebook" /> Log in with Facebook
+                      </a>
+                      
+                      <a className="btn btn-block social-btn github" href={GITHUB_AUTH_URL}>
+                          <img src={githubLogo} alt="Github" /> Log in with Github
+                      </a>
+                      */}
+                    <Facebook />  
+                  </div>
 
-                  <OverlayTrigger
-                    key={'bottom'}
-                    placement={'bottom'}
-                    // overlay={this.tooltip} 
-                    onEntering={this.entering}
-                    overlay={
-                      <Tooltip 
-                      id="tooltip-bottom" 
-                      >
-                        {toolTipLikeFalse}
-                      </Tooltip>
-                    }
-                  >
-                    <div className="social-media-login-icons">
-                      <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                      <FacebookIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
-                      <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                {/* 
+                  <div className="row d-flex justify-content-center">
+
+                    <div className="row d-flex justify-content-center social-login">
+                      <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
+                        <img src={fbLogo} alt="Facebook" />
+                      </a>
                     </div>
 
-                  </OverlayTrigger>
+                    <div className="row d-flex justify-content-center social-login">
+                      <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
+                        <img src={googleLogo} alt="Google" />
+                      </a>
+                    </div>
 
+                      <div className="row d-flex justify-content-center social-login">
+                      <a className="btn btn-block social-btn github" href={GOOGLE_AUTH_URL}>
+                        <img src={githubLogo} alt="Github" />
+                      </a>
+                    </div>
+                    
+                  
+                    <div className="social-media-login-icons ml-2">
+                      <OverlayTrigger
+                        key={'bottom'}
+                        placement={'bottom'}
+                        onEntering={this.entering}
+                        overlay={
+                          <Tooltip 
+                          id="tooltip-bottom" 
+                          >
+                            {toolTipLikeFalse}
+                          </Tooltip>
+                        }
+                      >
+                        <TwitterIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                      </OverlayTrigger>
+
+                      <OverlayTrigger
+                        key={'bottom'}
+                        placement={'bottom'}
+                        onEntering={this.entering}
+                        overlay={
+                          <Tooltip 
+                          id="tooltip-bottom" 
+                          >
+                            {toolTipLikeFalse}
+                          </Tooltip>
+                        }
+                      >
+                        <LinkedinIcon className="mr-2" size={40} round={false} style={{ cursor: 'pointer' }}/>
+                      </OverlayTrigger>
+                    </div>
+                  </div>
+                  */}
                 </div>
 
                 {/* <Link to={`/${username}`}  */}

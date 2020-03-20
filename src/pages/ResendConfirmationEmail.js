@@ -36,7 +36,6 @@ class ResendConfirmationEmail extends Component {
         });
     }
 
-   
     render() {
         
         return (

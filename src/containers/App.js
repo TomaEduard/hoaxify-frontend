@@ -10,6 +10,7 @@ import ChangeEmail from '../pages/ChangeEmail';
 
 import ConfirmationToken from '../pages/confirmationToken';
 import { connect } from 'react-redux';
+import OAuth2RedirectHandler from '../pages/OAuth2RedirectHandler';
 
 import './App.css';
 
@@ -44,6 +45,7 @@ class App extends Component {
           {!this.props.loggedInUser.isLoggedIn ? <Redirect to="/login" /> 
           : <Route exact path="/verification/confirmationEmail" component={ResendConfirmationEmail} />}
           
+          <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/> 
 
         </Switch>
 

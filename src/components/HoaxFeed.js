@@ -162,7 +162,7 @@ class HoaxFeed extends Component {
                             hoax={hoax}
                             onClickDelete={() => this.onClickDeleteHoax(hoax)}
                         />
-                        
+
                     )
                 })}
             
@@ -189,8 +189,6 @@ class HoaxFeed extends Component {
                     onClickOk={this.onClickModalOk}
                     pandingApiCall={this.state.isDeletingHoax}
                 />
-
-
             </div>
         );
     }

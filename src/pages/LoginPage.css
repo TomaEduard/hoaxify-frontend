@@ -14,7 +14,105 @@
   max-width: 316px;
   animation: animated 0.7s ;
   background: url(../assets/1asd.png) no-repeat ;
+
 }
+
+.or-separator {
+  border-bottom: 1px solid rgb(182,182,182);
+  padding-top: 27px !important;
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1em;    
+}
+
+.or-text {
+  position: absolute;
+  left: 43%;
+  top: 5px;
+  background: #fff;
+  padding: 10px;
+  color: rgba(0,0,0,.45);
+}
+
+.social-btn {
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.social-btn img {
+    height: 32px;
+    float: left;
+    /* margin-top: 10px; */
+}
+
+.social-btn.google {
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  margin-top: 25px;
+  padding: 10px;
+}
+
+.googleText {
+  padding-right: 22px;
+}
+
+.social-btn.google img {
+  height: 37px;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-left: 7px;
+  padding-bottom: 6px;
+}
+
+
+.social-btn.facebook {
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  margin-top: 25px;
+  padding: 10px;
+}
+
+.social-btn.facebook img {
+  height: 26px;
+  padding-left: 13px;
+  padding-bottom: 3px;
+}
+
+.facebook-img {
+  height: 36px;
+  margin-top: 30px;
+}
+
+/* .social-btn.github img {
+    height: 24px;
+    margin-left: 3px;
+} */
+
+
+/* .social-btn.facebook img {
+  height: 31px;
+  margin-left: 3px;
+  margin-top: 6px;
+}
+
+.social-btn.google img {
+  height: 45px;
+  margin-left: 10px;
+}
+
+.social-btn.github img {
+  height: 34px;
+  margin-top: 5px;
+  padding-left: 10px;
+
+}
+
+.social-media-login-icons {
+  margin-top: 8px;
+  margin-left: 4px;
+} */
 
 /* .login-logo {
   margin: auto;
