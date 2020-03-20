@@ -17,20 +17,23 @@ export default function authReducer(state = initialState, action) {
             ...action.payload,
             isLoggedIn: true, // not sent from backend and not receive from logginPage isLoggedIn
         };
-    } else if (action.type === 'update-success') {
+    } else if (action.type === 'login-success-facebook') {
+        return {
+            ...action.payload,
+            isLoggedIn: true, // not sent from backend and not receive from logginPage isLoggedIn
+        };
+    }else if (action.type === 'update-success') {
         return {
             ...state,
             displayName: action.payload.displayName,
             image: action.payload.image
         }
-    } 
-    else if (action.type === 'confirmation-token') {
+    } else if (action.type === 'confirmation-token') {
         return {
             ...state,
             emailVerificationStatus: true
         }
-    }
-    else if (action.type === 'change-email') {
+    } else if (action.type === 'change-email') {
         return { ...initialState };
     }
     return state;

@@ -9,6 +9,12 @@ export const login = (user) => {
     return axios.post(`${API_URL}/login`, user);
 };
 
+export const loginFacebook = (user) => {
+    console.log("apiCalls - loginFacebook - user: ", user);
+    
+    return axios.post(`${API_URL}/oauth2/facebook`, user);
+};
+
 export const setAuthorizationHeader = ({username, password, isLoggedIn}) => {
     if (isLoggedIn) {
         axios.defaults.headers.common['Authorization'] = `Basic ${btoa( username + ':' + password )}`;

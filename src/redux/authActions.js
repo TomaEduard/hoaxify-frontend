@@ -9,13 +9,38 @@ export const loginSuccess = (loginUserData) => {
 
 export const loginHandler = (credential) => {
     return function (dispatch) {
-
         // make api request
         return apiCalls.login(credential)
             .then((response) => {
                 // send data to redux store (authReducer)
                 dispatch(
                     loginSuccess({ 
+                    ...response.data,
+                    password: credential.password
+                    })
+                );
+    
+            return response;
+        });
+
+    };
+};
+
+export const loginSuccessFacebook = (loginUserData) => {
+    return {
+        type: 'login-success-facebook',
+        payload: loginUserData,
+    };
+};
+
+export const loginHandlerFacebook = (credential) => {
+    return function (dispatch) {
+        // console.log("#2 loginHandlerFacebook : ", credential);
+        return apiCalls.loginFacebook(credential)
+            .then((response) => {
+                // send data to redux store (authReducer)
+                dispatch(
+                    loginSuccessFacebook({ 
                     ...response.data,
                     password: credential.password
                     })

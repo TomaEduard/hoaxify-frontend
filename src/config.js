@@ -8,7 +8,6 @@ export const IMAGES_ATTACHMENTS = 'http://localhost:8080/images/attachments';
 export const IMAGES_PROFILE = 'http://localhost:8080/images/profile';
 // const IMAGES_PROFILE = 'http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/profile';
 
-
 export const ACCESS_TOKEN = 'accessToken';
 
 export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect'

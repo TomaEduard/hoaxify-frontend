@@ -16,6 +16,7 @@ import fbLogo from '../assets/fb-logo.png';
 import googleLogo from '../assets/google-logo.png';
 import githubLogo from '../assets/github-logo.png';
 import Facebook from '../components/social-login/facebook/Facebook';
+import Google from '../components/social-login/google/Google';
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, ACCESS_TOKEN } from '../config';
 
 import {
@@ -51,13 +52,12 @@ export class LoginPage extends React.Component {
   onClickLogin = () => {
     const body = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
     };
     this.setState({pendingApiCall: true})
 
-    // call reformating/rename postLogin dispatch function for jest 
     this.props.actions.postLogin(body)
-
+    
     .then((response) => {
       this.setState({pendingApiCall: false}, () => {
         this.props.history.push('/');
@@ -99,13 +99,13 @@ export class LoginPage extends React.Component {
         <div className="container pt-5">
 
           <div className="row">
-            <div className="contact-form col-lg-5 mt-3 shadow mb-5 bg-white pt-1">
+            <div className="contact-form col-xl-5 col-lg-8 col-md-10 col-sm-12 mt-3 shadow mb-5 bg-white pt-1">
 
               <div className="d-flex justify-content-center"> 
                 <img className="m-auto pl-3 pt-3" src={image} width="270" alt="Hoaxify" />
               </div>
 
-              <div className="card-body">
+              <div className="card-body ">
 
                 {/* <h4 className="text-center">Login</h4> */}
 
@@ -181,7 +181,7 @@ export class LoginPage extends React.Component {
                   <div className="or-separator">
                     <p className="or-text">OR</p>
                   </div>
-                  <div className="social-login">
+                  <div className="social-login justify-content-center">
                     {/*
                       <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
                           <img src={googleLogo} alt="Google" /> <span className="googleText">Log in with Google</span>
@@ -195,7 +195,7 @@ export class LoginPage extends React.Component {
                           <img src={githubLogo} alt="Github" /> Log in with Github
                       </a>
                       */}
-                    <Facebook />  
+                    <Facebook />
                   </div>
 
                 {/* 

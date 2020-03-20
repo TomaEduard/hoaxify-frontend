@@ -85,6 +85,7 @@ class TopBar extends React.Component {
                                 width="32"
                                 height="32"
                                 image={this.props.user.image}
+                                provider={this.props.user.provider}
                             />
                             <span className="nav-link dropdown-toggle">
                                 {this.props.user.displayName}

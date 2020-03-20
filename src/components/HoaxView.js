@@ -158,10 +158,6 @@ export class HoaxView extends Component {
         // const emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
         // let emailVerificationStatus = this.props.loggedInUser.emailVerificationStatus;
 
-        let imageProfile = 'profile.png';
-        if(image !== 'profile.png') {
-            imageProfile = image
-        }
         // {/* (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1), }
 
         const hoaxContent = hoax.content;
@@ -179,20 +175,45 @@ export class HoaxView extends Component {
         // console.log('#2 if hoax.content.includes Twitch - ', ifHoaxContainContainTwitchVideo);
         // console.log('#2 if hoax.content.includes Facebook - ', ifHoaxContainContainFacebookVideo);
 
+
+        let imageProfile = 'profile.png';
+        if(image !== 'profile.png') {
+            imageProfile = image
+        }
+
+        // local
+        let imageSource = `${IMAGES_PROFILE}/${imageProfile}`;
+
+        // remove (facebook)
+        // take the value of image
+        let verifyimageContent = this.state.image;
+        // verify if includes https:// 
+        if(verifyimageContent != null) {
+            let ifImageContainFacebookURL = verifyimageContent.includes("https://");
+            // set path for facebook image
+            if (ifImageContainFacebookURL) {
+                imageSource = this.state.image
+            }
+        }
+        
+        
         return (
             <div className="card-home p-1">
-            {this.state.isOpen && (
-                <Lightbox 
-                // mainSrc={image[0]}
-                // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
-                mainSrc={`${IMAGES_ATTACHMENTS}/${hoax.attachment.name}`}
-                onCloseRequest={() => this.setState({ isOpen: false })}
-                />
-                )}                
-                {this.state.isOpenProfile && (
-                    
+
+                {this.state.isOpen && (
                     <Lightbox 
-                        mainSrc={`${IMAGES_PROFILE}/${imageProfile}`}
+                        // mainSrc={image[0]}
+                        // mainSrc={`http://HoaxifyApp-env.eq9spv9gbn.eu-west-3.elasticbeanstalk.com/images/attachments/${hoax.attachment.name}`}
+                        
+                        mainSrc={`${IMAGES_ATTACHMENTS}/${hoax.attachment.name}`}
+                        onCloseRequest={() => this.setState({ isOpen: false })}
+                    />
+                )}       
+
+                {this.state.isOpenProfile && (
+                    <Lightbox 
+                        // local
+                        mainSrc={imageSource}
                         onCloseRequest={() => this.setState({ isOpenProfile: false })}
                     />
                 )}
@@ -204,6 +225,7 @@ export class HoaxView extends Component {
                         height="52"
                         image={image}
                         onClick={() => this.changeOpenProfileImage(image)}
+                        provider={this.props.loggedInUser.provider}
                     />
 
                     <div className="flex-fill m-auto pl-2">
@@ -322,7 +344,7 @@ export class HoaxView extends Component {
 
                     <div className="">
                         {/* <ButtonToolbar>
-                            <Button variant="outline-warning">Warning</Button>
+                            <Button variant="outline-warning">War ning</Button>
                         </ButtonToolbar> */}
                     </div>
                 </div>
