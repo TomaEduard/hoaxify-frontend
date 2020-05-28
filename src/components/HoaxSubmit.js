@@ -74,7 +74,8 @@ class HoaxSubmit extends Component {
 
                 this.setState({ 
                     pendingApiCall: false,
-                    errors: {content: error.response.data.message,},
+                    errors: {content: 'The maximum allowed image size is 1MB.'},
+                    // errors: {content: error.response.data.message},
                     image: undefined,
                     file: undefined,
                     attachment: undefined

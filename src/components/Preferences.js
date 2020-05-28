@@ -213,6 +213,7 @@ class Preferences extends Component {
 
                 {this.state.content.map((hoax) => {
                     return (
+
                         <div className="pt-5">
                             <HoaxView
                             // <HoaxViewForPrefferences 
@@ -222,7 +223,13 @@ class Preferences extends Component {
                             />
                         </div>
                     )
-                })}    
+                })} 
+                
+                {this.state.content.length === 0 && (
+                    <div className="card card-header text-center text-secondary mt-3">
+                        There are no hoaxes
+                    </div>
+                )}
 
             </div>
         )

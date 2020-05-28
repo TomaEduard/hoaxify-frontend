@@ -19,7 +19,6 @@ export const loginHandler = (credential) => {
                     password: credential.password
                     })
                 );
-    
             return response;
         });
 
@@ -41,8 +40,8 @@ export const loginHandlerFacebook = (credential) => {
                 // send data to redux store (authReducer)
                 dispatch(
                     loginSuccessFacebook({ 
-                    ...response.data,
-                    password: credential.password
+                        ...response.data,
+                        password: credential.password
                     })
                 );
     

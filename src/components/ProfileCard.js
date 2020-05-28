@@ -87,7 +87,6 @@ const ProfileCard = (props) => {
                             className="btn btn-outline-primary mt-5"
                             onClick={props.onClickEdit}
                         >
-                            
                             <i className="far fa-edit mr-2 "></i>
                             Edit
                         </button> 

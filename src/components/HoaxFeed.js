@@ -21,14 +21,16 @@ class HoaxFeed extends Component {
     };
 
     componentDidMount() {
+        console.log("HoaxFeed - this.props.userId (from UserPage)- " + this.props.user);
+        
         this.setState({ isLoadingHoaxes: true })
-        apiCalls.loadHoaxes(this.props.userId, this.props.loggedInUser.jwt)
+        apiCalls.loadHoaxes(this.props.user, this.props.loggedInUser.jwt)
             .then(response => {
                 this.setState({ 
                     page: response.data, 
                     isLoadingHoaxes: false 
                 }, () => {
-                    this.counter = setInterval(this.checkCount, 99999999);
+                    this.counter = setInterval(this.checkCount, 2500);
                 });
             
             });
@@ -152,7 +154,8 @@ class HoaxFeed extends Component {
                     >
                         {this.state.isLoadingNewHoaxes 
                             ? <SpinnerForComponents value="Loading..."/> 
-                            : newHoaxCountMessage}
+                            : newHoaxCountMessage
+                        }
                     </div>
                 )}
                 {this.state.page.content.map((hoax) => {

@@ -5,8 +5,8 @@ import ProfileCard from '../components/ProfileCard';
 import { connect } from 'react-redux';
 import HoaxFeed from '../components/HoaxFeed';
 import Spinner from '../components/Spinner';
-// import Home from '../components/Home';
-// import PersonalInfo from '../components/PersonalInfo';
+import Home from '../components/Home';
+import PersonalInfo from '../components/PersonalInfo';
 import Security from '../components/Security';
 import BlockedUsers from '../components/BlockedUsers';
 import SharingSettings from '../components/SharingSettings';
@@ -33,7 +33,7 @@ class UserPage extends Component {
             // tabValue: '1',
             tabValue: (this.props.location.tabValue !== undefined ? this.props.location.tabValue : 1),
         };
-        // console.log("P1 After state: ", this.state.tabValue)
+        console.log("P1 After state: ", this.state.tabValue)
     };
 
     componentDidMount() {
@@ -119,7 +119,7 @@ class UserPage extends Component {
         };
         this.setState({ pendingUpdateCall: true })
         apiCalls
-            .updateUser(userId, userUpdate, this.props.loggedInUser.jwt)
+        .updateUser(userId, userUpdate, this.props.loggedInUser.jwt)
             .then((response) => {
 
                 const user = { ...this.state.user }
@@ -140,10 +140,10 @@ class UserPage extends Component {
                 });
             })
             .catch((error) => {
-                // if(error.response.data.validationErrors) {
-                //     let errors = {};
-                //     errors = error.response.data.validationErrors;
-                // }
+                let errors = {};
+                if(error.response.data.validationErrors) {
+                    errors = error.response.data.validationErrors;
+                }
                 this.setState({
                     pendingUpdateCall: false,
                     errors: error.response.data.validationErrors,
@@ -346,7 +346,7 @@ class UserPage extends Component {
                                                     <HoaxFeed 
                                                         user={this.props.match.params.username}
                                                         userId={this.state.user.id}
-                                                    />
+                                                    />                                               
                                                 </div>
                                             )}
                                         </div>
@@ -402,7 +402,7 @@ class UserPage extends Component {
                         {this.state.userNotFound !== true && (
                             <div className="col">
                                 
-                                <HoaxFeed user={this.state.user.id} />
+                                <HoaxFeed user={this.props.match.params.username} />
                             </div>
                         )}
                         

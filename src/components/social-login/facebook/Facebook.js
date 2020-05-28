@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import * as authActions from '../../../redux/authActions'; 
 import { connect } from 'react-redux';
-import fbLogo from '../../../assets/fb-logo.png';
 
 export class Facebook extends Component {
     state = {
@@ -38,7 +37,6 @@ export class Facebook extends Component {
             console.log("#0: ", body);
             
             this.props.actions.postLogin(body)
-            
             .then((response) => {
                 console.log("#5: ", body);
 
@@ -75,9 +73,7 @@ export class Facebook extends Component {
         } else {
             fbContent = (
                 <div className="row d-flex justify-content-center pt-3">
-                    {/* 
-                        <img src={fbLogo} className="facebook-img" alt="Facebook" />
-                    */}
+
                     <FacebookLogin
                         appId="552418532297617"
                         // autoLoad='true'
@@ -92,17 +88,6 @@ export class Facebook extends Component {
                         tag='button'
                     />
 
-                    {/* 
-                        // official sign in button image from facebook developer
-                    <div 
-                        className="fb-login-button" 
-                        data-width="" 
-                        data-size="large" 
-                        data-button-type="login_with" 
-                        data-layout="default" 
-                        data-auto-logout-link="false" 
-                        data-use-continue-as="false">
-                    </div>*/}
                 </div>
                 
             )

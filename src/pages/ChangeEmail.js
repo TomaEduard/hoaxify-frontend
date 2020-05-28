@@ -97,8 +97,8 @@ class ChangeEmail extends Component {
     };
 
     handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.history.push('/');
+        event.preventDefault();
+        this.props.history.push('/');
     }
 
     render() {

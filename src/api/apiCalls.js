@@ -60,10 +60,10 @@ export const postHoaxFile = (file, jwt) => {
     return axios.post(`${API_URL}/hoaxes/upload`, file, config);
 };
 
-export const loadHoaxes = (hoaxId, jwt) => {
-    console.log('apiCall - loadHoaxes - username - ', hoaxId);
+export const loadHoaxes = (username, jwt) => {
+    console.log('apiCall - loadHoaxes - username - ', username);
 
-    const basePath = hoaxId ? `${API_URL}/users/hoaxes/${hoaxId}` : `${API_URL}/hoaxes`
+    const basePath = username ? `${API_URL}/users/${username}/hoaxes` : `${API_URL}/hoaxes`
 
     if (jwt != null ) {
         const config = {
