@@ -27,7 +27,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 7. Profile Tab
 ![profile-security](https://user-images.githubusercontent.com/45673679/84307129-20e2c300-ab65-11ea-9efa-7124b26150de.png)
 7. Resend Email Verification Page
-8. Validated token from email cia url
+8. Validated token from email uriToken
 
 
 
